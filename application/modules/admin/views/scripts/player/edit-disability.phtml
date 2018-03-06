@@ -1,0 +1,175 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+    <span class="notification_msgGreen">Changes saved successfully.</span>
+</div>
+<div id="content">
+    <h3>Player Details</h3>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget widget-tabs border-bottom-none">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <ul>
+                    <li class="active"><a class="glyphicons edit"  data-toggle="tab"><i></i>Player details</a></li>
+                </ul>
+            </div>
+            <!-- // Widget heading END -->
+
+
+            <div class="widget-body">
+                <form class="form-horizontal margin-none editdisabilityform_removeforvalidation" method="post">
+                    <div class="tab-content pad0">
+
+                        <!-- Tab content -->
+                        <div class="tab-pane active" >
+
+                            <!-- Row -->
+                            <div class="row-fluid">
+
+                                <!-- Column -->
+                                <div class="span6">
+
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Player Name</label>
+                                        <div class="controls">
+                                            <input type="text" name="player_name" readonly="true" required="true" value="<?php if (isset($this->plrDetails['name'])) {
+    echo $this->plrDetails['name'];
+} ?>" placeholder=" <?php if (isset($this->plrDetails['name'])) {
+    echo $this->plrDetails['name'];
+} ?>" class="span10" />
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+
+
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Age</label>
+                                        <div class="controls">
+                                            <input type="text" name="age" readonly="true" required="true"  value="<?php if (isset($this->plrDetails['age'])) {
+    echo $this->plrDetails['age'];
+} ?>" placeholder="<?php if (isset($this->plrDetails['age'])) {
+    echo $this->plrDetails['age'];
+} ?>" class="span10" />
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Fppg</label>
+                                        <div class="controls">
+                                            <input type="text" name="fppg"  required="true"  value="<?php if (isset($this->playerDetails['fppg'])) {
+                                                echo $this->playerDetails['fppg'];
+                                            } ?>" placeholder="<?php if (isset($this->playerDetails['fppg'])) {
+                                                echo $this->playerDetails['fppg'];
+                                            } ?>" class="span10" />
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Fpts</label>
+                                        <div class="controls">
+                                            <input type="text" name="fpts"  required="true"  value="<?php if (isset($this->playerDetails['fpts'])) {
+                                                    echo $this->playerDetails['fpts'];
+                                                } ?>" placeholder="<?php if (isset($this->playerDetails['fpts'])) {
+                                                    echo $this->playerDetails['fpts'];
+                                                } ?>" class="span10" />
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Player Salary</label>
+                                        <div class="controls">
+                                            <input type="text" name="plrvalue"  required="true"  value="<?php if (isset($this->playerDetails['plr_value'])) {
+                                                echo $this->playerDetails['plr_value'];
+                                            } ?>" placeholder="<?php if (isset($this->playerDetails['plr_value'])) {
+                                                echo $this->playerDetails['plr_value'];
+                                            } ?>" class="span10" />
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Injury Status</label>
+                                        <div class="controls">
+                                            <select class="span4" name="injury_status">
+                                                <?php if ($this->playerDetails['injury_status'] == 1) { ?>
+                                                    <option selected="true" value="1">Active</option>
+                                                    <option value="0">Deactive</option>          
+                                                <?php } else { ?>
+                                                    <option  value="1">Active</option>
+                                                    <option selected="true" value="0">Deactive</option>          
+                                                <?php } ?>
+                                            </select>										
+
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->                                                                
+
+
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Injury Reason</label>
+                                        <div class="controls">
+                                            <input type="text" name="reason"  value=" <?php if (isset($this->playerDetails['injury_reason']) && $this->playerDetails['injury_status'] == 1) {
+                                                    echo $this->playerDetails['injury_reason'];
+                                                } ?>" class="span10" /> 	
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->   
+                                </div>
+                                <!-- // Column END -->
+                            </div>
+                            <!-- // Row END -->
+
+                            <div class="separator line bottom"></div>
+                            <!-- Form actions -->
+                            <div class="form-actions" class="margin-none">
+                                <button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button>
+                                <a href="<?php $this->baseUrl(); ?>/admin/player-details">	<button type="button" class="btn btn-icon btn-default glyphicons circle_remove"><i></i>Cancel</button> </a>
+                            </div>
+                            <!-- // Form actions END -->
+
+                        </div>
+                        <!-- // Tab content END -->
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- // Widget END -->
+    </div>	
+</div>
+
+<script>
+    $('#menu_components4').removeClass('collapse').addClass('in collapse');
+    $('#player_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons group active');
+    $('#player_detail_menu').addClass('active');  
+</script>
+
+<?php if (isset($this->success)) { ?>
+    <!-- This script Displays the  notification when the user details are submitted on submit  -->
+    <script>  
+        $('.opennotificationGreen').click(function()
+        {
+            //            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+        
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+            
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        }, 3000); 
+                 
+            
+    </script>
+<?php
+}?>

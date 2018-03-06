@@ -1,0 +1,77 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+	<span class="notification_msgGreen">BTC Address Has Been Updated Successfully.</span>
+</div>
+<div id="content">
+    <h4>BTC Address</h4>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget">
+
+            
+            <!-- // Widget heading END -->
+        <div>
+ 
+ 
+            <div class="widget-body">
+                <form action="" method="post" enctype="multipart/form-data" class="offersfileform">         
+                                
+                    
+							<div class="control-group">
+								<label class="control-label">BTC Address - <?php echo $this->Btc_Address; ?></label>
+								<div><a style="text-decoration:none;" href="javascript:void(0);" id="update_btc_address" >Update BTC Address</a></div>
+							</div>
+							<input type="hidden" name="setting_id" value="<?php echo $this->setting_id; ?>"  />
+						   <div style="display:none;" id="btc_field_area">
+								<div class="controls">
+									<label class="control-label">BTC Address</label>
+									<input type="text" required="true" placeholder="BTC Address" name="Btc_Address" id="btc_name" value="" class="span10" />
+									<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>
+								</div>
+						  
+								<div class="setingbg">
+								   <button type="submit" class="btn btn-icon btn-primary glyphicons upload"><i></i>Save</button>
+								</div>
+							</div>
+                </form> 
+				
+
+            </div>
+        </div>
+    </div>	
+</div>
+</div>
+
+   <?php if(isset($this->success)) { ?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  
+        $('.opennotificationGreen').click(function()
+        {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        }, 3000); 
+             
+        
+</script>
+    <?php } ?>
+	
+<script>
+$('#update_btc_address').on('click',function(){
+	$('#btc_field_area').slideToggle();
+});
+
+$('#menu_components5').removeClass('collapse').addClass('in collapse');
+$('#site_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+$('#btc_menu').addClass('active');
+</script>
+
+    
+   

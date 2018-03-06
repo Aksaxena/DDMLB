@@ -1,0 +1,53 @@
+<body class="login">	
+	<!-- Wrapper -->
+<div id="login">
+
+	<div class="container">
+		<div class="wrapper">
+		
+			<h1 class="glyphicons lock">Draft Daily Admin <i></i></h1>
+		
+			<!-- Box -->
+			<div class="widget">                
+				<div class="widget-head">
+					<h3 class="heading">Login area</h3>
+					
+				</div>
+				<div class="widget-body">
+				
+					<!-- Form -->
+					<form action="/admin" name="adminlogin" id="adminlogin" method="post" >
+						<label>Username or Email</label>
+                                                <input type="text" id="username" autocomplete="off" name="username" required class="input-block-level" placeholder="Your Username or Email address"/> 
+						<label>Password</label>
+						<input type="password" id="password" autocomplete="off" name="password" required  class="input-block-level margin-none" placeholder="Your Password" />
+						<div class="separator bottom"></div> 
+                      
+                       
+                        <!-- // Form END -->
+                      
+						<div class="row-fluid">
+							<div class="span4 center">
+								<button class="btn btn-block btn-primary" type="submit">Sign in</button>
+                                                                
+                                                        </div>
+                                                    <span style="color: red; float: right;"><?php if(isset($this->error)){ echo $this->error; } ?></span>
+						</div>
+					</form>
+                    	
+				</div>
+                <?php if(isset($this->empty)){ ?>
+				<div class="widget-footer">
+					<p class="glyphicons restart clrError"><i></i>Please enter your username and password ...</p>
+				</div>
+                <?php }  if(isset($this->invalid)){ ?>
+              	<div class="widget-footer">
+					<p class="glyphicons restart clrError"><i></i>Invalid email or password</p>
+				</div>
+                <?php } ?>
+			</div>
+			<!-- // Box END -->
+		</div>
+		
+	</div>
+   </body>

@@ -1,0 +1,75 @@
+<div id="content">
+	<h4>Contest Type Details</h4>
+<div class="innerLR">
+
+	<!-- Widget -->
+	<div class="widget">
+		
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading">Contest Type Manage</h4>
+		</div>
+                <div>
+                    <a class="btn btn-icon btn-primary glyphicons circle_ok" href="/admin/new-contest-type" type="button" style="margin-left:850px">
+                            <i></i>Add new Contest Type</a>
+                    </div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+		
+			<!-- Table -->
+			<table  cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+				<!-- Table heading -->
+                                <thead>
+                                    <tr>
+                                        <th>Sno.</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                        <th class="center">Delete / Edit</th>
+                                    </tr>
+                                </thead>
+				<!-- // Table heading END -->
+				
+				<!-- Table body -->
+				<tbody>			
+                                    <?php if(isset($this->constant)): $row = 0; foreach ($this->constant as $contestDetails): $row++; ?>
+					<!-- Table row -->
+					<tr class="gradeA">
+						<td><?php echo $row; ?></td>
+						<td><?php echo  $contestDetails['display_name']; ?></td>
+                                                
+						<?php if($contestDetails['status']==1): ?>
+                                                <td id="activecontest_<?php echo $contestDetails['con_type_id']; ?>" class="center js-sortable-handle useractive">Active</td>
+                                                <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($contestDetails['con_type_id'])): echo "contest_" . $contestDetails['con_type_id'];endif;?>" class="contestdeactive">
+                                                <span id="activeclass_<?php echo $contestDetails['con_type_id']; ?>" class="label label-block label-inverse">Deactivate</span></a></td>
+                                                  <?php  else: ?>
+                                                <td id="activecontest_<?php echo $contestDetails['con_type_id']; ?>" class="center js-sortable-handle userdeactive">Suspended</td>
+                                                <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($contestDetails['con_type_id'])): echo "contest_" . $contestDetails['con_type_id']; endif;?>" class="contestactive">
+                                                <span id="activeclass_<?php echo $contestDetails['con_type_id']; ?>"  class="label label-block label-primary">Activate</span></a></td>
+                                                <?php endif;?> 
+                                                
+                                                <td class="center" style="width: 80px;">
+                                                <a id="contestType_<?php echo $contestDetails['con_type_id']; ?>" href="#" class="btn-action glyphicons remove_2 btn-danger-contestype"><i></i></a>
+                                               &nbsp;
+                                                <a href="/admin/edit-contest-type/<?php echo $contestDetails['con_type_id']; ?>" class="btn-action glyphicons pencil btn-success"><i></i></a>
+                                                </td>
+					</tr>
+					<!-- // Table row END -->					           
+                                        <?php endforeach; endif; ?>
+				</tbody>
+				<!-- // Table body END -->
+				
+			</table>
+			<!-- // Table END -->
+			
+		</div>
+	</div>	
+</div>			
+</div>
+<script>
+    $('#menu_components2').removeClass('collapse').addClass('in collapse');
+    $('#contest_setting_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#new_contest_detail_menu').addClass('active');    
+</script>
+

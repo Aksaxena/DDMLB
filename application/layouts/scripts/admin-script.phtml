@@ -1,0 +1,111 @@
+<script>
+ $(document).ready(function(){
+    admin.init({ currentUrl: 'https://<?php echo $_SERVER['HTTP_HOST']; ?>/admin/settings/jshandler'}); 
+    $(document.body).on('click','.themesactive',admin.themesactive);
+    $(document.body).on('click','.usersdeactive',admin.userdeactive);
+    $(document.body).on('click','.usersactive',admin.useractive);
+    $(document.body).on('click','.countrydeactive',admin.countrydeactive);
+    $(document.body).on('click','.countryactive',admin.countryactive);
+    $(document.body).on('click','.withdrawalapproval',admin.withdrawalapproval);
+    $(document.body).on('click','.btn-action.glyphicons.remove_2.btn-danger-user',admin.deleteuser);
+    $(document.body).on('click','.btn-action.glyphicons.remove_2.btn-danger-country',admin.deletecountry);
+    $(document.body).on('click','.btn-action.glyphicons.remove_2.btn-danger-contest',admin.deletecontest);
+    $(document.body).on('click','.btn-action.glyphicons.ok_2.btn-success.featuredcontest',admin.updatecontest);
+    $(document.body).on('click','.btn-action.glyphicons.remove_2.btn-danger-contestype',admin.deletecontestype);
+    $(document.body).on('click','.btn-action.glyphicons.remove_2.btn-danger-game',admin.deletegame);
+    $(document.body).on('click','.btn-action.glyphicons.remove_2.btn-danger.ticket-delete',admin.deleteticket);
+    $(document.body).on('click','.btn-action.glyphicons.remove_2.btn-danger.product-delete',admin.deleteproduct);
+    $(document.body).on('click','.gamedeactive',admin.gamedeactive);
+    $(document.body).on('click','.gameactive',admin.gameactive);
+    $(document.body).on('click','.contestdeactive',admin.contestdeactive);
+    $(document.body).on('click','.contestactive',admin.contestactive);
+    $(document.body).on('click','.offersactive',admin.offeractive);
+    $(document.body).on('click','.offersdeactive',admin.offerdeactive);
+    $(document.body).on('click','.btn-action.glyphicons.remove_2.btn-danger.offer-delete',admin.deleteoffer);
+    $(document.body).on('click','.approvalactive',admin.approvalactive);
+    $(document.body).on('click','.ticketdeactive',admin.ticketdeactive);
+    $(document.body).on('click','.ticketactive',admin.ticketactive);
+    $(document.body).on('click','.productdeactive',admin.productdeactive);
+    $(document.body).on('click','.productactive',admin.productactive);
+    $(document.body).on('click','.promotiondeactive',admin.promotiondeactive);
+    $(document.body).on('click','.promotionactive',admin.promotionactive);
+    $(document.body).on('click','.btn-action.glyphicons.remove_2.btn-danger.promotion-delete',admin.deletepromotion);
+    $(document.body).on('click','.btn-action.glyphicons.remove_2.btn-danger-featured',admin.deletefeatured);
+    $(document.body).on('change','#user_year_select',admin.userstatic);
+    $(document.body).on('change','#profit_year_select',admin.userstatic);
+    $(document.body).on('change','#pro_mo_select',admin.profitstatic);
+    $(document.body).on('change','#pro_yr_select',admin.profitstatic);
+    $(document.body).on('click','.close_btn',function(){
+        $(this).parents('.paylayout').remove();
+    });
+    
+
+    $('.datatable').dataTable({
+        "sPaginationType": "bs_full"
+    });	
+    $('.datatable').each(function(){
+        var datatable = $(this);
+        // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+        var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+        search_input.attr('placeholder', 'Search');
+        search_input.addClass('form-control input-sm');
+        // LENGTH - Inline-Form control
+        var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+        length_sel.addClass('form-control input-sm');
+    });
+
+    $(document.body).on('click','.botpwd', function (event) { 
+        event.stopPropagation();
+        var uid = $(this).attr('data-id');
+        $('#botModal').modal('show');
+        $('#botagree').attr('data-botid',uid);
+        $('#tpass').val('');
+        $('#pass_msg').html('');
+    });
+   
+    $(document.body).on('click','#botagree', function(){ 
+        var tpass = $('#tpass').val();
+        var uid=$('#botagree').attr('data-botid');
+        if(tpass!=""){
+            $.ajax({
+                url      : '/admin/manage-bots-ajax',
+                type     : 'POST',
+                dataType : 'json',
+                data     : {
+                    method : 'vpass',
+                    tpass  : tpass,
+                    uid:     uid
+                },
+                success  : function(response12){ 
+                    $('#pass_msg').html('');
+                    if(response12.code == 200){
+                        $('#pass_msg').removeClass('hidden');
+                        $('#pass_msg').addClass('success');
+                        $('#pass_msg').html(response12.message);
+                        setTimeout(function() {
+                            // Do something after 5 seconds
+                            $('#botModal').modal('hide');
+                        }, 1000);
+                    }else if(response12.code == 198){
+                        $('#pass_msg').removeClass('hidden');
+                        $('#pass_msg').addClass('danger');
+                        $('#pass_msg').html(response12.message);
+                    }if(response12.code == 196){
+                        $('#pass_msg').removeClass('hidden');
+                        $('#pass_msg').addClass('alert');
+                        $('#pass_msg').html(response12.message);
+                    }
+                }
+            });
+        }else{
+            alert('please enter passsword');
+        }
+    });
+ });   
+</script>
+<style>
+    .help-block{
+        color: red
+     }
+</style>   
+

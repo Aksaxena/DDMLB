@@ -1,0 +1,17 @@
+[07-Jul-2017 03:51:58 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/footer.phtml on line 38
+[07-Jul-2017 04:02:26 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/header.phtml on line 1
+[07-Jul-2017 04:10:01 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/layout.phtml on line 1
+[07-Jul-2017 04:47:50 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/adminlayout.phtml on line 1
+[07-Jul-2017 05:02:59 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/admin-header.phtml on line 1
+[07-Jul-2017 11:36:29 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/header.phtml on line 1
+[07-Jul-2017 11:44:03 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/layout.phtml on line 1
+[07-Jul-2017 12:00:13 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/adminlayout.phtml on line 1
+[07-Jul-2017 12:06:46 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/admin-header.phtml on line 1
+[07-Jul-2017 18:06:40 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/layout.phtml on line 1
+[07-Jul-2017 18:21:21 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/adminlayout.phtml on line 1
+[07-Jul-2017 18:36:29 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/admin-header.phtml on line 1
+[07-Jul-2017 19:52:10 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/header.phtml on line 1
+[08-Jul-2017 21:36:49 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/header.phtml on line 1
+[08-Jul-2017 21:47:17 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/layout.phtml on line 1
+[08-Jul-2017 22:02:25 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/adminlayout.phtml on line 1
+[08-Jul-2017 22:09:59 UTC] PHP Fatal error:  Using $this when not in object context in /home/draftdaily/public_html/application/layouts/scripts/admin-header.phtml on line 1

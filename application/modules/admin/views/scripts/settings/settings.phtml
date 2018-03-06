@@ -1,0 +1,331 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+    <span class="notification_msgGreen">Setting details has been done successfully.</span>
+</div>
+<div id="content">
+    <h4>Settings Details</h4>
+    <div class="innerLR">
+
+        <?php //echo "<pre>";  print_r($this->settings); echo "</pre>";  die; ?>
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Settings</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+                <form class="form-horizontal margin-none settingsdetailsform"  method="post"  enctype='multipart/form-data'>
+                    <div class="tab-content pad0">
+
+                        <!-- Tab content -->
+                        <div class="tab-pane active">
+
+                            <!-- Row -->
+                            <div class="row-fluid">
+								<!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Payment Processor</label>
+                                    <div class="controls">
+										<input type="radio" name="payment_processor" value="1" <?php if(isset($this->settings['payment_processor']) && $this->settings['payment_processor'] ==1)  echo 'checked="checked"';?> onchange="">Paypal &nbsp;&nbsp;
+										<input type="radio" name="payment_processor" value="2" <?php if(isset($this->settings['payment_processor']) && $this->settings['payment_processor'] == 2)  echo 'checked="checked"'; ?> onchange="">BitCoin &nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Salary Cap Amount</label>
+                                    <div class="controls">
+                                        <input required="true" type="text" name="salary_amount" placeholder="Salary Cap Amount" class="span5" value="<?php echo $this->settings['salary_cap_amt']; ?>" />
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Bonus Amount Limit</label>
+                                    <div class="controls">
+                                        <input required="true" type="text" name="bonus_amount" placeholder="Bonus Amount Limit"  class="span5" value="<?php echo $this->settings['bonus_amt_limit']; ?>" />
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+
+
+
+
+
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Currency CODE</label>
+                                    <div class="controls">
+                                        <input required="true" type="text" name="currency_code" placeholder="Currency CODE"  class="span5" value="<?php echo $this->settings['currency_code']; ?>" />
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Minimum Deposit</label>
+                                    <div class="controls">
+                                        <input required="true" type="text" name="min_deposit"  placeholder="Minimum Deposit" class="span5" value="<?php echo $this->settings['min_deposit']; ?>" />
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Aff. Commission $</label>
+                                    <div class="controls">
+                                        <input required="true" type="text" name="aff_commission"  placeholder="Affiliate Commission Amount" class="span5" value="<?php echo $this->settings['affilate_commission']; ?>" />
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Bonus Status</label>
+                                    <div class="controls">
+                                        <select name="bonus_stats">
+                                            <?php if ($this->settings['bonus_status'] == '1') { ?>
+                                                <option selected="true" value="1">Active</option>   
+                                                <option value="0">Deactive</option>
+                                            <?php } else { ?>
+                                                <option  value="1">Active</option>   
+                                                <option selected="true" value="0">Deactive</option>
+                                            <?php } ?>
+                                        </select>    
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Contact Number</label>
+                                    <div class="controls">
+                                        <input required="true" type="text" name="contact_number" placeholder="Contact Number" class="span5" value="<?php echo $this->settings['contact_number']; ?>" />
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Email</label>
+                                    <div class="controls">
+                                        <input required="true" type="text" name="email" placeholder="Email" class="span5" value="<?php echo $this->settings['email']; ?>" />
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Mailing Address</label>
+                                    <div class="controls">
+                                        <textarea class="span5" name="mailing_address" placeholder="Mailing Address"><?php echo $this->settings['mail_address']; ?></textarea>
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Site Description on facebook</label>
+                                    <div class="controls">
+                                        <textarea class="span5" type="text" name="fb_desc" placeholder="ex. I agree to enter a contest..."><?php echo $this->settings['fb_desc']; ?></textarea>
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Winning message</label>
+                                    <div class="controls">
+                                        <textarea class="span5" type="text" name="win_msg" placeholder=""><?php echo $this->settings['win_msg']; ?></textarea>
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+
+                                <div class="control-group">
+                                    <label class="control-label">Facebook post image</label>
+                                    <div id="image_preview"><img id="previewing" src="<?php echo '/assets/'.$this->settings['fb_img']; ?>" /></div>
+                                    <div class="controls">
+                                        <input type="file" name="fbimage" id="file" />
+<!--                                        <button id="uploadimage" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Upload</button>
+                                        <button id="saveimage" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save</button>-->
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!-- // Row END -->
+
+                            <input type="hidden" name="setting_id" value="<?php echo $this->settings['setting_id']; ?>"/>
+                            <div class="separator line bottom"></div>
+
+                            <!-- Form actions -->
+                            <div class="form-actions" class="margin-none">
+                                <button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Update</button>
+
+                            </div>
+                            <!-- // Form actions END -->
+
+                        </div>
+                        <!-- // Tab content END -->
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>	
+</div>
+
+<script>
+$(document).ready(function() {
+	
+	var radioValue = $('input[name=payment_processor]:checked').attr('value');
+
+	var salary_amount = $('input[type=text][name=salary_amount]').val();
+	var bonus_amount = $('input[type=text][name=bonus_amount]').val();
+	var min_deposit = $('input[type=text][name=min_deposit]').val();
+	var aff_commission = $('input[type=text][name=aff_commission]').val();
+	
+	var BitRate = <?php echo $this->BitToUsd; ?>;
+	
+    $('input[type=radio][name=payment_processor]').change(function() {
+		
+		if(radioValue==1){
+			
+			if(this.value==1) {
+				$('input[type=text][name=currency_code]').val('USD');
+				$('input[type=text][name=salary_amount]').val(parseFloat(salary_amount).toFixed(3));
+				$('input[type=text][name=bonus_amount]').val(parseFloat(bonus_amount).toFixed(3));
+				$('input[type=text][name=min_deposit]').val(parseFloat(min_deposit).toFixed(3));
+				$('input[type=text][name=aff_commission]').val(parseFloat(aff_commission).toFixed(3));
+			}
+			if(this.value==2) {
+				
+				$('input[type=text][name=currency_code]').val('BTC');
+				var s_amount = parseFloat(salary_amount/BitRate);
+				$('input[type=text][name=salary_amount]').val(s_amount.toFixed(3));
+				
+				var b_amount = parseFloat(bonus_amount/BitRate);
+				$('input[type=text][name=bonus_amount]').val(b_amount.toFixed(3));
+				
+				var min_amount = parseFloat(min_deposit/BitRate);
+				$('input[type=text][name=min_deposit]').val(min_amount.toFixed(3));
+				
+				var aff_amount = parseFloat(aff_commission/BitRate);
+				$('input[type=text][name=aff_commission]').val(aff_amount.toFixed(3));
+			}
+		} else if(radioValue==2) {
+			///alert(this.value);
+			if(this.value==1) {
+				$('input[type=text][name=currency_code]').val('USD');
+				var s_amount = parseFloat(salary_amount * BitRate);
+				$('input[type=text][name=salary_amount]').val(s_amount.toFixed(3));
+				
+				var b_amount = parseFloat(bonus_amount * BitRate);
+				$('input[type=text][name=bonus_amount]').val(b_amount.toFixed(3));
+				
+				var min_amount = parseFloat(min_deposit * BitRate);
+				$('input[type=text][name=min_deposit]').val(min_amount.toFixed(3));
+				
+				var aff_amount = parseFloat(aff_commission * BitRate);
+				$('input[type=text][name=aff_commission]').val(aff_amount.toFixed(3));
+			}else if(this.value==2) {
+				$('input[type=text][name=currency_code]').val('BTC');
+				$('input[type=text][name=salary_amount]').val(parseFloat(salary_amount).toFixed(3));
+				$('input[type=text][name=bonus_amount]').val(parseFloat(bonus_amount).toFixed(3));
+				$('input[type=text][name=min_deposit]').val(parseFloat(min_deposit).toFixed(3));
+				$('input[type=text][name=aff_commission]').val(parseFloat(aff_commission).toFixed(3));
+			}
+		}
+          
+    });
+});
+</script>
+<script>
+$("#uploadimage").on('click',(function(e) {
+e.preventDefault();
+
+}));
+$("#saveimage").on('click',(function(e) {
+e.preventDefault();
+var fileInput = $('#file');
+console.log(fileInput['0']);
+//console.log(fileInput.files['0']);
+// var file = fileInput.files[0];
+      var formData = new FormData();
+      formData.append('file', fileInput['0']);
+console.log(formData);
+$.ajax({
+url: "admin/imageupload", 
+type: "POST",             
+data:formData, 
+contentType: false,       // The content type used when sending data to the server.
+cache: false,             // To unable request pages to be cached
+processData:false,        // To send DOMDocument or non processed data file it is set to false
+success: function(data)   // A function to be called if request succeeds
+{
+    
+console.log(data);
+//$('#loading').hide();
+//$("#message").html(data);
+}
+});
+})
+        );
+    $(function () {
+        $("#file").change(function () {
+            // $("#message").empty(); // To remove the previous error message
+            var file = this.files[0];
+            var imagefile = file.type;
+//                                                                        console.log(file);
+            var match = ["image/jpeg", "image/png", "image/jpg"];
+            if (((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
+            {
+                var reader = new FileReader();
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[0]);
+            }
+        })
+    });
+
+    function imageIsLoaded(e) {
+        $("#file").css("color", "green");
+        $('#image_preview').css("display", "block");
+        $('#previewing').attr('src', e.target.result);
+    }
+    ;
+
+</script>
+<?php if (isset($this->success)) { ?>
+    <!-- This script Displays the  notification when the user details are submitted on submit  -->
+    <script>
+        $('.opennotificationGreen').click(function ()
+        {
+            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+
+        $('.opennotificationGreen').fadeIn("slow");
+        $('.opennotificationGreen').css('display', 'block');
+
+        setTimeout(function () {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        }, 3000);
+
+
+    </script>
+<?php } ?>
+<script>
+    $('#menu_components5').removeClass('collapse').addClass('in collapse');
+    $('#site_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#setting_menu').addClass('active');
+</script>
+<style>
+    #previewing{heght:230px;width: 230px;}
+</style>    
+    

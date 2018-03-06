@@ -1,0 +1,121 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">You have successfully added a new contest.</span>
+</div>
+<div id="content">
+	<h3>New Contest Type</h3>
+<div class="innerLR">
+
+	<!-- Widget -->
+	<div class="widget widget-tabs border-bottom-none">
+	
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<ul>
+				<li class="active"><a class="glyphicons edit" href="#account-details" data-toggle="tab"><i></i>Manage Contest Type</a></li>
+<!--				<li><a class="glyphicons settings" href="#account-settings" data-toggle="tab"><i></i>Account settings</a></li>-->
+			</ul>
+                    </div>
+                    <div> 
+                         <a class="btn btn-icon btn-primary glyphicons circle_ok" href="/admin/contest-type-details" type="button" style="margin-left:900px">
+                            <i></i> Contest Type Details</a>
+                             
+		</div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+                    <form class="form-horizontal margin-none newcontesttypeform"  method="post">
+				<div class="tab-content pad0">
+				
+					<!-- Tab content -->
+					<div class="tab-pane active" id="account-details">
+					
+						<!-- Row -->
+						<div class="row-fluid">
+						
+							<!-- Column -->
+							<div class="span6">
+					                        
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Name</label>
+									<div class="controls">
+										<input type="text" name="contest_name" id="contest_name" value="" class="span10" />
+										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+								
+								<!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Status</label>
+									<div class="controls">
+                                                                            <select class="span4" name="status">
+                                                                                <option  value="1">Active </option>                                                                                
+                                                                                <option  value="0">Deactive</option>                                                                                
+                                                                            </select>										
+										<!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->                                                                
+
+                                                        </div>
+						</div>
+						<!-- // Row END -->
+						
+						<div class="separator line bottom"></div>
+						
+						<!-- Group -->
+<!--						<div class="control-group row-fluid">
+							<label class="control-label">About me</label>
+							<div class="controls">
+								<textarea id="mustHaveId" class="wysihtml5 span12" rows="5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</textarea>
+							</div>
+						</div>-->
+						<!-- // Group END -->
+						
+						<!-- Form actions -->
+                                                <div class="form-actions" class="margin-none">
+                                                    <button type="submit"  onclick="myFunction()" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button>
+                                                    <a href="<?php $this->baseUrl(); ?>/admin/contest-type-details">	<button type="button" class="btn btn-icon btn-default glyphicons circle_remove"><i></i>Cancel</button> </a>
+                                                            
+                                                </div>                                                                                         
+						<!-- // Form actions END -->
+						
+					</div>
+					<!-- // Tab content END -->
+					
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- // Widget END -->
+	
+</div>	
+</div>
+ 
+<?php if(isset($this->success)){ ?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>
+       $('.opennotificationGreen').click(function()
+        {
+            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+    
+    </script>
+    <?php } ?>
+<script>
+    $('#menu_components2').removeClass('collapse').addClass('in collapse');
+    $('#contest_setting_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#add_new_contest_detail_menu').addClass('active');    
+</script>

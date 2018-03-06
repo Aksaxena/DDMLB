@@ -1,0 +1,582 @@
+<?php if (isset($this->showmodal)) { ?>
+    
+	<div class="modal-header">
+        <button class="close close-to-close" data-dismiss="modal"><span class="text-white"><i class="fa fa-times"></i></span></button>
+        <h3 class="title settitle text-center">Login To Your Account</h3>
+    </div>
+	
+    <div class="login-body">
+        <div id="loginDiv">
+            <div class="row mr-15-right-left">
+				<div id="div-forms">
+					<div class="InnerLoginBox">
+					
+						<div class="row mr-15-right-left">
+							<div class="col-md-5 col-sm-6 col-xs-6 signuptext col-md-offset-1 col-xs-offset-0">
+								<a  href="<?php echo $this->fbLogin; ?>" class="signuptext-area" style="background-color:#29487d;">
+									<div class="fa fa-facebook"></div>
+									<span class="text-center">Facebook</span>
+								</a>
+							</div>
+							<div class="col-md-5 col-sm-6 col-xs-6 signuptext"> 
+								<a href="/twitter-login?login=t" class="signuptext-area">
+									<div class="fa fa-twitter"></div>
+									<span class="text-center">Twitter</span>		
+								</a>
+							</div>
+						</div>
+						
+						<form class="loginformpop" method="post" role="form" action="" id="login-form">
+                          	
+							<div class="modal-body">
+								<div class="input-group col-xs-12 col-md-10 col-md-offset-1"> 
+									<span class="input-group-addon"> <i class="fa fa-user"></i> </span>                         
+									<input type="text" placeholder="Username or Email" name="username" id="usenamepop" autocomplete="off" class="form-control">
+								</div>
+								
+								<div class="input-group col-xs-12 col-md-10 col-md-offset-1"> 
+									<span class="input-group-addon"> <i class="fa fa-key"></i> </span>                           
+									<input type="password" autocomplete="off" name="password" placeholder="Password" id="passwordpop" class="form-control">
+								</div>
+							</div>
+							
+							<div class="col-xs-12 col-md-10 col-md-offset-1">                           
+								<span id="err" style="display:none" class="help-block"></span>
+							</div>
+							
+                            <div class="modal-footer">
+								<div class="row mr-15-right-left">
+									<div class="col-md-10 col-md-offset-1 pd-15">
+										<button name="subbuttonpop" id="buttonpop"  value="login" type="submit" class="btn btn-primary btn-lg btn-block"> LOGIN</button>
+									</div>
+								</div>
+							</div>
+                        </form>
+                   
+					</div>
+
+
+					<div class="OuterLogin hidden modal-header-1">
+					
+                        <form class="signupformpop" role="form" name= "form" method="post" action="/login" id="register-form" >
+							<div class="modal-body">
+								<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+									<input type="text"  name="username" class="form-control" id="user" placeholder="Username">
+								</div>
+								
+								<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+									<input type="email" name="email" class="form-control" id="email" placeholder="Email">
+								</div>
+								
+								<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+									<input type="text" autocomplete="off" id="wallet_address" name="wallet_address" class="form-control" placeholder="DFSCoin Wallet Address">
+								</div>
+								
+								<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+									<input type="password" id="loginpopmatch" name="password" class="form-control"  placeholder="Password">
+								</div>
+
+								<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+									<input type="password"  name="confirmPassword" class="form-control"  placeholder="Confirm Password">
+								</div>
+
+								<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+									<select name="countryoption" class="form-control">
+										<option value="country">Country</option>
+										<?php
+										if (isset($this->countryList)) {
+											foreach ($this->countryList as $cokey => $covalue) {
+												?>
+												<option  value="<?php echo $covalue['country_id']; ?>"   ><?php echo $covalue['country_name']; ?></option>
+												<?php
+											}
+										}
+										?> 
+									</select>
+								</div>
+							
+								<div class="input-group col-sm-12 col-xs-offset-0 col-sm-offset-1 pd-15">
+									<div class="form-group">
+									<label for="check8">
+										<input type="checkbox" id="check8" name="agreeterms">
+										&nbsp; I agree to the <a target="_blank" href="/terms-of-use">Terms of Use</a> and the Privacy Policy. </label>
+									</div>
+								</div>
+							
+								<div class="input-group col-sm-10 col-xs-offset-0 col-sm-offset-1 pd-15">
+									<div class="form-group">
+										<label for="check7">
+										<input type="checkbox" id="check7" name="ageconfirm">
+										&nbsp; I confirm that I am at least 18 years of age. Must be 19 years of age in Alabama and Nebraska.</label>
+									</div>
+								</div>
+							
+								<!--<div class="input-group col-sm-10 col-xs-offset-0 col-sm-offset-1 pd-15">
+									<div class="form-group">
+										<script src='https://www.google.com/recaptcha/api.js'></script>
+										<div class="g-recaptcha" data-sitekey="<?php echo $this->site_key; ?>"></div>
+										<span style="color:red;"><?php if(!empty($this->errMsg)){ echo $this->errMsg;} ?></span>
+									</div>
+								</div>-->
+							
+								<input class="hidden" id="modalaffuser" name="modalaffuser" value="" />
+							</div>
+                            
+
+							<div class="modal-footer">
+								<div class="row mr-15-right-left">
+									<div class="col-sm-10 col-xs-offset-0 col-sm-offset-1 pd-15">
+										<button value="signup" type="submit" name="subbuttonpop" class="btn btn-primary btn-lg btn-block signupsubmitpop">Register</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						
+					</div>
+					
+					
+                </div>
+
+                <div  class="forgetPass md-bottom hidden modal-header-1">
+                    
+					<form class="resetpasswordformpop" role="form" method="post" action="" id="lost-form">                        
+						<div class="modal-body">
+							<div class="input-group col-xs-12 col-md-10 col-md-offset-1"> 
+								<span class="input-group-addon"> <i class="fa fa-envelope-o"></i></span>
+								<input id="forgetemail" name="email" class="form-control" type="text" placeholder="Email Address" required >
+							</div>
+							<span style="display: none;" id="errorreset" class="errormsg help-block"></span>
+						</div>
+							
+						<div class="modal-footer">
+							<div class="row mr-15-right-left">
+								<div class="col-md-10 col-md-offset-1 pd-15">
+									<button value="reset" type="submit" class="btn btn-primary btn-lg btn-block resetsubmitpop">Send</button>
+								</div>
+							</div>
+						</div>
+						
+					</form>
+
+				</div>
+				
+                <div class="modal-footer">
+
+					<div class="row login-bot">
+						<div class="col-md-5 col-sm-6 col-xs-6 col-md-offset-1 col-xs-offset-0">
+							<a href="javascript:;" class="togglemodalforms btn btn-link"><span>Create an account</a></span>
+						</div>
+						
+						<div class="col-md-5 col-sm-6 col-xs-6">
+							<a href="javascript:void(0);" class="resetmodalforms btn btn-link" ><span>Forgot your password?</a></span>
+						</div>					
+					</div> 
+					<div class="row" style="background-color:#f85425; height:10px;"> </div>
+				</div>
+
+
+				
+            </div>
+        </div>
+    </div>			
+<?php } ?>
+
+<script>
+/* Prince Kumar added scripts for 
+	1.	validating the forms
+	2. 	for login and signup, authentication , reset password through ajax
+	3. 	for toggling the modal an click of	
+	Date:11/11/2017 
+*/
+
+    $(document).ready(function() {
+
+
+        $('#loginModal').on('hidden.bs.modal', function(e) {
+            $(this).removeData('bs.modal');
+            $("#usenamepop").val('');
+            $("#passwordpop").val('');
+        });
+		
+        $(document).ready(function() {
+            var affId = $(document.body).find('#affuserheader').val();
+            $(document.body).find('#modalaffuser').attr('value', affId);
+        });
+
+        $(document.body).on('change', '.optionradio', function() {
+
+            var result = $(this).val();
+
+            if (result === 'login') {
+                $(document.body).find('.signupgroup').hide();
+                $(document.body).find('.logingroup').show();
+
+            } else if (result === 'signup') {
+                $(document.body).find('.signupgroup').show();
+            }
+        });
+
+        function getRole() {
+            return $(".signupform").find("input[name=optionsRadios]:checked").val();
+        }
+
+        $(".loginformpop").validate({
+            rules: {
+                username: {
+                    required: true
+                },
+                password: {
+                    required: true
+                }
+            },
+            messages: {
+                username: {
+                    required: "Username is the required field."
+                },
+                password: {
+                    required: "Password is required field."
+                }
+            },
+            submitHandler: function(form) {
+                var uname = $('#usenamepop').val();
+                var pass = $('#passwordpop').val();
+                var val = $('#buttonpop').val();
+				
+                $.ajax({
+                    url: '/login',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        username: uname,
+                        password: pass,
+                        subbuttonpop: val
+
+                    },
+					beforeSend: function() {
+						$(".modal-content").prepend('<div class="bodypageloader"></div>');
+					},
+                    success: function(response) {
+						
+						$('.bodypageloader').css('display','none');
+
+                        if (response.code == 200) {
+                            window.location.href = "/home";
+                        } else {
+                            $("#err").css('color', '#f85425');
+							$("#err").attr('style','margin-left:0px !important;');
+                            $("#err").css('display', 'block');
+                            $('#err').html(response.message);
+
+                        }
+                    },
+                    error: function(response) {
+						window.location.href = "/home";
+                        console.log(response);
+                    }
+                });
+            }
+        });
+		
+		
+        $(".optionradio").on('change', function(e) {
+            var optionval = $(this).val();
+            if (optionval == 'login') {
+                signupvalidator.resetForm();
+            } else {
+
+                $("#usernameinp").trigger('focusout');
+                $("#emailinp").trigger('focusout');
+            }
+
+        });
+
+
+        function validateModal() {
+			
+            var loginpopvalidator = $(document.body).find('.loginformpop').validate({
+                rules: {
+                    username: {
+                        required: true
+
+                    },
+                    password: {
+                        required: true
+                    }
+
+                },
+                messages: {
+                    username: {
+                        required: "Username is required field."
+
+                    },
+                    password: {
+                        required: "Password is required field."
+                    }
+
+                }
+
+            });
+			
+			$.validator.addMethod("valueNotEquals", function(value, element, arg)
+			{
+				return arg != value;
+			}, "Value must not equal arg.");
+ 
+            $('.signupformpop').validate({
+                rules: {
+                    username: {
+                        required: true,
+                        remote: {
+                            url: "/ajax-handler-auth",
+                            type: "post",
+                            dataType: "json",
+                            data: {
+                                username: function() {
+                                    return $("#user").val();
+                                }
+                                ,
+                                ajaxMethod: 'validateUsername',
+                                formtype: function() {
+                                    return $('input:radio[name=optionsRadios]:checked').val();
+                                }
+                            }
+
+                        },
+                        regex: /^[a-zA-Z0-9_\.]+$/
+
+                    },
+                    email: {
+                        required: true,
+                        remote: {
+                            url: "/ajax-handler-auth",
+                            type: "post",
+                            data: {
+                                email: function() {
+                                    return $("#email").val();
+                                },
+                                ajaxMethod: 'validateEmail'
+                            }
+
+                        },
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 8,
+                        regex: /^[A-Za-z].*[0-9]|[0-9].*[A-Za-z]+$/,
+                        maxlength: 25
+                    },
+                    
+                    confirmPassword: {
+                        required: true,
+                        minlength: 8,
+                        maxlength: 25,
+                        equalTo: "#loginpopmatch"
+                    },
+                    countryoption: { valueNotEquals: "country" },
+                    agreeterms: {
+                        required: true
+                    },
+                    ageconfirm: {
+                        required: true
+                    },
+					
+
+                },
+                messages: {
+                    username: {
+                        required: "Username is the required field.",
+                        regex: "Invalid username format."
+
+                    },
+                    email: {
+                        required: "Email is required field.",
+                        email: "Invalid email format."
+                    },
+                    password: {
+                        required: "Password is required field.",
+                        minlength: "Minimum length of password is 8.",
+                        regex: "Password must contain at least one letter and one number.",
+                        maxlength: "Maximum length of password is 25."
+                    },
+                    /* fname: {
+                        required: "First name is required Field"
+                      
+                    },
+                       lname: {
+                        required: "Last name is required Field"
+                      
+                    },*/
+                    confirmPassword: {
+                        required: "This is required field.",
+                        minlength: "Minimum length of password is 8.",
+                        maxlength: "Maximum length of Password is 25.",
+                        equalTo: "Password doesn't matched"
+                    },
+                    countryoption: { valueNotEquals: "Please select a country." },
+                    agreeterms: {
+                        required: "You must agree to term and condition."
+                    },
+                    ageconfirm: {
+                        required: "Please confirm age verification."
+                    },
+                },
+				errorPlacement: function (error, element) {
+					console.log('enter');
+					
+					if ( element.prop( "type" ) === "checkbox" ) {
+						
+						error.insertAfter( element.parent( "label" ).parent( "div" ).parent( "div" ) );
+					} else {
+						error.insertAfter( element.parent() );
+					}
+				}
+
+            });
+			
+            $(".resetpasswordformpop").validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    }
+
+                },
+                messages: {
+                    email: {
+                        required: "Email is required field.",
+                        email: " Entered email id format is incorrect."
+                    }
+
+                },
+                submitHandler: function(form) {
+                    var email = $('#forgetemail').val();
+                    var val = $('.resetsubmitpop').val();
+
+                    $.ajax({
+                        url: '/login',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            email: email,
+                            subbuttonpop: val
+
+                        },
+						beforeSend: function() {
+							$(".modal-content").prepend('<div class="bodypageloader"></div>');
+						},
+                        success: function(response) {
+							$('.bodypageloader').css('display','none');
+                            if (response.code === 200) {
+
+                                $("#errrr").css('display', 'block');
+                                $("#errrr").html(response.message);
+                                window.location.reload(true);
+                            } else {
+
+                                $('#errorreset').css('display', '');
+                                $('#errorreset').html(response.message);
+                                
+                            }
+                        }
+                    });
+                }
+
+            });
+        }
+
+        /*
+         * modified the on-click function so that the create account, login and sign-up tabs functions correctly. This code was modified by Rahul Suresh Jawade
+         * on 20th August 2014
+         */
+        $(document.body).on('click', '.togglemodalforms', function(e) {
+
+            e.preventDefault();
+            validateModal();
+            if ($(".InnerLoginBox").hasClass('hidden')) {
+                $(".InnerLoginBox").removeClass('hidden');
+                $(".LoginBox").removeClass('hidden');
+                if (!$(".OuterLogin").hasClass('hidden')) {
+                    $(".OuterLogin").addClass('hidden');
+                }
+				
+                if (!$(".forgetPass").hasClass('hidden')) {
+                    $(".forgetPass").addClass('hidden');
+                }
+				
+                $(document.body).find(".settitle").html('Login To Your Account');
+                $(document.body).find(".togglemodalforms").html('<span>Create an account</span>');
+
+            } else if ($(".OuterLogin").hasClass('hidden')) {
+                $(".OuterLogin").removeClass('hidden');
+                $(".LoginBox").addClass('hidden');
+                if (!$(".InnerLoginBox").hasClass('hidden')) {
+                    $(".InnerLoginBox").addClass('hidden');
+                    $(".LoginBox").addClass('hidden');
+                }
+                if (!$(".forgetPass").hasClass('hidden')) {
+                    $(".forgetPass").addClass('hidden');
+                    $(".LoginBox").addClass('hidden');
+                }
+				$(document.body).find(".settitle").html('Create A New Account');
+                $(document.body).find(".togglemodalforms").html('<span>Login here</span>');
+            }
+            else if ($(".forgetPass").hasClass('hidden')) {
+				/* $(".resetpasswordformpop").addClass('hidden'); */
+                $(".forgetPass").removeClass('hidden');
+                $(".LoginBox").removeClass('hidden');
+                if (!$(".InnerLoginBox").hasClass('hidden')) {
+                    $(".InnerLoginBox").addClass('hidden');
+                }
+                if (!$(".OuterLogin").hasClass('hidden')) {
+                    $(".OuterLogin").addClass('hidden');
+                }
+				$(document.body).find(".settitle").html('Create A New Account');
+				
+            }
+			
+			$(document.body).find(".resetmodalforms").html('<span>Forgot your password?</span>');  
+
+        });
+		
+		
+        $(document.body).on('click', '.resetmodalforms', function(e) {
+
+            $('#forgetemail').val('');
+            $('.help-block').html('');
+            $('.errormsg').html('');
+            e.preventDefault();
+            validateModal();
+
+            if ($(".forgetPass").hasClass('hidden')) {
+
+                $(".forgetPass").removeClass('hidden');
+                if (!$(".OuterLogin").hasClass('hidden')) {
+                    $(".OuterLogin").addClass('hidden');
+                }
+                if (!$(".InnerLoginBox").hasClass('hidden')) {
+                    $(".InnerLoginBox").addClass('hidden');
+                }
+                $(document.body).find(".resetmodalforms").html('<span>Create an account</span>');
+				$(document.body).find(".settitle").css( "Color:#FFF" );
+                $(document.body).find(".settitle").html('Password Reset');
+                $(document.body).find(".togglemodalforms").html('<span>Login here</span>');
+            } else {
+
+                $(".forgetPass").addClass('hidden');
+                if (!$(".InnerLoginBox").hasClass('hidden')) {
+                    $(".InnerLoginBox").addClass('hidden');
+                }
+
+                $(".OuterLogin").removeClass('hidden');
+                $(document.body).find(".settitle").html('Create A New Account');
+                $(document.body).find(".togglemodalforms").html('<span>Login here</span>');
+                $(this).html('<span>Forgot your password?</span>');
+            }
+        });
+    });
+
+
+</script>
+
+

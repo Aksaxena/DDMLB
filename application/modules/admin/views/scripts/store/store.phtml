@@ -1,0 +1,188 @@
+
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">Store details changed successfully.</span>
+</div>
+<div id="content">
+	<h4>Store Details</h4>
+<div class="innerLR">
+
+    
+    <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Upload New Product</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+                <form class="form-horizontal margin-none storedetailsform"  method="post">
+				<div class="tab-content pad0">
+				
+					<!-- Tab content -->
+					<div class="tab-pane active">
+					
+						<!-- Row -->
+						<div class="row-fluid">
+						
+							<!-- Column -->
+							
+                                                            
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Product Name</label>
+									<div class="controls">
+										<input required="true" type="text" name="product_name" class="span5" />
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Url</label>
+									<div class="controls">
+										<input required="true" type="text" name="url"  class="span8" />
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+								
+
+                                                        
+                                                      
+                                                            <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Fpp Points</label>
+									<div class="controls">
+										<input required="true" type="text" name="fpp_point"   class="span3" />
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Real Cash</label>
+									<div class="controls">
+										<input required="true" type="text" name="real_cash" class="span3" />
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                               
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Quantity</label>
+									<div class="controls">
+										<input required="true" type="text" name="qty" class="span1" />
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                        
+						</div>
+						<!-- // Row END -->
+						
+						<div class="separator line bottom"></div>
+						
+                                                <!-- Form actions -->
+						<div class="form-actions" class="margin-none">
+							<button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Upload Product</button>
+                                                        
+						</div>
+						<!-- // Form actions END -->
+						
+					</div>
+					<!-- // Tab content END -->
+					
+				</div>
+			</form>
+
+            </div>
+        </div>
+    
+	  <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Available Products</h4>
+              </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+
+                <!-- Table -->
+                <div role="grid" class="offerTables_wrapper form-inline" >
+            search:<input id="filter" type="text" /><a href="" class="clear-filter" title="clear filter"><div class="btn btn-mini btn-info">X</div></a>
+             
+            <table id="Storepage" data-filter="#filter" data-page-size="5" class="footable">
+
+                    <!-- Table heading -->
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 30px;" aria-sort="ascending" aria-label="No: activate to sort column descending">No.</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 250px;" aria-label="Name: activate to sort column ascending">Product Name</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Name: activate to sort column ascending">Fpp Points</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Title: activate to sort column ascending">Real Cash</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Title: activate to sort column ascending">Quantity</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Title: activate to sort column ascending">Status</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Title: activate to sort column ascending">Action</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Actions: activate to sort column ascending">Edit/Delete</th></tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                          <?php  if(isset($this->store)): $i=1; foreach($this->store as $value): ?>                            
+                            <tr class="gradeX odd">
+                                    <td class="center sorting_1"><?= $i ?></td>                            
+                                    <td class="center"><?=  $value['product_name'] ?></td>
+                                    <td class="center"><?=  $value['fpp_point'] ?></td>
+                                    <td class="center"><?=  $value['real_cash'] ?></td>
+                                    <td class="center"><?=  $value['qty'] ?></td>
+                                    <?php if($value['status']==1): ?>
+                                    <td id="activemenu_<?php echo $value['product_id']; ?>" class="center js-sortable-handle productactive">Active</td>
+                                    <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($value['product_id'])): echo "product_" . $value['product_id'];endif;?>" class="productdeactive">
+                                    <span id="activeclass_<?php echo $value['product_id']; ?>" class="label label-block label-inverse">Deactivate</span></a></td>
+                                      <?php  else: ?>
+                                    <td id="activemenu_<?php echo $value['product_id']; ?>" class="center js-sortable-handle productdeactive">Suspended</td>
+                                    <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($value['product_id'])): echo "product_" . $value['product_id']; endif;?>" class="productactive">
+                                    <span id="activeclass_<?php echo $value['product_id']; ?>"  class="label label-block label-primary">Activate</span></a></td>
+                                    <?php endif;?>
+                                    <td>
+                                        <a  href="edit-product/<?php echo $value['product_id']; ?>" class="btn-action glyphicons pencil btn-success"><i></i></a>
+                                        <a  href="#" id="<?php  echo "productdelete_" . $value['product_id'];  ?>" class="btn-action glyphicons remove_2 btn-danger product-delete"><i></i></a>
+                                    </td>
+                            
+                            </tr>                            
+                           <?php $i++;endforeach;endif;?>
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+        </div>
+      </div>	
+ </div>
+<?php if(isset($this->success)){ ?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  
+        $('.opennotificationGreen').click(function()
+        {
+            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+             
+        
+    </script>
+    <?php } ?>
+<script>
+    $('#menu_store').removeClass('collapse').addClass('in collapse');
+    $('#store_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#store').addClass('active');
+    </script>

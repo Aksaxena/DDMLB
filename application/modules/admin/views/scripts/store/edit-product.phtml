@@ -1,0 +1,101 @@
+<div id="content">
+	<h3>Edit Product</h3>
+<div class="innerLR">
+
+	<!-- Widget -->
+	<div class="widget widget-tabs border-bottom-none">
+	
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<ul>
+				<li class="active"><a class="glyphicons edit" href="" data-toggle="tab"><i></i>Manage Ticket</a></li>
+<!--				<li><a class="glyphicons settings" href="#account-settings" data-toggle="tab"><i></i>Account settings</a></li>-->
+			</ul>
+		</div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+                    <form class="form-horizontal margin-none editproductform"  method="post">
+				<div class="tab-content pad0">
+				
+					<!-- Tab content -->
+					<div class="tab-pane active">
+					
+						<!-- Row -->
+						<div class="row-fluid">
+						
+							
+                                                            
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Product</label>
+									<div class="controls">
+										<input type="text" name="product_name" value="<?php echo $this->data['product_name']; ?>" class="span5" />
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Url</label>
+									<div class="controls">
+										<input type="text" name="url" value="<?php echo $this->data['url']; ?>" class="span8" />
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+								<!-- Group -->
+								<div class="control-group">
+									<label class="control-label">FPP points</label>
+									<div class="controls">
+										<input type="text" name="fpp_point" value="<?php echo $this->data['fpp_point']; ?>" class="span3" />
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Real Cash</label>
+									<div class="controls">
+										<input type="text" name="real_cash" value="<?php echo $this->data['real_cash']; ?>" class="span3" />
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Quantity</label>
+									<div class="controls">
+										<input type="text" name="qty" value="<?php echo $this->data['qty']; ?>" class="span1" />
+									</div>
+								</div>
+								<!-- // Group END -->
+								
+						</div>
+						<!-- // Row END -->
+						
+						<div class="separator line bottom"></div>
+						
+                                                <!-- Form actions -->
+						<div class="form-actions" class="margin-none">
+                                                    <a href="<?php $this->baseUrl('/admin/store'); ?>"><button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button></a>
+                                                       <a href="/admin/store"><button type="button" class="btn btn-icon btn-default glyphicons circle_remove"><i></i>Cancel</button> </a>
+                                                        <span><?php if(isset($this->error)){ echo $this->error; } ?> </span>
+                                                </div>
+						<!-- // Form actions END -->
+						
+					</div>
+					<!-- // Tab content END -->
+					
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- // Widget END -->
+	
+</div>	
+</div>
+<script>
+    $('#menu_store').removeClass('collapse').addClass('in collapse');
+    $('#store_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#store').addClass('active');
+    </script>

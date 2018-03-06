@@ -1,0 +1,127 @@
+
+<script type="text/javascript" language="javascript" class="init">
+
+
+//$(document).ready(function() {
+//	$('#usertable').dataTable( {
+//		columnDefs: [ {
+//			targets: [ 0 ],
+//			orderData: [ 0, 1 ]
+//		}, {
+//			targets: [ 1 ],
+//			orderData: [ 1, 0 ]
+//		}, {
+//			targets: [ 4 ],
+//			orderData: [ 4, 0 ]
+//		} ]
+//	} );
+//} );
+
+</script>
+<div id="content">
+	<h4>Manage Bots</h4>
+<div class="innerLR">
+
+	<!-- Widget -->
+	<div class="widget">
+		
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading">Manage Bots</h4>
+		</div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+                     <form id="selectBotType" method="POST" action = "">
+                         <input checked type="radio" name="type" value="-1" <?php if(isset($_POST['type']) && $_POST['type'] == -1)  echo ' checked="checked"';?> onchange="typeSubmitBot();">All &nbsp;&nbsp;
+		 <input type="radio" name="type" value="0" <?php if(isset($_POST['type']) && $_POST['type'] == 0)  echo ' checked="checked"';?> onchange="typeSubmitBot();">BOTS &nbsp;&nbsp;
+                     </form>
+			<!-- Table -->
+			<table id="usertable"  cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+			
+				<!-- Table heading -->
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Name</th>
+						<th>Email</th>
+						
+                                                <th class="center">Status</th>
+                                               
+                                                <th class="center">Edit</th>
+					</tr>
+				</thead>
+				<!-- // Table heading END -->
+				
+				<!-- Table body -->
+				<tbody>				
+					<!-- Table row -->
+                                        <?php if(isset($this->users)): $row = 0; foreach($this->users as $userDetails): $row ++;?>
+					<tr class="gradeA">
+						<td><?php echo $row; ?></td>
+						<td><?php echo $userDetails['user_name']; if($userDetails['fb_pwd']!=Null){?><span  style="color:red; margin : 5px;">BOT</span></td><?php }?></td>
+						<td><?php echo $userDetails['email']; ?></td>
+						
+                                               <?php if($userDetails['status']==1): ?>
+                                                <td id="activeuser_<?php echo $userDetails['user_id']; ?>" class="center js-sortable-handle useractive">Active</td>
+                                               
+                                                
+                                                  <?php  else: ?>
+                                                <td id="activeuser_<?php echo $userDetails['user_id']; ?>" class="center js-sortable-handle userdeactive">Suspended</td>
+                                                
+                                                
+                                               
+                                                <?php endif;?> 
+                                                <td class="center">
+                                                <a  href="#" class="btn-action glyphicons pencil btn-success botpwd" data-toggle="modal" data-id="<?php echo $userDetails['user_id'];?> " data-target="#botModal"><i></i></a>
+                                                
+                                                </td>
+					</tr>
+                                          <?php endforeach;  endif; ?>
+					<!-- // Table row END -->
+					
+					
+					
+				</tbody>
+				<!-- // Table body END -->
+				
+			</table>
+			<!-- // Table END -->
+			
+		</div>
+	</div>
+</div>	
+</div>
+<script>
+    $('#menu_components').removeClass('collapse').addClass('in collapse');
+    $('#user_setting').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons user active');
+    $('#user_details_menu').addClass('active');    
+    
+
+</script>
+<div class="modal fade" id="botModal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Update Password</h4>
+            </div>
+            <div class="modal-body text-center"  >
+                <h5>Enter password to update and create bot</h5> <br>
+                <input type="password" value="" id="tpass" name="tpass" class="input-de col-md-6 col-md-offset-3" placeholder="Enter Password" />
+                <h5  id="pass_msg" class="hidden"></h5>
+            </div>
+            <div class="modal-footer" >
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="botagree" data-botid="" >Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+             
+<script>
+    function typeSubmitBot()
+    {
+        document.getElementById('selectBotType').submit();
+    }
+    </script>

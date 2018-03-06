@@ -1,0 +1,227 @@
+<?php if(isset($this->messages)) { ?>
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">
+    <?php if(!empty($this->messages)){
+        foreach($this->messages as $msg){
+            echo $msg."<br>";
+        }
+    }
+?>
+
+</span>
+</div>
+ <?php } ?>
+
+<div id="content">
+    <h4>Offers Distribution</h4>
+    <div class="innerLR">
+        <!-- Widget -->
+        <div class="widget">
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Select Users</h4>
+            </div>
+            <!-- // Widget heading END -->
+            <div>
+ 
+ 
+            <div class="widget-body">
+                <form class="form-horizontal margin-none" name="offeremails" id="offeremails"  method="post">
+                    <div class="tab-content pad0">
+                        <!-- Tab content -->
+                            <div class="tab-pane active">
+                    
+                            <!-- Row -->
+                                <div class="row-fluid">
+                                                    
+                                <!-- Column -->
+                                                                        
+                                <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Offers</label>
+                                    <div class="controls">
+                                        <select name="offer" required="true">
+                                            <option selected="true" value="">Select Offer</option>
+                                            <?php if ($this->offer) {foreach($this->offer as $offer){ ?>
+                                                <option  value="<?php echo $offer['offer_id']; ?>"><?php echo $offer['offer_name']." (valid upto: ".$offer['offer_end_date'].")"; ?></option>
+                                            <?php } } ?>
+                                        </select>    
+                                    </div>
+                                </div>
+                                <!-- // Group END -->
+                                 
+								<!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label">Send To</label>
+                                    <div class="controls">
+                                        <select  id="sendto" name="sendto" required="true">
+                                            <option selected="true" value="">Select sent option</option>
+                                            <option  value="1">All users</option>
+                                            <option  value="2">Only to selected emails</option>
+                                        </select>    
+                                    </div>
+                                </div>
+								 
+                                <!-- Group -->
+                                <div class="control-group" style="display:none;"id="email_id">
+                                    <label class="control-label">User emails</label>
+                                    <div class="controls">
+										<input type="emails"  id="email" name="email" placeholder="add multiple emails seperated by comma" class="span5" value="" />
+										<div id="emailErrorEmpty" style="display:none;color:#D14;">Please enter an email address!</div>
+										<div id="emailErrorInvalid" style="display:none;color:#D14;">Please enter a valid email address!</div>
+										<?php  if(isset($this->message)){ foreach ($this->message as $value) {?>
+										<div id="offermessage">
+										<li  style="color:#D14;"><?php print_r($value);?></li>  
+										<?php } ?>
+										<span id="offermess" style="color:#D14;"> emails doesnt exists</span>
+										<?php  }?>
+										</div>
+									</div>                                                                              
+								</div>
+                            <!-- // Row END -->
+                                                    
+                            <div class="separator line bottom"></div>
+                                                    
+                            <!-- Form actions -->
+                            <div class="form-actions margin-none">
+                                <button style="margin-left: 14%;" type="submit"  id="offerbutton" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Send Offer</button>
+                                                            
+                            </div>
+                            <!-- // Form actions END -->
+                                                    
+                        </div>
+                        <!-- // Tab content END -->
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        
+      
+
+   
+        </div>
+    </div>	
+</div>
+</div>
+
+<script>
+$('#menu_components7').removeClass('collapse').addClass('in collapse');
+$('#offers_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+$('#dstr_offers').addClass('active');
+
+
+//dev:priyanka varanasi
+//date:15/2014/2014
+//desc:multiple email validation
+//////////////////////////multiple email validation////////////////////////////////////
+var Email = {
+  _validator : function(email) { return (/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i.test(email) && /^[a-z0-9!\#$%&\'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!\#$%&\'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel)$/i.test(email)); }, //'
+  isValid 	 : function(email) { return Email._validator(email); }
+};
+// Validation
+$(document).ready(function(){
+	
+	$(document.body).on('change','#sendto',function(e){ 
+        var sentto = $(this).val();
+		console.log(sentto);
+		if(sentto=="1"){
+			$("#email_id").hide();  
+		}else{
+			$("#email_id").show(); 
+		}
+    });
+	
+	$('#offeremails').bind('submit',function() {
+
+		var sentOption = $('#sendto').val();
+		if(sentOption=="2"){
+			var emailValue = $('#email').val();
+			var emailSplit = emailValue.split(/[\s,]+/);
+			for (var i = 0; i < emailSplit.length; i++) {
+				if(emailValue == '') {
+					$('#emailErrorEmpty').bind('keyup',function(){});
+					$('#emailErrorEmpty').show();
+					break;
+				}else if(!Email.isValid(emailSplit[i])) {
+					$('#emailErrorInvalid').bind('keyup',function(){});
+					$('#emailErrorInvalid').show();
+					break;
+				} else {
+					return true;
+				}
+			}
+			return false;
+		}
+    
+	});
+});
+  
+$(document.body).on('click','#email',function(e){ 
+            $("#emailErrorEmpty").css("display","none");                  
+    });
+
+  $(document.body).on('click','#email',function(e){ 
+            $("#emailErrorInvalid").css("display","none");                  
+    });
+    $(document.body).on('click','#email',function(e){ 
+            $("#emailexists").css("display","none");                  
+    });
+
+$(document).ready(function(){
+  $(document.body).on('click','#email',function(e){ 
+     $("#offermessage").css("display","none");  
+
+  });
+  });
+  
+$(document).ready(function(){
+  $(document.body).on('click','#email',function(e){ 
+     $("#offermess").css("display","none");  
+
+  });
+  });
+</script>
+
+ <?php if(isset($this->messages)) {?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  
+        $('.opennotificationGreen').click(function()
+        {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 8000); 
+             
+        
+    </script>
+    <?php }?>
+
+    <?php if(isset($this->error)) {?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  
+        $('.opennotificationGreen').click(function()
+        {
+//            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+             
+        
+    </script>
+    <?php }?>

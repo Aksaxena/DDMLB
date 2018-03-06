@@ -1,0 +1,44 @@
+<div class="col-md-12">
+        <?php if(isset($this->data)){  ?>
+      <p style="color: white">Below are the lineups eligible for import. Lineups are only eligible if they share a common sport type, contest rules and contest start times.</p>
+        <?php } else { ?>
+      <h4 style="margin-top: 60px; margin-bottom: 80px; margin-left: 180px;color: white"><strong>Sadly you don't have any Lineups.</strong></h4>
+        <?php } ?>
+            <?php if(isset($this->data)){ foreach ($this->data as $dkey=>$dvalue){ ?>
+      <div class="col-xs-6 col-md-4 textur_bg" style="margin-bottom: 15px">
+                  <h5><input type="radio" name="sel_import" class="sel_import" data-rem="<?php echo $dvalue['rem_salary'] ?>"><strong>SELECT LINEUP</strong> </h5><br/>                  
+                  <table class="table table-bordered lbg">
+                      <thead>
+                          <tr>
+                              <th>Pos</th><th>Player</th><th>team</th>
+                          </tr>
+                      </thead>    
+                      <tbody>
+                          <?php if(isset($dvalue['player_details'])){ foreach ($dvalue['player_details'] as $pkey=>$pvalue){ //echo "<pre>"; print_r($pvalue);?>
+                          <tr class="players" data-ppid="<?php echo $pvalue['id']; ?>" data-salary="<?php echo $pvalue['plr_value']; ?>" data-tid="<?php echo $pvalue['team_id']; ?>">                             
+                              <td class="pcode"><?php echo $pvalue['position']; ?></td>
+                              <td class="name"><?php echo $pvalue['plr_name']; ?></td>
+                              <td class="oppcode"><?php echo $pvalue['team_code']." @ ".$pvalue['team_vs']; ?></td>
+                              <!--<td class="hidden salary"><?php echo $pvalue['plr_value']; ?></td>-->
+                          </tr>
+                          <?php  } }?>
+                      </tbody>
+                  </table>
+              </div>     
+      <?php  } }?>
+      
+      
+
+
+  </div>
+ 
+
+
+
+<div style="margin-left:620px">
+    <?php if(isset($this->data)){  ?>
+    <button type="button" class="btn btn-info" data-dismiss="modal"  id="import_selected">Import</button>
+     <?php } ?>
+<button type="button" class="btn btn-default " data-dismiss="modal" style="margin-left: 15px">Close</button>
+     
+<div>

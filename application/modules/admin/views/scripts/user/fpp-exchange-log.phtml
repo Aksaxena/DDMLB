@@ -1,0 +1,110 @@
+<div id="content">
+    <h4>User Account Details</h4>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">User Fpp Exchange Log</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+                <div class="panel-body">
+                    <form method="post" class="form-horizontal margin-none newsportsform" novalidate="novalidate">
+				<div class="tab-content pad0">
+				
+					<!-- Tab content -->
+					<div class="tab-pane active">
+					
+						<!-- Row -->
+						<div class="row-fluid">
+						
+							<!-- Column -->
+							<div class="span6">
+					                       
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label span6">FPP Exchange Rate  : ($1 = <?php echo $this->settings['fpp_exchange']."  FPP."; ?>)</label>
+									<div class="controls">
+										<input type="text" class="span3" value="<?php echo $this->settings['fpp_exchange']; ?>" placeholder="<?php echo $this->settings['fpp_exchange']; ?>" id="sports_name" name="fpp_exchange">
+                                                                                <input type="hidden" class="span3" value="<?php echo $this->settings['setting_id']; ?>" name="setting_id">
+										<span data-original-title="Last name is mandatory" data-placement="top" data-toggle="tooltip" class="btn-action single glyphicons circle_question_mark margin-none"><i></i></span>
+									</div>
+								</div>                                                               
+
+                                                        </div>
+                                                        <div class="span6">
+                                                        <div class="form-actions">
+							<button class="btn btn-icon btn-primary glyphicons circle_ok" type="submit"><i></i>Save changes</button>
+                                                        <a href="/admin/user-details">	<button class="btn btn-icon btn-default glyphicons circle_remove" type="button"><i></i>User Details</button> </a>
+                                                        <span></span>
+                                                </div>
+                                                        </div>
+						</div>
+						
+					</div>
+					<!-- // Tab content END -->
+					
+				</div>
+			</form>
+                </div>
+                <!-- Table -->
+                <table cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+
+                    <!-- Table heading -->
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>User Name</th>                            
+                            <th>Balance Amount</th>
+                            <th>FPP Avl.</th>                            
+                            <th>Bonus Amount</th>
+                            <th>FPP Used</th>
+                            <th>Txn Date</th>
+                            <!--<th>Edit</th>-->
+                        </tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <!-- Table body -->
+                    <tbody>
+
+                       <?php $i=1; if(isset($this->userlog)): foreach ($this->userlog as $accountDetails): ?>
+                        <!-- Table row -->
+                        <?php if($accountDetails['user_name']!='') {?>
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $accountDetails['user_name']; ?></td>                            
+                            <td><?php echo $accountDetails['balance_amt']; ?></td>
+                            <td><?php echo $accountDetails['fpp']; ?></td>                            
+                            <td ><?php echo $accountDetails['bonus_amt']; ?></td>
+                            <td ><?php echo $accountDetails['fpp_used']; ?></td>
+                            <td ><?php echo $accountDetails['transaction_date']; ?></td>
+<!--                            <td>
+                                <a href="/admin/edit-account-details/<?php echo $accountDetails['user_id']; ?>" class="btn-action glyphicons pencil btn-success"><i></i></a>
+                                <?php $i++;
+                            } ?>
+                            </td>-->
+                        </tr>
+                        <!-- // Table row END -->
+                        <?php endforeach; endif; ?>
+
+                    </tbody>
+                    <!-- // Table body END -->
+
+                </table>
+                <!-- // Table END -->
+
+            </div>
+        </div>
+    </div>	
+</div>
+
+<script>
+    $('#menu_components').removeClass('collapse').addClass('in collapse');
+    $('#user_setting').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons user active');
+    $('#fpp-exchange-log').addClass('active');    
+</script>   
+

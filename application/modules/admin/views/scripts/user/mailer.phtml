@@ -1,0 +1,219 @@
+<div id="content">
+    <h4>Manage Email</h4>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Registered users</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+
+                <!-- Table -->
+                <table cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+
+                    <!-- Table heading -->
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>UserID</th>
+                            <th>User Name</th>                            
+                            <th>User Email</th>                           
+                            <th>Reg. date</th>
+                            <th>Send Mail</th>
+                        </tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <!-- Table body -->
+                    <tbody>
+                       <?php if(isset($this->userdetails)){ $index=1; foreach ($this->userdetails as $uVal){ ?>
+                        <!-- Table row -->
+                            <td><?php echo $index; ?></td>
+                            <td><?php echo $uVal['user_id']; ?></td>
+                            <td><?php if(isset($uVal['user_name'])){ echo $uVal['user_name']; }else{ echo "N/A"; } ?></td>
+                            <td><?php if(isset($uVal['email'])){ echo $uVal['email']; }else{ echo "N/A"; } ?></td>
+                            <td><?php if(isset($uVal['reg_date'])){ echo $uVal['reg_date']; }else{ echo "N/A"; } ?></td>
+                            <td><a data-target="#send-mail" data-toggle="modal" data-uname="<?php echo $uVal['user_name']; ?>" data-uid="<?php echo $uVal['user_id']; ?>"  data-mail="<?php echo $uVal['email']; ?>" class="btn-action glyphicons envelope btn-success reg-mail"><i></i></a> </td>
+                        </tr>
+                        <!-- // Table row END -->
+                        <?php $index++; }} ?>
+                    </tbody>
+                    <!-- // Table body END -->
+
+                </table>
+                <!-- // Table END -->
+
+            </div>
+        </div>
+	
+
+      <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">UnRegistered users</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+
+                <!-- Table -->
+                <table cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+
+                    <!-- Table heading -->
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>                           
+                            <th>User Email</th>                           
+                            <th>sent. date</th>
+                            <th>Message</th>
+                            <th>Send Mail</th>
+                        </tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <!-- Table body -->
+                    <tbody>
+                       <?php if(isset($this->unregister)){ $index=1; foreach ($this->unregister as $uVal){ ?>
+                        <!-- Table row -->
+                            <td><?php echo $index; ?></td>
+                            <td><?php if(isset($uVal['sent_email'])){ echo $uVal['sent_email']; }else{ echo "N/A"; } ?></td>
+                            <td><?php if(isset($uVal['sent_time'])){ echo $uVal['sent_time']; }else{ echo "N/A"; } ?></td>
+                            <td><?php if(isset($uVal['message'])){ echo $uVal['message']; }else{ echo "N/A"; } ?></td>
+                            <td><a data-target="#send-mail" data-toggle="modal" data-uname="<?php echo $uVal['sent_email']; ?>" data-uid="<?php echo $uVal['user_id']; ?>"  data-mail="<?php echo $uVal['sent_email']; ?>" class="btn-action glyphicons envelope btn-success reg-mail"><i></i></a> </td>
+                        </tr>
+                        <!-- // Table row END -->
+                        <?php $index++; }} ?>
+                    </tbody>
+                    <!-- // Table body END -->
+
+                </table>
+                <!-- // Table END -->
+
+            </div>
+        </div>
+        
+    
+    <div class="widget">
+
+ <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Email Logs</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+
+                <!-- Table -->
+                <table cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered dataTable">
+
+                    <!-- Table heading -->
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Sent Email</th>
+                            <th>Sent Time</th>                            
+                            <th>Sent Template</th>                           
+                            <th>Message</th>
+                           
+                        </tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <!-- Table body -->
+                    <tbody>
+                        <?php if(isset($this->emaillogDetails)): $row = 0; foreach($this->emaillogDetails as $emaillogDetails): $row ++;?>
+                                            <tr class="gradeA">
+                                                    <td><?php echo $row; ?></td>
+                                                    <td><?php echo $emaillogDetails['sent_email']; ?></td>
+                                                    <td><?php echo $emaillogDetails['sent_time']; ?></td>
+                                                    <td><?php echo $emaillogDetails['sent_template']; ?></td>
+                                                    <td><?php echo $emaillogDetails['message']; ?></td>
+
+
+                                            </tr>
+                                              <?php endforeach;  endif; ?>
+					
+                        </tbody>
+                    <!-- // Table body END -->
+
+                </table>
+                <!-- // Table END -->
+
+            </div>
+        </div>
+    </div>	
+</div>
+
+<div class="modal fade" id="send-mail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="sendlabel" style="margin-top: 12px;">Edit Mail</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <label><h5>Send Message to <span id="username" style="color:#926cff;"></span> </h5></label>
+                        <hr>
+                        <div class="row-fluid">
+               
+                <div class="form-group">
+                    <label class="control-label span2">To</label>
+                    <input id="sendto" type="text" class="form-control span7" readonly="true" placeholder="To" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label span2">Subject</label>
+                    <input id="subject" type="text" class="form-control span7" placeholder="Subject" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label span2">Message</label>
+                    <textarea id="message" class="form-control span7" placeholder="message"></textarea>
+                </div>
+                 <label id="ret-msg" ></label>                
+            </div>
+                 </div>
+                </div>
+                
+            <div class="modal-footer">
+               
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary " id="sendsuccess" data-id="">Send</button>
+            </div>
+        </div>
+           
+    </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    
+	$('.reg-mail').on('click',function(event){
+		 var uid = $(this).attr('data-uid');
+		 var email = $(this).attr('data-mail');
+		 var uname = $(this).attr('data-uname');
+		 //alert(email);
+		 $('#sendto').val(email);
+		 $('#sendsuccess').attr('data-id',uid);
+		 $('#username').html(uname);
+		 
+		 $('#ret-msg').css('color','');
+		 $('#ret-msg').html('');
+		 $('#subject').val('');
+		 $('#message').val('');
+	});
+</script>
+
+<script>
+    $('#menu_components').removeClass('collapse').addClass('in collapse');
+    $('#user_setting').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons user active');
+    $('#mailer_details_menu').addClass('active');    
+</script> 
+           

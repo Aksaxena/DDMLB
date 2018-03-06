@@ -1,0 +1,318 @@
+<script>
+//******* Precious Metal Price - HORIZONTAL BAR CHART
+var rawData = [
+     <?php 
+    $i=0;
+    foreach ($this->userstatic as $val)
+    {
+        echo "[$val, $i],";
+        $i++;
+    }
+    ?>
+];
+
+var dataSet = [
+    //{ label:data: rawData, color: "#9dce6e" }
+        { data: rawData, color: "#8EC657" }
+];
+
+var ticks = [
+    [0, "JAN"], [1, "FEB"], [2, "MAR"], [3, "APR"], [4, "MAY"], [5, "JUN"], [6, "JUL"],[7, "AUG"], [8, "SEP"], [9, "OCT"], [10, "NOV"], [11, "DEC"]
+];
+
+
+var options = {
+    series: {
+        bars: {
+            show: true
+        }
+    },
+    bars: {
+        align: "center",
+        barWidth: 0.5,
+        horizontal: true,
+        fillColor: { colors: [{ opacity: 0.5 }, { opacity: 1}] },
+        lineWidth: 1
+    },
+    xaxis: {        
+        
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 10,
+        max: 1000,
+        tickColor: "#5E5E5E",                        
+        tickFormatter: function (v, axis) {
+            return $.formatNumber(v, { format: "#,###", locale: "us" });                        
+        },
+        color:"black"
+    },
+    yaxis: {
+        
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 3,
+        tickColor: "#5E5E5E",        
+        ticks: ticks, 
+        color:"black"
+    },
+    legend: {
+        noColumns: 0,
+        labelBoxBorderColor: "#858585",
+        position: "ne"
+    },
+    grid: {
+        hoverable: true,
+        borderWidth: 2,        
+        backgroundColor: { colors: ["#171717", "#4F4F4F"] }
+    }
+};
+
+$(document).ready(function () {
+    $.plot($("#flot-placeholder"), dataSet, options);    
+    $("#flot-placeholder").UseTooltip();
+});
+
+
+
+var previousPoint = null, previousLabel = null;
+
+$.fn.UseTooltip = function () {
+    $(this).bind("plothover", function (event, pos, item) {
+        if (item) {
+            if ((previousLabel != item.series.label) || 
+                 (previousPoint != item.dataIndex)) {
+                previousPoint = item.dataIndex;
+                previousLabel = item.series.label;
+                $("#tooltip").remove();
+
+                var x = item.datapoint[0];
+                var y = item.datapoint[1];
+
+                var color = item.series.color;
+                //alert(color)
+                //console.log(item.series.xaxis.ticks[x].label);                
+                
+                showTooltip(item.pageX,
+                        item.pageY,
+                        color,
+                        "<strong>" + "TOTAL USER" + "</strong><br>" + item.series.yaxis.ticks[y].label + 
+                        " : <strong>" + $.formatNumber(x, { format: "#,###", locale: "us" })  + "</strong>");                
+            }
+        } else {
+            $("#tooltip").remove();
+            previousPoint = null;
+        }
+    });
+};
+
+function showTooltip(x, y, color, contents) {
+    $('<div id="tooltip">' + contents + '</div>').css({
+        position: 'absolute',
+        display: 'none',
+        top: y - 10,
+        left: x + 10,
+        border: '2px solid ' + color,
+        padding: '3px',
+        'font-size': '9px',
+        'border-radius': '5px',
+        'background-color': '#fff',
+        'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+        opacity: 0.9
+    }).appendTo("body").fadeIn(200);
+}
+
+$(document).ready(function(){
+	
+    $('#profitgraph').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Profit'
+        },
+        xAxis: {
+            categories: ['JAN', 'FEB', 'MAR','APR', 'MAY', 'JUN','JUL', 'AUG', 'SEP','OCT', 'NOV', 'DEC']
+        },
+        yAxis: {
+            title: {
+                text: 'Profit'
+            }
+        },
+        series: [{
+            name: 'Cash',
+            data: [<?php foreach($this->profitstatic as $profit) { if($profit['total'] == ""){ echo "0".','; }else { echo $profit['total'].','; } } ?>]
+        }]
+    });
+});
+
+</script>
+
+<div id="content"> 
+	<h2>Dashboard <span>for your next cool web APP</span></h2>
+
+<div class="innerLR">
+
+	<!-- Website Traffic Chart -->
+	<div class="widget" data-toggle="widget">            
+		<div class="widget-head"> 
+			<h4 class="heading glyphicons cardio"><i></i>Join User Statics</h4>
+                        
+                        <span class="heading glyphicons cardio" style="float: right;"> YEAR : <select id="user_year_select" name="year_select" data-style="btn-default btn-small">
+                                            <?php
+                                            $select = "";
+                                            $year = date("Y");
+                                            for ($i = 1; $i <= 5; $i++) {
+                                                if ($year == $this->year)
+                                                    $select = "selected"
+                                                    ?>
+                                                <option <?php echo $select; ?> value="<?php echo $this->baseUrl(); ?>/admin/dashboard?year=<?php echo $year; ?>"><?php echo $year; ?></option>						
+                                                <?php
+                                                $year--;
+                                                $select = "";
+                                            }
+                                            ?>
+					</select>
+                     </span>
+		</div>
+            
+		<div class="widget-body">
+			<div id="flot-placeholder" style="width:auto;height:300px;margin:0 auto"></div>
+		</div>
+	</div>
+	<!-- // Website Traffic Chart END -->
+        
+        	<!-- Website Traffic Chart -->
+	<div class="widget" data-toggle="widget">            
+		<div class="widget-head"> 
+                    
+                    <span class="heading glyphicons cardio" style="float: right;"> YEAR : <select id="profit_year_select" name="year_select" data-style="btn-default btn-small">
+                                            <?php
+                                            $select = "";
+                                            $year = date("Y");
+                                            for ($i = 1; $i <= 5; $i++) {
+                                                if ($year == $this->profityear)
+                                                    $select = "selected"
+                                                    ?>
+                                                <option <?php echo $select; ?> value="<?php echo $this->baseUrl(); ?>/admin/dashboard?profit=<?php echo $year; ?>"><?php echo $year; ?></option>						
+                                                <?php
+                                                $year--;
+                                                $select = "";
+                                            }
+                                            ?>
+					</select>
+                     </span>
+			<h4 class="heading glyphicons cardio"><i></i>Profit Statics</h4>
+                        
+<!--                        <select class="heading glyphicons cardio " style="float: right; text-align: left;">
+                            <option>Year</option>
+                            <option>Month</option>
+                            <option>Week</option>
+                        </select>    -->
+		</div>
+		<div class="widget-body">
+			<div id="profitgraph">Loading graph...</div>
+		</div>
+	</div>
+	<!-- // Website Traffic Chart END -->
+	
+	<!-- Stats Widgets -->
+	<div class="row-fluid widget-stats-group">
+	
+		<div class="span2">
+		
+			<!-- Stats Widget -->
+			<a href="<?php $this->baseUrl(); ?>/admin/user-details" class="widget-stats">
+				<span class="glyphicons user_add"><i></i></span>
+				<span class="txt">Users</span>
+				<div class="clearfix"></div>
+				<span class="count label label-primary">Total <?php echo $this->totalusers; ?></span>
+			</a>
+			<!-- // Stats Widget END -->
+			
+		</div>
+            
+            <div class="span2">
+		
+			<!-- Stats Widget -->
+			<a href="<?php $this->baseUrl(); ?>/admin/contest-details" class="widget-stats">
+				<span class="glyphicons soccer_ball"><i></i></span>
+				<span class="txt">Contest</span>
+				<div class="clearfix"></div>
+				<span class="count label label-primary">Total <?php echo $this->totalcontets; ?></span>
+			</a>
+			<!-- // Stats Widget END -->
+			
+		</div>
+            
+             <div class="span2">
+		
+			<!-- Stats Widget -->
+			<a href="<?php $this->baseUrl(); ?>/admin/contest-promotion" class="widget-stats">
+				<span class="glyphicons charts"><i></i></span>
+				<span class="txt">Promotion</span>
+				<div class="clearfix"></div>
+				<span class="count label label-primary">Total <?php echo $this->totalpromotion; ?></span>
+			</a>
+			<!-- // Stats Widget END -->
+			
+		</div>
+            
+            <div class="span2">
+		
+			<!-- Stats Widget -->
+			<a href="<?php $this->baseUrl(); ?>/admin/ticket" class="widget-stats">
+				<span class="glyphicons sampler"><i></i></span>
+				<span class="txt">Ticket</span>
+				<div class="clearfix"></div>
+				<span class="count label label-primary">Total <?php echo $this->totalticket; ?></span>
+			</a>
+			<!-- // Stats Widget END -->
+			
+		</div>
+            
+           <div class="span2">
+		
+			<!-- Stats Widget -->
+			<a href="<?php $this->baseUrl(); ?>/admin/new-game-details" class="widget-stats">
+				<span class="glyphicons gamepad"><i></i></span>
+				<span class="txt">Sports</span>
+				<div class="clearfix"></div>
+				<span class="count label label-primary">Total <?php echo $this->totalsports; ?></span>
+			</a>
+			<!-- // Stats Widget END -->
+			
+		</div>
+            
+            <div class="span2">
+		
+			<!-- Stats Widget -->
+			<a href="<?php $this->baseUrl(); ?>/admin/offers" class="widget-stats">
+				<span class="glyphicons flash"><i></i></span>
+				<span class="txt">Offer</span>
+				<div class="clearfix"></div>
+				<span class="count label label-primary">Total <?php echo $this->totaloffer; ?></span>
+			</a>
+			<!-- // Stats Widget END -->
+			
+		</div>
+		
+	</div>
+	<div class="separator bottom"></div>
+	<!-- // Stats Widgets END -->
+	
+
+	
+	<div class="row-fluid">
+
+	</div>
+	<div class="separator bottom"></div>
+	
+</div>
+        
+<script>
+    $('#dashboard').addClass('active');
+    //$('#country_submenu').removeClass('hasSubmenu').addClass('active');
+</script>
+

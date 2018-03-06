@@ -1,0 +1,4 @@
+[07-Jul-2017 03:09:28 UTC] PHP Fatal error:  Class 'Zend_Application_Module_Bootstrap' not found in /home/draftdaily/public_html/application/modules/home/Bootstrap.php on line 2
+[07-Jul-2017 11:06:28 UTC] PHP Fatal error:  Class 'Zend_Application_Module_Bootstrap' not found in /home/draftdaily/public_html/application/modules/home/Bootstrap.php on line 2
+[07-Jul-2017 17:36:47 UTC] PHP Fatal error:  Class 'Zend_Application_Module_Bootstrap' not found in /home/draftdaily/public_html/application/modules/home/Bootstrap.php on line 2
+[08-Jul-2017 21:05:39 UTC] PHP Fatal error:  Class 'Zend_Application_Module_Bootstrap' not found in /home/draftdaily/public_html/application/modules/home/Bootstrap.php on line 2

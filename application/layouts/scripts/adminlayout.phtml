@@ -1,0 +1,118 @@
+<?php echo $this->render('admin-header.phtml'); ?>
+<?php echo $this->render('admin-script.phtml'); ?>
+<?php if (isset($this->session->storage->role)): if ($this->session->storage->role == '2') : ?>
+        <div id="wrapper">
+            <div id="menu" class="hidden-phone hidden-print">            
+                <a href="<?php $this->baseUrl(); ?>/admin/dashboard" class="appbrand">Admin <span>panel</span></a>
+                <div class="slim-scroll" data-scroll-height="800px">
+                    <ul class="menu-0">
+                        <!-- Menu Regular Item -->
+                        <li id="dashboard" class="glyphicons display"><a href="<?php $this->baseUrl(); ?>/admin/dashboard"><i></i><span>Dashboard</span></a></li>
+
+                        <li id="contest_setting_menu" class="hasSubmenu glyphicons soccer_ball">
+                            <a data-toggle="collapse" href="#menu_components2"><i></i><span>Contest Settings</span></a>
+                            <ul class="collapse" id="menu_components2">																		
+                                <li id="contest_detail_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/contest-details"><span>Contest Details</span></a></li>						
+                                <!--<li id="match_detail_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/match-details"><span>Match Details</span></a></li>-->						
+                                <li id="new_contest_detail_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/contest-type-details"><span>Contest Type Details</span></a></li>						
+                                <li id="add_new_contest_detail_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/new-contest-type"><span>Add New Contest Type</span></a></li>						
+                                <li id="add_new_contest_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/new-contest"><span>Add New Contest</span></a></li>
+                                <li id="featured_contest_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/featured-contest"><span>New Featured Contest</span></a></li>	
+                                <li id="featured_contest_details_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/featured-details"><span>Featured Contest Details</span></a></li>	
+                            </ul>				
+                        </li>
+
+                        <li id="offers_menu" class="hasSubmenu glyphicons flash">
+                            <a data-toggle="collapse" href="#menu_components7"><i></i><span>Manage Offers</span></a>
+                            <ul class="collapse" id="menu_components7">																		
+                                <li id="offers" ><a href="<?php $this->baseUrl(); ?>/admin/offers"><span>Offers</span></a></li>
+                                <li id="dstr_offers" ><a href="<?php $this->baseUrl(); ?>/admin/distribute-offers"><span>Distribute Offers</span></a></li>
+                            </ul>				
+                        </li>
+
+                        <li id="payment_setting" class="hasSubmenu glyphicons usd">
+                            <a data-toggle="collapse" href="#menu_components1"><i></i><span>Payment Settings</span></a>
+                            <ul class="collapse" id="menu_components1">																		
+                                <li id="payment_details_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/depositor-details"><span>Depositor Details</span></a></li>						
+								<!-- <li id="payment_approval_menu" class=""><a href="<?php // $this->baseUrl();  ?>/admin/payment-approval"><span>Payment Approval</span></a></li>-->
+                                <li id="withdrawal_details_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/withdrawal-details"><span>Withdrawal Details</span></a></li>
+                                <li id="profit_details_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/profit-stats"><span>Profit Stats</span></a></li>
+                            </ul>				
+                        </li>
+
+                        <li id="player_menu" class="hasSubmenu glyphicons group">
+                            <a data-toggle="collapse" href="#menu_components4"><i></i><span>Player Setting</span></a>
+                            <ul class="collapse" id="menu_components4">																		
+                                <li id="player_detail_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/player-details"><span>Player Details</span></a></li>						
+                                <li id="player_salary_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/player-salary"><span>Player Salary</span></a></li>						
+                                <!--<li id="plugin-page-menu" class=""><a href="<?php // $this->baseUrl();  ?>/admin/player-stats"><span>Player Stats</span></a></li>-->						                                                                                                
+                                <li id="player_salary_setting" class=""><a href="<?php $this->baseUrl(); ?>/admin/player-salary-setting"><span>Player Salary Setting</span></a></li>
+                            </ul>				
+                        </li>
+
+                        <li id="promotion_setting_menu" class="hasSubmenu glyphicons charts">
+                            <a data-toggle="collapse" href="#menu_components3"><i></i><span>Promotion Settings</span></a>
+                            <ul class="collapse" id="menu_components3">																		
+                                <li id="contest_promotion_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/contest-promotion"><span>Promotion Details</span></a></li>						
+                                <li id="add_contest_promotion_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/add-contest-promotion"><span>Add Promotion Details</span></a></li>						                                                                                                
+                            </ul>				
+                        </li>
+
+
+
+                        <li id="game_menu" class="hasSubmenu glyphicons gamepad">
+                            <a data-toggle="collapse" href="#menu_components6"><i></i><span>Sports Setting</span></a>
+                            <ul class="collapse" id="menu_components6">																		
+                                    <!--<li id="game_details_menu" class=""><a href="<?php // $this->baseUrl();  ?>/admin/game-details"><span>Game Details</span></a></li>-->						
+                                <li id="new_game_details" class=""><a href="<?php $this->baseUrl(); ?>/admin/new-game-details"><span>Sports Details</span></a></li>						                                                                                                
+                                <li id="add_new_game" class=""><a href="<?php $this->baseUrl(); ?>/admin/new-sports"><span>Add New Sports</span></a></li>						                                                                                                
+                            </ul>				
+                        </li>
+
+                        <li id="store_menu" class="hasSubmenu glyphicons google_maps">
+                            <a data-toggle="collapse" href="#menu_store"><i></i><span>Store</span></a>
+                            <ul class="collapse" id="menu_store">																		
+                                <li id="tickets" ><a href="<?php $this->baseUrl(); ?>/admin/ticket"><span>Ticket Details</span></a></li>
+                                <li id="new_tickets" ><a href="<?php $this->baseUrl(); ?>/admin/new-ticket"><span>New Tickets</span></a></li>
+                                <li id="store" ><a href="<?php $this->baseUrl(); ?>/admin/store"><span>Store</span></a></li>
+                            </ul>				
+                        </li>
+
+                        <li id="user_setting" class="hasSubmenu glyphicons user">
+                            <a data-toggle="collapse" href="#menu_components"><i></i><span>User Settings</span></a>
+                            <ul class="collapse" id="menu_components">																		
+                                <li id="user_details_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/user-details"><span>User Details</span></a></li>						
+                                <li id="user_account_details_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/user-account-details"><span>User Account Details</span></a></li>
+                                 <!--<li id="manage_bots_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/manage-bots"><span>Manage Bots</span></a></li>-->		
+                                <li id="mailer_details_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/mailer"><span>Email Manager</span></a></li>	
+                            
+                            <li id="fpp-exchange-log" class=""><a href="<?php $this->baseUrl(); ?>/admin/fpp-exchange-log"><span>User FPP Log</span></a></li>	
+                            </ul>				
+                        </li>
+
+                        <li id="site_menu" class="hasSubmenu glyphicons settings">
+                            <a data-toggle="collapse" href="#menu_components5"><i></i><span>Site Management</span></a>
+                            <ul class="collapse" id="menu_components5">																		
+                                <li id="btc_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/btc-address"><span>BTC Address</span></a></li>
+								
+								<li id="themes_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/themes"><span>Themes</span></a></li>						
+                                <li id="country_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/countries"><span>Manage Countries</span></a></li>						                                                                                                
+                                <li id="setting_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/settings"><span>Settings</span></a></li>
+
+                                <!-- to add a new tab "allow bonus to countries   Name:Sarika nayak   date:1/08/2014"-->
+                                <li id="setting_menu" class=""><a href="<?php $this->baseUrl(); ?>/admin/bonus-country"><span>Allow bonus Countries</span></a></li>
+                            </ul>				
+                        </li> 												<li id="api_menu" class="hasSubmenu glyphicons list">                            <a data-toggle="collapse" href="#menu_api"><i></i><span>Api Management</span></a>                            <ul class="collapse" id="menu_api">								<li id="menu_api_1" class=""><a href="<?php $this->baseUrl(); ?>/admin/api/app-user-details"><span>App User Details</span></a></li>                            </ul>				                         </li>
+						<li id="support_menu" class="hasSubmenu glyphicons headphones">
+                            <a data-toggle="collapse" href="#menu_componentsL1"><i></i><span>Support Management</span></a>
+                            <ul class="collapse" id="menu_componentsL1">
+                                <li id="support_menu_1" class=""><a target="_blank" href="<?php $this->baseUrl(); ?>/support/request-details"><span>Support Panel</span></a></li>
+                            </ul>				
+                        </li>						
+                    </ul>
+                </div>
+            </div>
+        <?php endif;
+    endif; ?>
+<?php echo $this->layout()->content; ?>   
+</div>         

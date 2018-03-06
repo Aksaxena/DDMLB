@@ -1,0 +1,484 @@
+<div id="selectticket">
+    <select name="ticket_id[]"  class="tickets" style="display: none; width: 100px;"> 
+    <option value="">select</option>
+        <?php if(isset($this->tickets)){ if(is_array($this->tickets)) { foreach($this->tickets as $tvalue){ ?>
+        <option value="<?= $tvalue['ticket_id']; ?>"><?= $tvalue['code']." ($".$tvalue['bonus_amt'].")"; ?></option>  
+     <?php } } else{ echo "<option>NO ACTIVE TICKET</option>"; }  } ?>
+    </select>
+</div>
+
+<div id="inputamount">
+    <input placeholder="amount" type="text" name="rank_amt[]" style="display: none; width: 80px;" value="" data-pamt="" class="rankamount" />
+</div>
+   
+<div class="addrow" style="display: none">
+                                             <!-- Row -->
+                                        <div class="row-fluid ">
+                                            <!-- Column -->
+                                            <div class="span3">
+                                                <div class="control-group">
+                                                    <label class="control-label">Rank From</label>
+                                                    <div class="controls">
+                                                        <select class="span12 rankfrom" name="rank_from[]"> 
+                                                            <option value="">Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="span3">
+                                                <div class="control-group">
+                                                    <label class="control-label">Rank To</label>
+                                                    <div class="controls">
+                                                        <select class="span12 rankto" name="rank_to[]">                                                                    
+                                                            <option value="">Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span3">
+                                                <div class="control-group">
+                                                <label class="control-label">Prize Type</label>
+                                                    <div class=" controls">
+                                                        <select class="payout_type" name="payout_type[]" style="width: 80px;">
+                                                            <option value="">Select</option>
+                                                            <option value="0">Amount</option>
+                                                            <option value="1">Ticket</option>
+                                                        </select>
+<!--                                                        <input type="checkbox" name="ticket[]" class="rankTicket" class="span1" />-->
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                            <div class="span2">
+                                                <div class="control-group prize_type">
+                                                            
+                                                </div>    
+                                            </div>
+                                            <div class="span1">
+                                                <button type="button" class="btn btn-default btn-lg removerow" >X</button>
+                                            </div>
+                                        </div>
+                                        <!-- // Row END --> 
+                                        </div>
+<div id="content">
+    <h3>Create New Contest</h3>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget widget-tabs border-bottom-none">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <ul>
+                    <li class="active"><a class="glyphicons edit" href="#account-details" data-toggle="tab"><i></i>Manage contest details</a></li>
+                </ul>
+            </div>
+            <div>
+                <a class="btn btn-icon btn-primary glyphicons circle_ok" href="/admin/contest-details" type="button" style="margin-left:900px">
+                    <i></i> Contest Detail</a>
+
+<!--				<li><a class="glyphicons settings" href="#account-settings" data-toggle="tab"><i></i>Account settings</a></li>-->
+
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+
+                <div class="tab-content pad0">
+
+                    <!-- Tab content -->
+                    <form class="form-horizontal margin-none newcontestform" method="post">	
+                        <div class="tab-pane active" id="account-details">
+                            <div class="row-fluid">
+                                <!-- Group -->
+
+                                <div class="control-group">
+                                    <label class="control-label">Sports</label>
+                                    <div class="controls">
+                                        <select class="span8" name="sports_id" id="sports_id_contest">                                                                    
+                                            <option value="">Select</option>    
+                                            <?php
+                                            if (isset($this->sports)): foreach ($this->sports as $sportsDetails):
+                                                    if (isset($this->gameID)):
+                                                        if ($this->gameID == $sportsDetails['sports_id']):
+                                                            $sal = "selected";
+                                                        endif;
+                                                    endif;
+                                                    ?>
+                                                    <option <?php
+                                            if (isset($sal)): echo $sal;
+                                                unset($sal);
+                                            endif;
+                                                    ?> value="<?php echo $sportsDetails['sports_id']; ?>"><?php echo $sportsDetails['display_name']; ?></option>  
+    <?php endforeach;
+endif; ?> 
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- // Group END -->
+                            </div>
+
+                            <div id="show_data" style="display: none;">                        
+                                <div class="control-group" id="contest_table">   
+                                    search:<input id="filter" type="text" />
+                                    <table data-filter="#filter" class="footable" data-page-size="8" id="new_contest_table">
+                                        <thead>
+                                            <tr>
+                                                <th>Match ID</th>
+                                                <th>Match Date</th>
+                                                <th>Match Time</th>
+                                                <th>Home Team</th>
+                                                <th>Away Team</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="new_contest">
+                                        </tbody>
+
+                                        <tfoot class="footable-pagination">
+                                            <tr>
+                                                <td colspan="8"><ul id="pagination" class="footable-nav" /></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+
+                                <div class="separator line bottom"></div>
+                                <div class="tab-pane active" id="account-details">
+                                    <!-- Row -->
+                                    <div class="row-fluid">
+
+                                        <!-- Column -->
+                                        <div class="span6">
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Contest Name * </label>
+                                                <div class="controls">
+                                                    <input type="text" required="true" name="contest_name" id="contest_name" value="<?php echo $this->user['user_login']; ?>"  class="span10"/>
+                                                    <br><span class="help-block" id="contestname"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->
+
+
+
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Player (Entry Limit)</label>
+                                                <div class="controls">
+                                                    <input type="text" required="true" name="entry_limit" id="entry_limit" value="<?php echo $this->user['display_name']; ?>" class="span10"/>
+                                                    <br><span class="help-block" id="entrylimit"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Challenge Limit</label>
+                                                <div class="controls">
+                                                    <input type="text" required="true" name="challenge_limit" id="challenge_limit" value="<?php echo $this->user['user_email']; ?>" class="span10" />
+                                                    <br><span class="help-block" id="challengelimit"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->     
+
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Entry Fee</label>
+                                                <div class="controls">
+                                                    <input type="text" required="true" name="fee" id="fee" class="span10" />
+                                                    <br><span class="help-block" id="feeee"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->                                                        
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Match ID</label>
+                                                <div class="controls">
+                                                    <select class="span8" required="true" name="match_id" id="match_id">                                                                    
+                                                        <option value="">Select</option>    
+
+                                                    </select>
+                                                    <br><span class="help-block" id="matchid"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->	
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Match Start Time</label>
+                                                <div class="controls">
+<!--                                                        <input type="text" required="true" name="start_time" id="start_time" value="<?php // echo $this->user['user_email'];  ?>" class="span10" />-->
+                                                    <input type="text"  name="start_time" id="start_time" value="" class="span10" readonly/>
+                                                    <br><span class="help-block" id="starttime"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->   
+                                             <!-- Group -->
+                                             <?php if(isset($this->tickets)){ ?>
+                                            <div class="control-group">
+                                                <label class="control-label"> Set Entry Ticket</label>
+                                                
+                                                <div class=" controls">
+                                                    <input type="checkbox" name="ticket" id="ticket" class="span1" />
+                                                    <select class="span8" required="true" name="entry_ticket" id="ticket_id" style="display: none;"> 
+                                                        
+                                                        <?php if(isset($this->tickets)){ if(is_array($this->tickets)) { foreach($this->tickets as $tvalue){ ?>
+                                                            
+                                                            <option value="<?= $tvalue['ticket_id']; ?>"><?= $tvalue['code']." ($".$tvalue['bonus_amt'].")"; ?></option>  
+                                                        
+                                                        <?php } } else{ echo "<option>NO ACTIVE TICKET</option>"; }  } ?>
+                                                         
+                                                         
+                                                    </select>
+                                                </div>   
+                                            </div>
+                                             <?php } ?>
+                                            <!-- // Group END -->  
+                                        </div>
+                                        <!-- // Column END -->
+
+                                        <!-- Column -->
+                                        <div class="span6">							
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Prize Pool</label>
+                                                <div class="controls">
+                                                    <input type="text" required="true" name="prize_pool" id="prize_pool" value="<?php echo $this->user['user_email']; ?>" class="span10" />
+                                                    <br><span class="help-block" id="prizepool"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">FPP Reward</label>
+                                                <div class="controls">
+                                                    <input type="text" required="true" id="fpp_reword" name="fpp_reword" value="" readonly="true" class="span10" />
+                                                    <br><span class="help-block" id="fppreword"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->                                                               
+
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Contest Type</label>
+                                                <div class="controls">
+                                                    <select class="span8" name="contest_type">                                                                    
+                                                        <option value="">Select</option>    
+                                                        <?php if (isset($this->contest)): foreach ($this->contest as $contestDetails): ?>
+                                                                <option value="<?php echo $contestDetails['con_type_id']; ?>"><?php echo $contestDetails['display_name']; ?></option>  
+                                                                <?php endforeach;
+                                                            endif;
+                                                            ?> 
+                                                    </select>
+                                                    <br><span class="help-block" id="contesttype"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->			
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Play Type</label>
+                                                <div class="controls">
+                                                    <select required="true" class="span8" name="play_type">                                                                    
+                                                        <option value="">Select</option>                                                                            
+                                                        <option value="1">Anyone</option>  
+                                                        <option value="0">Friend</option>  
+                                                    </select>
+                                                    <br><span class="help-block" id="playtype"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->	
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Prizes</label>
+                                                <div class="controls">
+                                                    <select id="selpri" class="span8" required="true" name="prize_type">                                                                    
+                                                        <option value="">Select</option>                                                                            
+                                                        <option value="0">No Prize</option>  
+                                                        <option value="1">Winner Takes All</option>  
+                                                        <option value="2">Top 2 Win</option> 
+                                                        <option  value="6">Custom Prizes</option> 
+                                                    </select>
+                                                    <br><span class="help-block" id="prizetype"></span>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->	
+
+                                            <!-- Group -->
+                                            <div class="control-group">
+                                                <label class="control-label">Description</label>
+                                                <div class="controls">
+                                                    <textarea required="true" class="span10" name="desctext" onKeyDown="limitText(this.form.desctext,this.form.countdown,650);" 
+                                                              onKeyUp="limitText(this.form.desctext,this.form.countdown,650);"></textarea><br><span class="help-block" id="desctext"></span>
+                                                    <br>
+                                                    <font size="1">(Maximum characters: 650)<br>
+                                                    You have <input class="span2" readonly type="text" name="countdown" size="3" value="650"> characters left.</font>
+                                                </div>
+                                            </div>
+                                            <!-- // Group END -->	
+
+                                        </div>
+                                        <!-- // Column END -->
+                                        <!-- Column -->
+<!--                                        <div class="span6" id="customprize" style="display:none">
+
+                                            <div class="radio" id="radio1">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="byLimit" >
+                                                    Set Prize by Player limit
+                                                </label>
+                                            </div>
+                                            <div class="radio" id="radio2">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="forAll">
+                                                    Set Prize to All
+                                                </label>
+                                            </div>
+                                        </div>-->
+                                        <!-- // Column END -->
+                                    </div>
+
+                                    <!-- // Row END -->                                      
+                                    <br/>
+                                    <div id="rankamt" style="display:none">
+                                        <!-- Row -->
+                                        <div class="row-fluid trankamt" >
+                                            <!-- Column -->
+                                            <div class="span3">
+                                                <div class="control-group">
+                                                    <label class="control-label">Rank From</label>
+                                                    <div class="controls">
+                                                        <select id="rank_frm1" class="span12 rankfrom" name="rank_from[]"> 
+                                                            <option value="">Select</option>
+                                                        </select>
+                                                        <br><span class="help-block" id="rank_from_err1"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="span3">
+                                                <div class="control-group">
+                                                    <label class="control-label">Rank To</label>
+                                                    <div class="controls">
+                                                        <select id="rank_to1" class="span12 rankto" name="rank_to[]">                                                                    
+                                                            <option value="">Select</option>
+                                                        </select>
+                                                        <br><span class="help-block" id="rank_to_err1"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="span3">
+                                                <div class="control-group">
+                                                <label class="control-label"> Prize Type</label>
+                                                    <div class=" controls">
+                                                        <select class="payout_type" name="payout_type[]" style="width: 80px;">
+                                                            <option value="">Select</option>
+                                                            <option value="0">Amount</option>
+                                                           <?php if(isset($this->tickets)){ ?>
+                                                            <option value="1">Ticket</option>
+                                                            <?php } ?>
+                                                        </select>
+                                                        <!--<input type="checkbox" name="ticket[]" class="rankTicket" class="span1" />-->
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                            <div class="span2">
+                                                <div class="control-group prize_type">
+<!--                                                            <select name="ticket_id[]" class="tickets" style="display: none; width: 100px;"> 
+                                                                <option value="">select</option>
+                                                            <?php if(isset($this->tickets)){ if(is_array($this->tickets)) { foreach($this->tickets as $tvalue){ ?>
+                                                                <option value="<?= $tvalue['ticket_id']; ?>"><?= $tvalue['code']." ($".$tvalue['bonus_amt'].")"; ?></option>  
+                                                             <?php } } else{ echo "<option>NO ACTIVE TICKET</option>"; }  } ?>
+                                                            </select>
+                                                           <input placeholder="amount" type="text" name="rank_amt[]" style="display: none; width: 80px;"  value="" class="rankamount" />-->
+                                                        
+                                                </div>    
+                                            </div>
+                                            <div class="span1">
+                                                <button type="button" class="btn btn-default btn-lg" id="selectnewrow">Add<span class="glyphicon glyphicon-plus"></span></button>
+                                            </div>
+                                            
+                                        </div>
+                                        <!-- // Row END -->  
+                                        
+                                        
+                                        
+                                    </div>
+                                    <div id="addnewrank"></div>
+                                    <br>
+                                    <!-- Row -->
+<!--                                    <div class="row-fluid" style="display:none" id="allamt">
+                                        <div class="span4">
+                                            <div class="control-group">
+                                                <label class="control-label">Amount</label>
+                                                <div class="controls">
+                                                    <input type="text" name="plramount" id="plramount" value="" class="span12 playeramount"/>
+                                                    <br><span class="help-block" id="plr_amt_err"></span>
+                                                </div>
+                                            </div>     
+
+                                        </div>
+                                    </div>-->
+
+
+                                </div>
+
+                                <div class="separator line bottom"></div>
+                                <!-- Form actions -->
+                                <div class="form-actions" class="margin-none">
+                                    <button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok" id="submitnewcontest"><i></i>Save changes</button>
+                                    <a href="<?php $this->baseUrl(); ?>/admin/contest-details">	<button type="button" class="btn btn-icon btn-default glyphicons circle_remove"><i></i>Cancel</button> </a>
+                                </div>
+
+
+                            </div>
+                        </div>  
+
+                    </form>
+                    <!-- // Tab content END -->
+
+
+
+                    <?php
+//        endif;
+//    endif;
+//endif;
+                    ?>
+                </div>
+
+            </div>
+        </div>
+        <!-- // Widget END -->	
+    </div>	
+
+
+    <script>
+        $('#menu_components2').removeClass('collapse').addClass('in collapse');
+        $('#contest_setting_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+        $('#match_detail_menu').addClass('active');    
+    </script>
+
+    <script>
+//        var count = 1;  
+//        function changeid(){  
+//    
+//            $('#selid1').attr('name', 'rank_frm_'+count);
+//            $('#selid2').attr('name', 'rank_to_'+count);
+//            $('#plramt').attr('name', 'rank_amt_'+count);
+//            count++;
+//        }
+       
+    </script>

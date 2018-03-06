@@ -1,0 +1,10 @@
+[05-Jul-2017 06:45:59 UTC] PHP Fatal error:  Class 'Zend_Controller_Plugin_Abstract' not found in /home/draftdaily/public_html/application/plugins/Script.php on line 3
+[05-Jul-2017 11:05:29 UTC] PHP Fatal error:  Class 'Zend_Controller_Plugin_Abstract' not found in /home/draftdaily/public_html/application/plugins/Script.php on line 3
+[05-Jul-2017 13:21:47 UTC] PHP Fatal error:  Class 'Zend_Controller_Plugin_Abstract' not found in /home/draftdaily/public_html/application/plugins/Script.php on line 3
+[05-Jul-2017 19:02:31 UTC] PHP Fatal error:  Class 'Zend_Controller_Plugin_Abstract' not found in /home/draftdaily/public_html/application/plugins/Script.php on line 3
+[06-Jul-2017 01:21:46 UTC] PHP Fatal error:  Class 'Zend_Controller_Plugin_Abstract' not found in /home/draftdaily/public_html/application/plugins/Script.php on line 3
+[06-Jul-2017 23:31:09 UTC] PHP Fatal error:  Class 'Zend_Controller_Plugin_Abstract' not found in /home/draftdaily/public_html/application/plugins/Script.php on line 3
+[07-Jul-2017 00:25:12 UTC] PHP Fatal error:  Class 'Zend_Controller_Plugin_Abstract' not found in /home/draftdaily/public_html/application/plugins/Script.php on line 3
+[07-Jul-2017 01:16:15 UTC] PHP Fatal error:  Class 'Zend_Controller_Plugin_Abstract' not found in /home/draftdaily/public_html/application/plugins/Script.php on line 3
+[11-Jul-2017 07:15:24 UTC] PHP Fatal error:  Class 'Zend_Controller_Plugin_Abstract' not found in /home/draftdaily/public_html/application/plugins/Script.php on line 3
+[11-Jul-2017 11:50:53 UTC] PHP Fatal error:  Class 'Zend_Controller_Plugin_Abstract' not found in /home/draftdaily/public_html/application/plugins/Script.php on line 3

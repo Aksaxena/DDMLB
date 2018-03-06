@@ -1,0 +1,400 @@
+
+<?php  if(isset($this->showmodal)){ ?>
+<!--
+        added style attributes to div tags in order to modify design by Rahul Suresh Jawade on 20th August 2014
+-->
+<!--<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Login</h4>
+</div>-->
+<div class="modal-body sigupmain" >
+
+<!--    <div class="loginlogo"><img src="assets/images/avatar.png" /></div>-->
+
+
+    <div class="row">
+        
+        <div class="col-md-12">
+               
+                <div class="InnerLoginBox">
+<!--                    <ul>
+                        <li><h1><a href="#"><img src="assets/images/logo-large@2x.png" style="margin-left: 170px;width: 100px; height: 79px;"/></a></h1></li>
+                        <li><h2 style="padding-left: 73px;">Login Form Here</h2></li>
+                        <li><img src="assets/images/avatar.png" style="-webkit-border-radius: 150px; width: 120px;margin-left: 165px;"/></li>
+                    </ul> 
+                    <br/>-->
+                    <ul>
+                        <form class="loginformpop" method="post" role="form" action="/affiliate">
+                            <div class="reg-header "><h4>Login</h4></div>
+                            <!-- added style attributes such as margin-left, width, height, padding-left and -webkit-border-radius by Rahul Suresh Jawade -->
+                            
+<!--                            <li><h2 style="padding-left: 35px;">Login </h2></li>-->
+                            <span id="err" style="display:none" class="help-block">Username is required Field</span>
+                            <li>
+                                <label for="usernameinp" style="text-align: left !important;">Username</label>
+                                <input type="text" id="usenamepop"  name="username" class="form-control" placeholder="Username or Email">
+                                
+                            </li>
+                            <br/>
+                            <!--<span  class="ErrorLabelLogin">Enter Username</span>-->
+                            <li>
+                                <label for="passwordinp" style="text-align: left !important;">Password</label>
+                                <input type="password" id="passwordpop" name="password" class="form-control" placeholder="Password">
+                               
+                            </li>
+                            <br/>
+                           <div class="form-group">
+                               <a href="<?php  echo $this->fbLogin; ?>" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i> Login with Facebook</a>                               
+                            </div>
+                         <!--<span class="ErrorLabelLogin">Enter Password</span>-->
+                            <li>
+                                <button name="subbuttonpop" id="buttonpop"  value="login" type="submit" class="btn btn-success loginsubmitpop" >Login</button>
+                           </li>
+                        </form>
+                    </ul>
+                </div>
+<!--            </div>-->
+            <!--<form method="post" novalidate="novalidate" role="form" class="loginformpop">
+                <div class="form-group" >
+                    <label for="usernameinp">Username</label>
+                    <input type="text" id="usenamepop"  name="username" class="form-control" placeholder="Username or Email">
+
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordinp">Password</label>
+                    <input type="password" id="passwordpop" name="password" class="form-control" placeholder="Password">
+
+                </div>
+                
+                <div id="errordiv" class="form-group" style="display: none;">
+                    <label id="error" class="errormsg"></label>
+                </div>
+
+                <button name="subbuttonpop" id="buttonpop"  value="login" type="submit" class="btn btn-default loginsubmitpop">Submit</button>
+
+            </form>-->
+            
+            <div class="OuterLogin">
+                <div class="Login">
+                    
+                    <form class="signupformpop hidden" role="form" name= "form" method="post" action="/affiliate">
+                        <div class="reg-header "><h4>Signup</h4></div>
+                        <!-- added style attributes such as margin-left, width, height, padding-left and -webkit-border-radius by Rahul Suresh Jawade -->
+<!--                        <h1><a href="#"><img src="assets/images/logo-large@2x.png" style="margin-left: 132px;width: 100px; height: 79px;"/></a></h1>
+                        <h2 style="padding-left: 35px;">Signup Form Here</h2>
+                        <img src="assets/images/avatar.png" style="-webkit-border-radius: 150px; width: 120px;margin-left: 130px;"/><br />-->
+                        <div class="form-group">
+                               <a href="<?php  echo $this->fbLogin; ?>" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i> Signup with Facebook</a>                               
+                        </div>
+                        
+                        <label for="usernameinp">Username</label>
+                        <input type="text"  name="username" class="form-control" id="user" placeholder="Username"><br/>
+                        <!--<span  class="ErrorLabel">Enter Username</span><br />-->
+                        <label for="emailinp">Email address</label>
+                        <input type="email" name="email" class="form-control" id="email" placeholder="Email"><br/>
+                        <!--<span  class="ErrorLabel">Enter Email</span><br />-->
+                        <label for="passwordinp">Password</label>
+                        <input type="password" id="loginpopmatch" name="password" class="form-control"  placeholder="Password"><br/>
+                        <!--<span  class="ErrorLabel">Enter _Password</span><br />-->
+                        <label for="confirmpassword"> Confirm Password</label>
+                        <input type="password"  name="confirmPassword" class="form-control"  placeholder="Password"><br/>
+<!--                        <span  class="ErrorLabel">Enter Password</span><br />                                                -->
+                        <label for="countryinp">Country</label>
+                        <select name="countryoption"  class="form-control">
+                           <?php if(isset($this->countryList)){ foreach ($this->countryList as $cokey => $covalue) {   ?>
+                              <option  value="<?php echo $covalue['country_id'];  ?>"   ><?php echo $covalue['country_name']; ?></option>
+                           <?php   }  } ?> 
+                        </select><br/>
+<!--                        <span  class="ErrorLabel">Select Country</span><br />-->
+                        <label for="cityinp">City</label>
+                        <select name="cityoption"  class="form-control">
+                            <?php  if(isset($this->stateList)){ foreach ($this->stateList as $cokey => $covalue) {   ?>
+                                <option  value="<?php echo $covalue['state_id'];  ?>"   ><?php echo $covalue['state_code']; ?></option>
+                            <?php   }  }  ?>
+                        </select><br />
+<!--                        <span  class="ErrorLabel">Select State</span><br />-->
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="agreeterms"> I agree to the Terms of Use and the Privacy Policy.
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="ageconfirm">I confirm that I am at least 18 years of age. Must be 19 years of age in Alabama and Nebraska.
+                            </label>
+                        </div>
+                        <br />
+                        <input type="hidden" name="affid" id="affid" value="<?php echo $this->affiliateID; ?>"/>
+                        <button  value="signup"  type="submit" name="subbuttonpop" class="btn btn-success signupsubmitpop">Register</button>
+                    </form>
+                </div>
+            </div>
+            
+            
+<!--            <form class="signupformpop hidden" role="form" method="post" action="/login">
+
+
+                                <div class="form-group" >
+                                    <label for="usernameinp">Username</label>
+                                    <input type="text"  name="username" class="form-control"  placeholder="Username">
+
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="emailinp">Email address</label>
+                                  <input type="email" name="email" class="form-control"  placeholder="Email">
+                                 
+                                </div>
+                                <div class="form-group">
+                                  <label for="passwordinp">Password</label>
+                                  <input type="password" id="loginpopmatch" name="password" class="form-control"  placeholder="Password">
+                                 
+                                </div>
+                                <div class="form-group">
+                                  <label for="confirmpassword"> Confirm Password</label>
+                                  <input type="password"  name="confirmPassword" class="form-control"  placeholder="Password">
+                                  
+                                </div>
+                                <div class="form-group">
+                                    <label for="countryinp">Country</label>
+                                    <select name="countryoption"  class="form-control">
+                                       <?php if(isset($this->countryList)){ foreach ($this->countryList as $cokey => $covalue) {   ?>
+                                          <option  value="<?php echo $covalue['country_id'];  ?>"   ><?php echo $covalue['country_name']; ?></option>
+                                       <?php   }  } ?> 
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cityinp">City</label>
+                                    <select name="cityoption"  class="form-control">
+                                        <?php  if(isset($this->stateList)){ foreach ($this->stateList as $cokey => $covalue) {   ?>
+                                            <option  value="<?php echo $covalue['state_id'];  ?>"   ><?php echo $covalue['state_code']; ?></option>
+                                        <?php   }  }  ?>
+                                    </select>
+                                </div>
+                                
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" name="agreeterms"> I agree to the Terms of Use and the Privacy Policy.
+                                  </label>
+                                </div>
+                                
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" name="ageconfirm"> I confirm that I am at least 18 years of age. Must be 19 years of age in Alabama and Nebraska.
+                                  </label>
+                                </div>
+
+                <button name="subbuttonpop" value="signup"  type="submit" name="subbuttonpop" class="btn btn-default signupsubmitpop">Submit</button>
+
+            </form>-->
+            <form class="resetpasswordformpop hidden" role="form" method="post" action="">
+                <div class="reg-header "><h4>Reset Password</h4></div>
+                <!-- added style attributes such as margin-left, width, height, padding-left and -webkit-border-radius by Rahul Suresh Jawade -->
+<!--                <h1><a href="#"><img src="assets/images/logo-large@2x.png" style="margin-left: 132px;width: 100px; height: 79px;"/></a></h1>
+                <h2 style="padding-left: 35px;">Reset Password</h2>
+                <img src="assets/images/avatar.png" style="-webkit-border-radius: 150px; width: 120px;margin-left: 130px;"/><br />-->
+
+                
+
+                <div class="form-group">
+                                  <label for="emailinp">Email address</label>
+                                  <input id="forgetemail" type="email" name="email" class="form-control"  placeholder="Email"> 
+                                  <div id="errordivreset" class="form-group" style="display: none;">
+                                  <label id="errorreset" class="errormsg"></label>
+                                  </div>
+                                 
+                </div>
+                
+               
+                <div>
+                    <button name="subbuttonpop" type="button" value="reset" name="subbuttonpop" class="btn btn-success resetsubmitpopaff" data-toggle="modal" data-target="#password_reset" >Submit</button> <span id="errrr" style="display:none; color:#46a546;"class="help-block">Username is required Field</span></div>
+                
+            </form>
+            
+        
+                    <div class="row" style="margin-top: 5%;">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4" style="text-align: right; margin-left: -30px;"><a href="#" class="togglemodalforms">Create Account</a></div>
+                        <div class="col-md-1" style="text-align: center">|</div>
+                        <div class="col-md-5" style="text-align: center"><a href="#" class="resetmodalforms" >Forgot your password?</a></div>
+                        <div class="col-md-2"></div>
+                    </div>    
+
+
+      
+
+
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+
+
+
+
+</div>
+<?php  } ?>
+<script>
+   $('#loginModal').on('hidden.bs.modal', function (e) {
+     //location.reload();
+      $(this).removeData('bs.modal');
+    $("#usenamepop").val('');
+    $("#passwordpop").val('');
+});
+
+    $(document).ready(function(e){
+        
+           
+    $(document.body).on('click','.resetsubmitpopaff',function(e){        
+            e.preventDefault();
+            var email = $('#forgetemail').val();            
+            var val = $('.resetsubmitpopaff').val();
+
+            $.ajax({
+                url : '/affiliate',
+                type : 'POST',
+                dataType : 'json',
+                data : {
+                    email : email,
+                    subbuttonpop : val
+                    
+                },
+                success:function(response){
+                    //console.log(response);
+                    if(response.code == 200){
+                       // $(this).removeData('bs.modal');
+                        $("#errrr").css('display','block');
+                        $("#errrr").html(response.message);
+                        window.location.reload(true);
+                    }else{
+                        
+                       $('#errordivreset').css('display','');
+                        $('#errorreset').html(response.message);
+                        $('.help-block').html('');
+                    }
+                }
+            });
+        
+        });
+        
+   $(document.body).on('click','.resetupsubmit',function(e){        
+            e.preventDefault();
+            var email = $('#forgotemail').val(); 
+            
+             var val = $('#formbutton').val();
+             
+//      console.log(email);
+             if(email != ""){
+             var emailReg = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+	    var valid = emailReg.test(email);
+                if (valid) {
+                  
+                    $.ajax({
+                        url : '/signup',
+                        type : 'POST',
+                        dataType : 'json',
+                        data : {
+                            email : email,
+                            formbutton : val
+
+                        },
+                        success:function(response){
+                            console.log(response)
+                               if(response.code == 200){
+                               // $(this).removeData('bs.modal');
+                                $("#errr").css('display','block');
+                                $("#errr").html(response.message);
+                                window.location.reload(true);
+                            } else{
+                               //
+                                $('#errorspanreset').css('display','');
+                               $('#errorforget').html(response.message);
+                                $('.help-block').html('');
+                               // $('.errorforget').html(''); 
+                            }
+                        }
+                    });
+                 }
+             }else{
+//             $('.error').css('display','block');
+                    $('.error').html(' ');
+                    $('#errorspanreset').css('display','block');
+                    $('#errorforget').html('Please Enter Email Address');
+                }
+        
+        });
+        
+       
+   $(document.body).on('click','#formbuttonlogin',function(e){        
+            e.preventDefault();
+            var uename = $('#uename').val();
+            var password = $('#uepassword').val();
+             var val = $('#formbuttonlogin').val();
+             //alert(password);
+            $.ajax({
+                url : '/signup',
+                type : 'POST',
+                dataType : 'json',
+                data : {
+                    uename : uename,
+                    formbutton : val,
+                    password:password
+                    
+                },
+                success:function(response){
+                    //console.log(response);
+                       
+                    if(response.code == 200){
+                       // $(this).removeData('bs.modal');
+                        $("#errr").css('display','block');
+                        $('#errr').html(response.message);
+                        window.location.reload(true);
+                    }else{
+                        
+                        $('#errordivlogin').css('display','');
+                        $('#errorlogin').html(response.message);
+                        $('.help-block').html('');
+                        
+                    }
+                }
+                
+            });
+        
+        });
+         
+    });
+    
+        $(document.body).on('click','#buttonpop',function(e){
+            e.preventDefault();
+            var uname = $('#usenamepop').val();
+            var pass = $('#passwordpop').val();
+            var val = $('#buttonpop').val();
+          //  debugger;
+            $.ajax({
+                url : '/afflogin',
+                type : 'POST',
+                dataType : 'json',
+                data : {
+                    username : uname,
+                    password : pass,
+                    subbuttonpop : val
+                    
+                },
+                success:function(response){
+                       console.log(response); return;
+                    if(response.code == 200){           
+                    
+                         window.location.reload(true);
+
+                    }else{
+                        $('#errordiv').css('display','block');
+                        $('#error').html(response.message);
+                    }
+                }
+            });
+        });
+        
+

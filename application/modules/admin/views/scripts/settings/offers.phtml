@@ -1,0 +1,176 @@
+<script type="text/javascript" language="javascript" class="init">
+
+
+$(document).ready(function() {
+	$('#offersmg').dataTable( {
+		columnDefs: [ {
+			targets: [ 0 ],
+			orderData: [ 0, 1 ]
+		}, {
+			targets: [ 1 ],
+			orderData: [ 1, 0 ]
+		}, {
+			targets: [ 4 ],
+			orderData: [ 4, 0 ]
+		} ]
+	} );
+} );
+
+</script>
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">Your offers details has been added successfully.</span>
+</div>
+<div id="content">
+    <h4>Offers Details</h4>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Upload New Offer</h4>
+            </div>
+            <!-- // Widget heading END -->
+            <div>
+ 
+ 
+            <div class="widget-body">
+                <form action="" method="post" enctype="multipart/form-data" class="offersfileform">         
+                                <div class="setingbg">
+                                   <input required="true" id="imagefile" name="imagefile" type="file"/><br>
+                                   <span id="errormsg"></span>
+                                </div>
+                    
+                                <div class="setingbg">
+                                   <input required="true" name="offer_name"  type="text" placeholder="offer name"/><br>
+                                </div>
+                    
+                               
+                                <input type="text" id="datepicker"  name="end_date" value=""  placeholder="Offer End Date"/><br>
+                                
+                                <div class="setingbg">
+                                   <input required="true" name="description" type="text" placeholder="add offer description"/><br>
+                                </div>
+                                
+                                <div class="setingbg">
+                                   <select name="contest" class="span6">
+                                       <?php if(isset($this->contests)): foreach($this->contests as $value):  ?>
+                                       <option value="<?php echo $value['contest_id']; ?>"><?php echo $value['contest_name']; ?></option>
+                                       <?php endforeach; endif; ?>
+                                   </select><br>
+                                </div>
+                                <div class="setingbg" style="margin-left: 31px;">
+                                   <button type="submit" class="btn btn-icon btn-primary glyphicons upload"><i></i>Upload Offer</button>
+                                </div>
+                    </form> 
+
+            </div>
+        </div>
+        
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Offers Manage</h4>
+                
+                    <h5 id="error" ></h5>
+                
+                
+            </div>
+            <!-- // Widget heading END -->
+
+     <?php if(isset($this->offer_details)){?>
+         
+            <div class="widget-body">
+
+                <!-- Table -->
+                <div role="grid" class="offerTables_wrapper form-inline" >
+                 
+                    <table  cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+
+                    <!-- Table heading -->
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 30px;" aria-sort="ascending" aria-label="No: activate to sort column descending">No.</th>
+                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 250px;" aria-label="Name: activate to sort column ascending">Name</th>
+                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Name: activate to sort column ascending">Contest Id</th>
+                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 180px;" aria-label="Title: activate to sort column ascending">Offer End Date</th>
+                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 332px;" aria-label="Description: activate to sort column ascending">Description</th>
+                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;" aria-label="Status: activate to sort column ascending">Status</th>
+                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Actions: activate to sort column ascending">Actions</th>
+                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Actions: activate to sort column ascending">Edit&nbspDelete</th></tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <!-- Table body -->
+                    
+                    <!-- // Table body END -->
+
+                        <tbody role="alert" aria-live="polite" aria-relevant="all">
+                          <?php  if(isset($this->offer_details)): $i=1; foreach($this->offer_details as $value): ?>                            
+                            <tr class="gradeX odd">
+                                    <td class="  sorting_1"><?= $i ?></td>                            
+                                    <td class=" "><?php echo $value['offer_name'] ?></td>
+                                    <td class="center"><?php echo $value['contest_id'] ?></td>
+                                    <td class="center"><?php echo date("j F , Y",strtotime($value['offer_end_date'])); ?></td>
+                                    <td class="center"><?php echo $value['description'] ?></td>
+
+                                    <?php if($value['status']==1): ?>
+                                    <td id="activemenu_<?php echo $value['offer_id']; ?>" class="center js-sortable-handle offersactive">Active</td>
+                                    <td class="center" style="width: 80px;"><a  id="<?php if (isset($value['offer_id'])): echo "offers_" . $value['offer_id'];endif;?>" class="offersdeactive">
+                                    <span id="activeclass_<?php echo $value['offer_id']; ?>" class="label label-block label-inverse">Deactivate</span></a></td>
+                                      <?php  else: ?>
+                                    <td id="activemenu_<?php echo $value['offer_id']; ?>" class="center js-sortable-handle offersdeactive">Suspended</td>
+                                    <td class="center" style="width: 80px;"><a  id="<?php if (isset($value['offer_id'])): echo "offers_" . $value['offer_id']; endif;?>" class="offersactive">
+                                    <span id="activeclass_<?php echo $value['offer_id']; ?>"  class="label label-block label-primary">Activate</span></a></td>
+                                    <?php endif;?>
+                                    <td>
+                                        <a  href="edit-offer/<?php echo $value['offer_id']; ?>" class="btn-action glyphicons pencil btn-success"><i></i></a>
+                                        <a  href="#" id="<?php  echo "offerdelete_" . $value['offer_id'];  ?>" class="btn-action glyphicons remove_2 btn-danger offer-delete"><i></i></a>
+                                    </td>
+                            
+                            </tr>                            
+                           <?php $i++;endforeach;endif;?>
+                        </tbody>
+                      
+                    </table>
+                  </div>
+               
+                <!-- // Table END -->
+            </div>
+            <?php } ?>
+        </div>
+    </div>	
+</div>
+</div>
+<?php if(isset($this->success)) {?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  
+        $('.opennotificationGreen').click(function()
+        {
+//            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+             
+        
+    </script>
+    <?php }?>
+<script>
+$('#menu_components7').removeClass('collapse').addClass('in collapse');
+$('#offers_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+$('#offers').addClass('active');
+</script>
+
+    
+   

@@ -1,0 +1,208 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+    <span class="notification_msgGreen">Changes saved successfully.</span>
+</div>
+<div id="content">
+    <h3>New Ticket</h3>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget widget-tabs border-bottom-none">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <ul>
+                    <li class="active"><a class="glyphicons edit" href="#account-details" data-toggle="tab"><i></i>Manage Ticket</a></li>
+<!--				<li><a class="glyphicons settings" href="#account-settings" data-toggle="tab"><i></i>Account settings</a></li>-->
+                </ul>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+                <form class="form-horizontal margin-none newticketform"  method="post">
+                    <div class="tab-content pad0">
+
+                        <!-- Tab content -->
+                        <div class="tab-pane active" id="account-details">
+
+                            <!-- Row -->
+                            <div class="row-fluid">
+
+                                <!-- Column -->
+                                <div class="span8">
+
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Ticket Contest</label>
+                                        <div class="controls">
+                                            <select name="contest" class="form-control m-b">
+                                                <?php if (isset($this->contests)) {
+                                                    foreach ($this->contests as $contest) { ?>
+                                                        <option value="<?php echo $contest['contest_id'] . '@' . $contest['contest_name']; ?>"><?php echo $contest['contest_name']; ?></option>
+                                                    <?php }
+                                                }else{ ?>
+                                                        <option>No contest Available for Tickets</option> 
+                                              <?php  } ?>
+                                            </select>  
+
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Ticket Code</label>
+                                        <div class="controls">
+                                            <input required="true" type="text" name="ticket_code" id="tcode" value="" class="span5" />
+                                            <a id="generate" class="btn btn-info btn-sm">Generate code</a>
+                                        </div>
+                                        <div id="war">
+                                            <span class="helpblock"></span>
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Valid From</label>
+                                        <div class="controls">
+                                            <input type="text" name="valid_from" id="datepicker1" value="<?php echo $this->data['valid_from']; ?>" class="span5" />
+
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Valid Upto</label>
+                                        <div class="controls">
+                                            <input type="text" name="valid_upto" id="datepicker" value="<?php echo $this->data['valid_upto']; ?>" class="span5" />
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">FPP Amount</label>
+                                        <div class="controls">
+                                            <input type="text" name="fpp" id="fpp" class="span5" />
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+
+                                     <div class="control-group">
+                                        <label class="control-label">User Usage Limit</label>
+                                        <div class="controls">
+                                            <input type="text" name="userlimit" id="userlimit" class="span5" placeholder="default one time use, or add no." />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Ticket Use Limit</label>
+                                        <div class="controls">
+                                            <input type="text" name="ticketlimit" id="ticketlimit" class="span5" placeholder="default unlimited, or add no." />
+                                        </div>
+                                    </div>
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Selling Status</label>
+                                        <div class="controls">
+                                            <select class="span4" name="selling">                                                                                
+                                                <option selected value="1">Yes </option>                                                                                
+                                                <option  value="0">No</option>                                                                                                                                                                
+                                            </select>										
+                                                <span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+
+
+
+
+
+                                </div>
+                                <div class="span6">
+
+
+                                </div>
+                            </div>
+                            <!-- // Row END -->
+
+                            <div class="separator line bottom"></div>
+
+                            <!-- Form actions -->
+                            <div class="form-actions" class="margin-none">
+                                <a href="<?php $this->baseUrl('/admin/ticket'); ?>"><button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button></a>
+                                <a href="/admin/ticket"> <button type="button" class="btn btn-icon btn-default glyphicons circle_remove"><i></i>Cancel</button></a> 
+
+                            </div>
+                            <!-- // Form actions END -->
+
+                        </div>
+                        <!-- // Tab content END -->
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- // Widget END -->
+
+    </div>	
+</div>
+<script>
+    $('#menu_store').removeClass('collapse').addClass('in collapse');
+    $('#store_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#new_tickets').addClass('active');
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#generate').on('click', function () {
+            var text = '';
+            var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+            for (var i = 0; i < 7; i++)
+            {
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+            $('#tcode').val(text);
+            var ticket = $('#tcode').val();
+
+            $.ajax({
+                url: './ticket-ajax-handler',
+                type: "POST",
+                DataType: 'json',
+                data: {
+                    ticket_code: ticket,
+                    ajaxMethod: 'ticketverification'
+                },
+                success: function (response)
+                {
+                    if (response) {
+                        $('#war').html(response.message);
+                    }
+                }
+
+            });
+        });
+    });
+
+
+</script>
+
+<?php if (isset($this->success)) { ?>
+    <!-- This script Displays the  notification when the user details are submitted on submit  -->
+    <script>
+        $('.opennotificationGreen').click(function ()
+        {
+    //            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+
+        $('.opennotificationGreen').fadeIn("slow");
+        $('.opennotificationGreen').css('display', 'block');
+
+        setTimeout(function () {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        }, 3000);
+
+    </script>
+<?php } ?>
+    

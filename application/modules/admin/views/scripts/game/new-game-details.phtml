@@ -1,0 +1,76 @@
+
+<div id="content">
+	<h4>Game Details</h4>
+<div class="innerLR">
+
+	<!-- Widget -->
+	<div class="widget">
+		
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading">Game Manage</h4>
+		</div>
+                <div>
+                    <a class="btn btn-icon btn-primary glyphicons circle_ok" href="/admin/new-sports" type="button" style="margin-left:900px">
+                            <i></i>Add New Sports </a>
+                             
+                    </div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+		
+			<!-- Table -->
+			<table  id="gamepage"  cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+				<!-- Table heading -->
+                                <thead>
+                                    <tr>
+                                        <th>Sno.</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                        <th class="center">Delete /Edit</th>
+                                    </tr>
+                                </thead>
+				<!-- // Table heading END -->
+				
+				<!-- Table body -->
+				<tbody>			
+                                    <?php if(isset($this->sports)): $row = 0; foreach ($this->sports as $sportsDetails): $row++; ?>
+					<!-- Table row -->
+					<tr class="gradeA">
+						<td><?php echo $row; ?></td>
+						<td><?php echo  $sportsDetails['display_name']; ?></td>
+						<!--<td><?php // if($sportsDetails['status'] == '1'): echo "Active"; else: echo "Deactivate"; endif; ?></td>-->
+                                                
+                                                <?php if($sportsDetails['status']==1): ?>
+                                                <td id="activegame_<?php echo $sportsDetails['sports_id']; ?>" class="center js-sortable-handle useractive">Active</td>
+                                                <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($sportsDetails['sports_id'])): echo "game_" . $sportsDetails['sports_id'];endif;?>" class="gamedeactive">
+                                                <span id="activeclass_<?php echo $sportsDetails['sports_id']; ?>" class="label label-block label-inverse">Deactivate</span></a></td>
+                                                  <?php  else: ?>
+                                                <td id="activegame_<?php echo $sportsDetails['sports_id']; ?>" class="center js-sortable-handle userdeactive">Suspended</td>
+                                                <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($sportsDetails['sports_id'])): echo "game_" . $sportsDetails['sports_id']; endif;?>" class="gameactive">
+                                                <span id="activeclass_<?php echo $sportsDetails['sports_id']; ?>"  class="label label-block label-primary">Activate</span></a></td>
+                                                <?php endif;?> 
+                                                
+                                                <td class="center" style="width: 80px;">
+                                                <a id="gameDelete_<?php echo $sportsDetails['sports_id']; ?>" href="#" class="btn-action glyphicons remove_2 btn-danger-game"><i></i></a>
+                                                <a href="/admin/edit-sport-details/<?php echo $sportsDetails['sports_id']; ?>" class="btn-action glyphicons pencil btn-success"><i></i></a>
+                                                </td>
+					</tr>
+					<!-- // Table row END -->					           
+                                        <?php endforeach; endif; ?>
+				</tbody>
+				<!-- // Table body END -->
+				
+			</table>
+			<!-- // Table END -->
+			
+		</div>
+	</div>	
+</div>			
+</div>
+<script>
+    $('#menu_components6').removeClass('collapse').addClass('in collapse');
+    $('#game_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#new_game_details').addClass('active');    
+</script>

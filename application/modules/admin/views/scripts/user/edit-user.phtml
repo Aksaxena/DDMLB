@@ -1,0 +1,176 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">User Details has been edited successfully.</span>
+</div>
+<div id="content">
+	<h3>User Account</h3>
+<div class="innerLR">
+
+
+
+	<!-- Widget -->
+	<div class="widget widget-tabs border-bottom-none">
+	
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<ul>
+				<li class="active"><a class="glyphicons edit" href="#account-details" data-toggle="tab"><i></i>Account details</a></li>
+<!--				<li><a class="glyphicons settings" href="#account-settings" data-toggle="tab"><i></i>Account settings</a></li>-->
+			</ul>
+		</div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+                    <form class="form-horizontal margin-none usereditform"  role="form" method="post">
+				<div class="tab-content pad0">
+				
+					<!-- Tab content -->
+					<div class="tab-pane active" id="account-details">
+					
+						<!-- Row -->
+						<div class="row-fluid">
+						
+							<!-- Column -->
+							<div class="span6">
+							
+								<!-- Group -->
+								<div class="control-group">
+									<label class="control-label">User Name</label>
+									<div class="controls">
+                                                                            <input type="text" name="user_name" id="user_name" value="<?php if(isset($this->user['user_name'])): echo $this->user['user_name']; endif; ?>" readonly="true" class="span10" />
+										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="First name is mandatory"><i></i></span>
+									</div>
+								</div>
+								<!-- // Group END -->
+
+                                                                
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Email</label>
+									<div class="controls">
+                                                                            <input type="text" name="email" required="true" id="useremail" value="<?php if(isset($this->user['email'])): echo $this->user['email']; endif; ?>" class="span10" <?php if($this->user['role'] != 2){ echo "readonly"; } ?>  />
+										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+								
+								<!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Country Name</label>
+									<div class="controls">
+                                                                            <select class="span12" name="country_name">
+                                                                                <?php if(isset($this->countryList)){ $sel = ""; foreach ($this->countryList as $cokey => $covalue) {    
+                                                                                if(isset($this->user['country_id'])): if($this->user['country_id'] == $covalue['country_id']): $sel = "Selected"; endif; endif;    
+                                                                                ?>
+                                                                                
+                                                                                <option <?php if($sel!=""): echo $sel; $sel=""; endif; ?>  value="<?php echo $covalue['country_id'];  ?>"> <?php echo $covalue['country_name']; ?></option>
+                                                                                <?php   }  } ?>
+                                                                            </select>										
+										<!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->                                                                
+
+								<!-- Group -->
+								<div class="control-group">
+									<label class="control-label">State Code</label>
+									<div class="controls">
+                                                                            <select class="span12" name="state_code">
+                                                                            <?php  if(isset($this->stateList)){ $sel = ""; foreach ($this->stateList as $cokey => $covalue) {  
+                                                                            if(isset($this->user['state_id'])): if($this->user['state_id'] == $covalue['id']): $sel = "Selected"; endif; endif;        
+                                                                            ?>
+                                                                            <option <?php if($sel!=""): echo $sel; $sel=""; endif; ?>  value="<?php echo $covalue['id'];  ?>"><?php echo $covalue['name']; ?></option>
+                                                                            <?php   }  }  ?>   
+                                                                            </select>
+										<!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->                                                                  
+                                                                
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">New password</label>
+									<div class="controls">
+										<input type="password" id="new_password" name="new_password" value="" class="span10" />
+										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>
+									               <?php  if(isset($this->unsuccess)){  ?>
+                                                                                      <p><?php echo $this->unsuccess; ?></p>
+                                                                                            <?php } ?>
+                                                                                                                                                       <!--/**
+                                                                    * Developer     : Nikhil Aggarwal   
+                                                                    * Date          : 04/09/2014
+                                                                    * Description   : Showing error message when user is not given any password
+                                                                    **/
+                                                             
+-->                                                                    </div>
+								</div>
+
+								<!-- // Group END -->								
+								
+								
+							</div>
+							<!-- // Column END -->
+							
+							
+							
+						</div>
+						<!-- // Row END -->
+						
+						<div class="separator line bottom"></div>
+						
+						<!-- Group -->
+<!--						<div class="control-group row-fluid">
+							<label class="control-label">About me</label>
+							<div class="controls">
+								<textarea id="mustHaveId" class="wysihtml5 span12" rows="5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</textarea>
+							</div>
+						</div>-->
+						<!-- // Group END -->
+						
+						<!-- Form actions -->
+						<div class="form-actions" class="margin-none">
+							<button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok" ><i></i>Save changes</button>
+                                                        
+                                                        <a href="<?php $this->baseUrl(); ?>/admin/user-details">	<button type="button" class="btn btn-icon btn-default glyphicons circle_remove"><i></i>Cancel</button> </a>
+                                                        
+                                                </div>
+						<!-- // Form actions END -->
+						
+					</div>
+					<!-- // Tab content END -->
+					
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- // Widget END -->
+	
+</div>	
+</div>
+<script>
+    $('#menu_components').removeClass('collapse').addClass('in collapse');
+    $('#user_setting').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons user active');
+    $('#user_details_menu').addClass('active');    
+</script>
+
+<?php if(isset($this->success)){ ?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>        
+        $('.opennotificationGreen').click(function()
+        {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+           setTimeout(function() {   
+          window.location.replace("/admin/user-details");   
+        }, 3000); 
+    </script>
+    <?php } ?>

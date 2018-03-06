@@ -1,0 +1,37 @@
+      
+<div class="panel panel-default" style="background-image:url(assets/images/baseball-background.jpg); background-repeat: no-repeat;background-size: cover;">
+    <div class="panel-heading" style="background-image: url(assets/images/header.png);background-position: initial;height: 45px;color:#FFC600;padding-left: 20px;font-size: 18px;font-weight: bold;"><b><span id="signtitle">Sign Up</span></b><a href="/"><button type="button" class="close"  style="color:#FFFFFF;">&times;</button></a></div>
+    <div class="panel-body">
+        <div class="row">
+            
+            <div class="col-md-4 sidebar">
+<!--<a class="panel-close2" href="/"><img src="/assets/images/Cross_red.png"></a>-->
+                <form role="form" method="post" >
+
+                    <div class="form-group signupgroup logingroup" style="color:#FFFFFF">
+                        <label for="usernameinp">Email</label> <span id="loginclass" class="loginact pull-right" style="padding-left: 35%; cursor: pointer; color: gold;"></span>
+                        <input type="email"  name="email" class="form-control" id="email" placeholder="please provide your Email" style="border:2px solid #7A7883;">
+<input type="hidden" class="input-lg form-control" name="username" id="username" placeholder="username" value="<?php if(isset($this->fbData)){ echo $this->fbData['user_name']; } ?>" autocomplete="off">
+<input type="hidden" class="input-lg form-control" name="password" id="password" placeholder="password" value="<?php if(isset($this->fbData)){ echo $this->fbData['password']; } ?>" autocomplete="off">
+<input type="hidden" class="input-lg form-control" name="facebookrid" id="facebookrid" placeholder="facebookrid" value="<?php if(isset($this->fbData)){ echo $this->fbData['fb_id']; } ?>" autocomplete="off">                        
+
+                    </div>
+<!--                    <div class="radio" style="color:#FFFFFF">
+                        <label>
+                            <input type="radio" class="optionradio" name="optionsRadios" id="optionsRadios1" value="login" style="border:2px solid #7A7883;" >
+                            Yes, I already have a password
+                        </label>
+                    </div>-->
+                    
+                    <button  type="submit" value="Sign Up" name="Sign Up" class="btn btn-default signupsubmit" style="width:105px;color:#7A7883;border:2px solid #7A7883;">Sign Up</button>
+                </form>
+                
+            </div>
+            <div class="col-md-8">
+
+
+            </div>
+        </div>
+
+    </div>
+ 

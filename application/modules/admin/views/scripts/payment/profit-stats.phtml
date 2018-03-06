@@ -1,0 +1,218 @@
+<script>
+
+$(document).ready(function(){
+	
+    $('#profitgraph').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Profit'
+        },
+        xAxis: {
+            categories: ['JAN', 'FEB', 'MAR','APR', 'MAY', 'JUN','JUL', 'AUG', 'SEP','OCT', 'NOV', 'DEC']
+        },
+        yAxis: {
+            title: {
+                text: 'Profit'
+            }
+        },
+        series: [{
+            name: 'Cash',
+            data: [<?php foreach($this->profitstatic as $profit) { if($profit['total'] == ""){ echo "0".','; }else { echo $profit['total'].','; } } ?>]
+        }]
+    });
+    
+    $('#profitmonthgraph').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Profit'
+        },
+        xAxis: {
+            categories: [
+                <?php  foreach($this->profitMonthstatic as $key=>$profitMonth) {
+    echo "'".$key."',";
+}
+?>
+//var_dump($dates);
+                
+                ]
+        },
+        yAxis: {
+            title: {
+                text: 'Profit'
+            }
+        },
+        series: [{
+            name: 'Cash',
+            data: [
+                <?php  foreach($this->profitMonthstatic as $mon=>$profitMonth) {
+    echo $profitMonth.",";
+}
+?>
+                ]
+        }]
+    });
+    
+//        $('#profitdaygraph').highcharts({
+//        chart: {
+//            type: 'bar'
+//        },
+//        title: {
+//            text: 'Profit'
+//        },
+//        xAxis: {
+//            categories: ['JAN', 'FEB', 'MAR','APR', 'MAY', 'JUN','JUL', 'AUG', 'SEP','OCT', 'NOV', 'DEC']
+//        },
+//        yAxis: {
+//            title: {
+//                text: 'Profit'
+//            }
+//        },
+//        series: [{
+//            name: 'Cash',
+//            data: [<?php // foreach($this->profitstatic as $profit) { if($profit['total'] == ""){ echo "0".','; }else { echo $profit['total'].','; } } ?>]
+//        }]
+//    });
+
+});
+
+</script>
+
+<div id="content"> 
+	<h2>Profit Stats</h2>
+
+<div class="innerLR">
+        	<!-- Website Traffic Chart -->
+	<div class="widget" data-toggle="widget">            
+		<div class="widget-head"> 
+                    
+                    <span class="heading glyphicons cardio" style="float: right;"> YEAR : <select id="profit_year_select" name="year_select" data-style="btn-default btn-small">
+                                            <?php
+                                            $select = "";
+                                            $year = date("Y");
+                                            for ($i = 1; $i <= 5; $i++) {
+                                                if ($year == $this->profityear)
+                                                    $select = "selected"
+                                                    ?>
+                                                <option <?php echo $select; ?> value="<?php echo $this->baseUrl(); ?>/admin/profit-stats?profit=<?php echo $year; ?>"><?php echo $year; ?></option>						
+                                                <?php
+                                                $year--;
+                                                $select = "";
+                                            }
+                                            ?>
+					</select>
+                        
+                        
+                     </span>
+			<h4 class="heading glyphicons cardio"><i></i>Profit Statics</h4>
+                        
+<!--                        <select class="heading glyphicons cardio " style="float: right; text-align: left;">
+                            <option>Year</option>
+                            <option>Month</option>
+                            <option>Week</option>
+                        </select>    -->
+		</div>
+		<div class="widget-body">
+			<div id="profitgraph">Loading graph...</div>
+		</div>
+	</div>
+                
+                
+         <div class="widget" data-toggle="widget">            
+		<div class="widget-head"> 
+                    
+                    <span class="heading glyphicons cardio" style="float: right;"> YEAR : <select id="pro_yr_select" name="year_select" data-style="btn-default btn-small">
+                                            <?php
+                                            $select = "";
+                                            $year = date("Y");
+                                            for ($i = 1; $i <= 5; $i++) {
+                                                if ($year == $this->profityear)
+                                                    $select = "selected"
+                                                    ?>
+                                                <option data-id="<?php echo $year; ?>" <?php echo $select; ?> value="<?php echo $this->baseUrl(); ?>/admin/profit-stats?monthprofit="><?php echo $year; ?></option>						
+                                                <?php
+                                                $year--;
+                                                $select = "";
+                                            }
+                                            ?>
+					</select>
+                        
+                        MONTH : <select id="pro_mo_select" name="year_select" data-style="btn-default btn-small"> 
+                                            <?php $select=""; 
+                                            for ($m=1; $m<=12; $m++) {
+                                                 $month = date('F', mktime(0,0,0,$m, 1, date('Y'))); 
+                                                 if($m == $this->profitmonth){
+                                                    $select = "selected"; 
+                                                 }
+                                                 ?>
+                                            <option data-month="<?php echo $m; ?>" <?php echo $select; ?> value="<?php echo $this->baseUrl(); ?>/admin/profit-stats?monthprofit="><?php echo $month ?></option>	
+                                            <?php  $select = ""; } ?>
+                                            
+					</select>
+                     </span>
+			<h4 class="heading glyphicons cardio"><i></i>Profit Statics</h4>
+                        
+<!--                        <select class="heading glyphicons cardio " style="float: right; text-align: left;">
+                            <option>Year</option>
+                            <option>Month</option>
+                            <option>Week</option>
+                        </select>    -->
+		</div>
+		<div class="widget-body">
+			<div id="profitmonthgraph">Loading graph...</div>
+		</div>
+	</div>       
+                
+
+<!--      <div class="widget" data-toggle="widget">            
+		<div class="widget-head"> 
+                    
+                    <span class="heading glyphicons cardio" style="float: right;"> YEAR : <select id="profit_year_select" name="year_select" data-style="btn-default btn-small">
+                                            <?php
+//                                            $select = "";
+//                                            $year = date("Y");
+//                                            for ($i = 1; $i <= 5; $i++) {
+//                                                if ($year == $this->profityear)
+//                                                    $select = "selected"
+                                                    ?>
+                                                <option <?php //echo $select; ?> value="<?php //echo $this->baseUrl(); ?>/admin/profit-stats?profit=<?php// echo $year; ?>"><?php// echo $year; ?></option>						
+                                                <?php
+//                                                $year--;
+//                                                $select = "";
+//                                            }
+                                            ?>
+					</select>
+                        
+                        MONTH : <select id="profit_year_select" name="year_select" data-style="btn-default btn-small">
+                                            <?php
+                                           // $select = "";
+                                       //     $year = date("M"); ?>
+                                            <option <?php //echo $select; ?> value="<?php // echo $this->baseUrl(); ?>/admin/profit-stats?profit=<?php //echo $year; ?>"><?php // echo $year; ?></option>						
+                                            
+                                            ?>
+					</select>
+                     </span>
+			<h4 class="heading glyphicons cardio"><i></i>Profit Statics</h4>
+                        
+                        <select class="heading glyphicons cardio " style="float: right; text-align: left;">
+                            <option>Year</option>
+                            <option>Month</option>
+                            <option>Week</option>
+                        </select>    
+		</div>
+		<div class="widget-body">
+			<div id="profitdaygraph">Loading graph...</div>
+		</div>
+	</div>              -->
+                
+                </div>
+        </div>
+	<!-- // Website Traffic Chart END -->
+<script>
+    $('#menu_components1').removeClass('collapse').addClass('in collapse');
+    $('#payment_setting').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#profit_details_menu').addClass('active');    
+</script>

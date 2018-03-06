@@ -1,0 +1,72 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">Player salary update successfully.</span>
+</div>
+<div id="content">
+    <h4>Player Salary</h4>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Upload csv file</h4>
+            </div>
+            <!-- // Widget heading END -->
+            <div>
+                <div class="widget-body">
+                    <form action="" method="post" id="csvfile" name="csvfile" enctype="multipart/form-data" class="offersfileform">
+						
+                        <div class="col-md-12" style="margin-top:20px;margin-bottom:20px;">
+							<div class="col-md-4">
+								<label class="control-label">Upload File</label>                            
+							</div>
+							<div class="col-md-4">
+								<input required="true" id="excelsheet1" name="file1" type="file"/>
+								<span><?php echo "only csv file accepted."; ?></span>
+								<span style=" color: red; margin-left: 32px;" id="error"><?php echo $this->error; ?></span>
+							</div>                  
+                        </div>
+						<div class="col-md-6">
+							<button type="submit"id="uploadcsv" name="uploadcsv" class="btn btn-icon btn-primary glyphicons upload"><i></i>Upload Stats</button>
+						</div> 
+                    </form> 
+                </div>
+            </div>
+
+
+        </div>	
+    </div>
+</div>
+<?php if(isset($this->success)){?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  
+        $('.opennotificationGreen').click(function()
+        {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+    </script>
+    <?php } if($this->error){ ?>
+    <script>
+        setTimeout(function() {
+            $('#error').fadeOut("slow");
+            }, 4000); 
+    </script>
+        
+   <?php } ?>
+
+<script>
+    $('#menu_components4').removeClass('collapse').addClass('in collapse');
+    $('#player_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons group active');
+    $('#player_salary_menu').addClass('active');        
+</script>
+

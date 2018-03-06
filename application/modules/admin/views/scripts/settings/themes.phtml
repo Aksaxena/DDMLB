@@ -1,0 +1,141 @@
+
+<script type="text/javascript" language="javascript" class="init">
+
+
+$(document).ready(function() {
+	$('#themenspage').dataTable( {
+		columnDefs: [ {
+			targets: [ 0 ],
+			orderData: [ 0, 1 ]
+		}, {
+			targets: [ 1 ],
+			orderData: [ 1, 0 ]
+		}, {
+			targets: [ 4 ],
+			orderData: [ 4, 0 ]
+		} ]
+	} );
+} );
+
+</script>
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">Themes uploaded successfully.</span>
+</div>
+
+
+<style>.widget .widget-body form {margin: 0 0 0 40%;}</style>
+<div id="content">
+    <h4>Themes Details</h4>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Upload New Theme</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+                <form class="themedetails" action="" method="post" enctype="multipart/form-data">         
+                                <div class="setingbg">
+                                    <input name="themezipped" type="file" />
+                                </div>
+                         
+                                <div class="setingbg" style="margin-left: 31px;">
+                                   <button type="submit" class="btn btn-icon btn-primary glyphicons upload"><i></i>Upload Theme</button>
+                                   <span style="color:red;"><?php if(isset($this->ErrorMsg)){echo $this->ErrorMsg;} ?></span>
+                                </div>
+                               
+                    </form> 
+
+            </div>
+        </div>
+        
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Themes Manage</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+
+                <!-- Table -->
+                <table id="themenspage" class="dynamicTable table table-striped table-bordered table-condensed">
+
+                    <!-- Table heading -->
+                    <thead>
+                        <tr>
+                            <th>No</th>                            
+                            <th>Name</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <!-- Table body -->
+                    <tbody>
+                        <!-- Table row -->
+                        <?php if(isset($this->themes)): $row = 0; foreach($this->themes as $themesDetails): $row ++;?>
+                        <tr class="gradeX">
+                            <td><?php echo $row; ?></td>                            
+                            <td><?php echo $themesDetails['name']; ?></td>
+                            <td><?php echo $themesDetails['title']; ?></td>
+                            <td class="center"><?php echo $themesDetails['description']; ?></td>
+                            <?php if($themesDetails['active']==1): ?>
+                            <td id="activemenu_<?php echo $themesDetails['theme_id']; ?>" class="center js-sortable-handle useractive">Active</td>
+                            <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($themesDetails['theme_id'])): echo "themes_" . $themesDetails['theme_id'];endif;?>" class="themesdeactive">
+                            <span id="activeclass_<?php echo $themesDetails['theme_id']; ?>" class="label label-block label-inverse">Deactivate</span></a></td>
+                              <?php  else: ?>
+                            <td id="activemenu_<?php echo $themesDetails['theme_id']; ?>" class="center js-sortable-handle userdeactive">Suspended</td>
+                            <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($themesDetails['theme_id'])): echo "themes_" . $themesDetails['theme_id']; endif;?>" class="themesactive">
+                            <span id="activeclass_<?php echo $themesDetails['theme_id']; ?>"  class="label label-block label-primary">Activate</span></a></td>
+                            <?php endif;?>                                                                                  
+                        </tr>
+                        <?php endforeach;  endif; ?>
+                        <!-- // Table row END -->
+
+                    </tbody>
+                    <!-- // Table body END -->
+
+                </table>
+                <!-- // Table END -->
+
+            </div>
+        </div>
+    </div>	
+</div>
+if
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<?php if(isset($this->success)) {?>
+<script>  
+        $('.opennotificationGreen').click(function()
+        {
+          
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+             
+        
+    </script>
+<?php } ?>
+<script>
+    $('#menu_components5').removeClass('collapse').addClass('in collapse');
+    $('#site_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#themes_menu').addClass('active');    
+</script>

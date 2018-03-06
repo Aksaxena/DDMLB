@@ -1,0 +1,122 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">Changes saved successfully.</span>
+</div>
+<div id="content">
+	<h3>New Sports</h3>
+<div class="innerLR">
+
+	<!-- Widget -->
+	<div class="widget widget-tabs border-bottom-none">
+	
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<ul>
+				<li class="active"><a class="glyphicons edit" href="#account-details" data-toggle="tab"><i></i>Manage Sports</a></li>
+<!--				<li><a class="glyphicons settings" href="#account-settings" data-toggle="tab"><i></i>Account settings</a></li>-->
+			</ul>
+		</div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+                    <form class="form-horizontal margin-none editsportdetailsform"  method="post">
+				<div class="tab-content pad0">
+				
+					<!-- Tab content -->
+					<div class="tab-pane active" id="account-details">
+					
+						<!-- Row -->
+						<div class="row-fluid">
+						
+							<!-- Column -->
+							<div class="span6">
+					                        
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Name</label>
+									<div class="controls">
+										<input type="text" required="true" name="sports_name" id="sports_name" value="<?php echo $this->sportseDetails['display_name']; ?>" class="span10" />
+										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+								
+								<!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Status</label>
+									<div class="controls">
+                                                                            <select class="span4" name="status">
+                                                                                <?php if($this->sportseDetails['status'] == '1'): ?>
+                                                                                <option selected value="1">Active </option>                                                                                
+                                                                                <option  value="0">Deactive</option>                                                                                
+                                                                                <?php else: ?>
+                                                                                <option  value="1">Active </option>                                                                                
+                                                                                <option selected  value="0">Deactive</option>                                                                                
+                                                                                <?php endif; ?>
+                                                                            </select>										
+										<!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->                                                                
+
+                                                        </div>
+						</div>
+						<!-- // Row END -->
+						
+						<div class="separator line bottom"></div>
+						
+						<!-- Group -->
+<!--						<div class="control-group row-fluid">
+							<label class="control-label">About me</label>
+							<div class="controls">
+								<textarea id="mustHaveId" class="wysihtml5 span12" rows="5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</textarea>
+							</div>
+						</div>-->
+						<!-- // Group END -->
+						
+						<!-- Form actions -->
+						<div class="form-actions" class="margin-none">
+							<button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button>
+                                                        <a href="<?php $this->baseUrl(); ?>/admin/new-game-details">	<button type="button" class="btn btn-icon btn-default glyphicons circle_remove"><i></i>Cancel</button> </a>
+						</div>
+						<!-- // Form actions END -->
+						
+					</div>
+					<!-- // Tab content END -->
+					
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- // Widget END -->
+	
+</div>	
+</div>
+<script>
+    $('#menu_components6').removeClass('collapse').addClass('in collapse');
+    $('#game_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#new_game_details').addClass('active');    
+</script>
+
+<?php if(isset($this->success)) {?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  
+        $('.opennotificationGreen').click(function()
+        {
+//            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+           setTimeout(function() {   
+          window.location.replace("/admin/new-game-details");   
+        }, 3000); 
+    </script>
+    <?php }?>

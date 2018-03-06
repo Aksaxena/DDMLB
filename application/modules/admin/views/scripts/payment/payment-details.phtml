@@ -1,0 +1,64 @@
+<div id="content">
+    <h4>Payment Details</h4>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Payment Manage</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+
+                <!-- Table -->
+                <table  cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+
+                    <!-- Table heading -->
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>User</th>
+                            <th>Amount</th>
+                            <th>Email</th>
+                            <th>Pay Method</th>
+                            <th>Request Date</th>
+                            <th>Pay Date</th>
+                            <th>Transaction ID</th>
+                        </tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <!-- Table body -->
+                    <tbody>
+                    <?php if(isset($this->withdrawal)): $row = 0; foreach($this->withdrawal as $withdrawalDetails): $row ++;?>
+                        <!-- Table row -->
+                        <tr class="gradeA">
+                            <td><?php echo $row; ?></td>
+                            <td><?php echo $withdrawalDetails['user_name']; ?></td>
+                            <td><?php echo $withdrawalDetails['requested_amt']; ?></td>
+                            <td class="center"><?php echo $withdrawalDetails['email']; ?></td>
+                            <td class="center"><?php if($withdrawalDetails['pay_method'] == '1'): echo "Paypal"; elseif($withdrawalDetails['pay_method'] == '2'): echo "Check"; endif; ?></td>
+                            <td><?php echo date("j F , Y h:i:s A", strtotime($withdrawalDetails['pay_date'])); ?></td>
+                            <td class="center"><?php  echo date("j F , Y h:i:s A", strtotime($withdrawalDetails['request_date'])); ?></td>
+                            <td class="center"><?php echo $withdrawalDetails['transaction_id']; ?></td>
+                        </tr>
+                        <!-- // Table row END -->
+                    <?php endforeach;  endif; ?>
+                    </tbody>
+                    <!-- // Table body END -->
+
+                </table>
+                <!-- // Table END -->
+
+            </div>
+        </div>
+    </div>	
+</div>
+<script>
+    $('#menu_components1').removeClass('collapse').addClass('in collapse');
+    $('#payment_setting').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#payment_details_menu').addClass('active');    
+</script>

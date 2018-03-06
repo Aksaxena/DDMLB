@@ -1,0 +1,164 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">Promotion email has been sent to all active registered users.</span>
+</div>
+<div id="content">
+	<h4>Contest Promotion Details</h4>
+<div class="innerLR">
+
+	<!-- Widget -->
+	<div class="widget">
+		
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading">Contest Promotions</h4>
+		</div>
+                <div>
+                     <a class="btn btn-icon btn-primary glyphicons circle_ok" href="/admin/add-contest-promotion" type="button" style="margin-left:870px">
+                            <i></i>Add Promotion Details</a>
+                             
+                    </div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+		
+			<!-- Table -->
+			<table  id="promotionpage"class="dynamicTable table table-striped table-bordered table-condensed">			
+				<!-- Table heading -->
+                                <thead>
+                                    <tr>
+                                        <th>Sr.No.</th> 
+                                        <th>Display Name</th>
+                                        <th>URL</th>
+                                        <th class="center">Status</th>
+                                        <th class="center">Action</th>
+                                        <th class="center">Delete / Edit / Mail</th>
+                                    </tr>
+                                </thead>
+				<!-- // Table heading END -->
+				
+				<!-- Table body -->
+				<tbody>			
+					<?php if(isset($this->promotion)): $row = 0; foreach ($this->promotion as $promotionDetails): $row++; ?>
+					<!-- Table row -->
+					<tr>
+						<td style="width:10%;"><?php echo $row; ?></td>
+						
+						<td style="width:20%;"><?php echo  $promotionDetails['promotion_display_name']; ?></td>
+						
+						<td style="width:20%;"><?php echo  $promotionDetails['promotion_url']; ?></td>
+						
+						<?php if($promotionDetails['status']==1): ?>
+						
+							<td id="activepromotion_<?php echo $promotionDetails['promotion_id']; ?>" class="center js-sortable-handle useractive">Active</td>
+							
+							<td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($promotionDetails['promotion_id'])): echo "promotion_" . $promotionDetails['promotion_id'];endif;?>" class="promotiondeactive">
+							<span id="activeclass_<?php echo $promotionDetails['promotion_id']; ?>" class="label label-block label-inverse">Deactivate</span></a></td>
+												
+                        <?php  else: ?>
+						
+							<td id="activepromotion_<?php echo $promotionDetails['promotion_id']; ?>" class="center js-sortable-handle userdeactive">Suspended</td>
+                                                
+							<td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($promotionDetails['promotion_id'])): echo "promotion_" . $promotionDetails['promotion_id']; endif;?>" class="promotionactive">
+							<span id="activeclass_<?php echo $promotionDetails['promotion_id']; ?>"  class="label label-block label-primary">Activate</span></a></td>
+						<?php endif;?> 
+                                                
+							<td class="center" style="width:20%;">
+							<a id="promotiondelete_<?php echo $promotionDetails['promotion_id']; ?>" href="#" class="btn-action glyphicons remove_2 btn-danger promotion-delete"><i></i></a>
+							
+							<a href="/admin/edit-contest-promotion/<?php echo $promotionDetails['promotion_id']; ?>" class="btn-action glyphicons pencil btn-success"><i></i></a>
+							
+							<a  href="javascript:void(0);" data-name="<?php echo $promotionDetails['promotion_display_name']; ?>" data-id="<?php echo $promotionDetails['promotion_url']; ?>" class="btn-action glyphicons envelope btn-success send-mail"><i></i></a>
+							</td>
+					</tr>
+					<!-- // Table row END -->					           
+					<?php endforeach; endif; ?>
+				</tbody>
+				<!-- // Table body END -->
+				
+			</table>
+			<!-- // Table END -->
+			
+		</div>
+	</div>	
+</div>			
+</div>
+
+<div class="modal fade" id="mail-promotion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="sendlabel" style="margin-top: 12px;">Confirm Your Action</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+					<br>
+                    <div class="panel-body">
+                        <label><h5 id="p-name"></h5></label>                       
+                    </div>
+					<br>
+                </div>
+				
+			<form action="/admin/contest-promotion" id="promotionFrm" method="post">
+				<input type="hidden" id="promotion_id" name="promotion_id" value="">
+			</form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="send-mail-confirm">Confirm</button>
+            </div>
+			
+        </div>
+           
+    </div>
+    </div>
+</div>
+<?php if(isset($this->success)) {?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  
+        $('.opennotificationGreen').click(function()
+        {
+            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+             
+        
+    </script>
+    <?php }?>
+<script>
+    $('#menu_components3').removeClass('collapse').addClass('in collapse');
+    $('#promotion_setting_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons charts active');
+    $('#contest_promotion_menu').addClass('active');    
+</script>
+<script>
+$(document).ready(function(){
+
+	$('#promotionpage').dataTable({
+		"aoColumnDefs": [{ "bSortable": false, "aTargets": [5] }]
+	});
+	
+	$(document.body).on('click','.send-mail', function(e) {
+		var name = $(this).attr('data-name');
+		var promotion_id = $(this).attr('data-id');
+		var msg = "Are you sure want to mail "+name+ " to all active registered users.";
+		$('#p-name').html(msg);
+		$('#promotion_id').val(promotion_id);
+		
+		$('#mail-promotion').modal('show');
+		
+        
+    });
+	
+	$(document.body).on('click','#send-mail-confirm', function(e) {
+		$('#promotionFrm').submit();        
+    });
+});
+</script>
+

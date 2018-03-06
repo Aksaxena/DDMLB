@@ -1,0 +1,286 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">Changes saved successfully.</span>
+</div>
+<div id="content">
+	<h3>Edit Contest</h3>
+<div class="innerLR">
+
+	<!-- Widget -->
+	<div class="widget widget-tabs border-bottom-none">
+	
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<ul>
+				<li class="active"><a class="glyphicons edit" href="#account-details" data-toggle="tab"><i></i>Manage contest details</a></li>
+<!--				<li><a class="glyphicons settings" href="#account-settings" data-toggle="tab"><i></i>Account settings</a></li>-->
+			</ul>
+		</div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+                    <form class="form-horizontal margin-none contesteditform" role="form" method="post">
+				<div class="tab-content pad0">
+				
+					<!-- Tab content -->
+					<div class="tab-pane active" id="account-details">
+					
+						<!-- Row -->
+						<div class="row-fluid">
+						
+							<!-- Column -->
+							<div class="span6">
+							
+								<!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Contest Name * </label>
+									<div class="controls">
+                                                                            <input type="text" name="contest_name" required="true" id="contest_name" value="<?php echo $this->contestDetails['contest_name']; ?>"  >
+<!--										<span class="btn-action single glyphicons circle_question_mark margin-none" ><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->
+								
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Sports ID</label>
+									<div class="controls">
+										<input type="text" name="sports_id" required="true" id="sports_id" value="<?php echo $this->contestDetails['sports_id']; ?>" class="span10" />
+<!--										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+                                                                
+								<!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Player (Entry Limit)</label>
+									<div class="controls">
+										<input type="text" name="entry_limit" required="true" id="entry_limit" value="<?php echo $this->contestDetails['play_limit']; ?>" class="span10" />
+<!--										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+                                                                  <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Challenge Limit</label>
+									<div class="controls">
+										<input type="text" name="challenge_limit" required="true" id="challenge_limit" value="<?php echo $this->contestDetails['challenge_limit']; ?>" class="span10" />
+<!--										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->     
+                                                                
+                                                                
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Entry Fee</label>
+									<div class="controls">
+										<input type="text" name="fee" required="true" id="fee" value="<?php echo $this->contestDetails['entry_fee']; ?>" class="span10" />
+<!--										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->                                                        
+								
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Match ID</label>
+									<div class="controls">
+										<input type="text" name="match_id" required="true" id="match_id" value="<?php echo $this->contestDetails['match_id']; ?>" class="span10" readonly/>
+<!--										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->  
+                                                                
+                                                                
+							</div>
+							<!-- // Column END -->
+							
+							<!-- Column -->
+							<div class="span6">							
+                                                            
+								<!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Prize Pool</label>
+                                                                        <div class="controls">
+                                                                            <input type="text" name="prize_pool" required="true" id="prize_pool" value="<?php echo $this->contestDetails['prize_pool']; ?>" class="span10" />
+<!--                                                                            <span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+                                                                        </div>
+								</div>
+								<!-- // Group END -->
+								
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">FPP Reward</label>
+									<div class="controls">
+										<input type="text" id="fpp_reword" required="true" name="fpp_reword" value="<?php echo $this->contestDetails['fpp']; ?>" class="span10" />
+<!--										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END -->
+                                                                
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Match Start Time</label>
+									<div class="controls">
+										<input type="text" name="start_time" required="true" id="start_time" value="<?php echo $this->contestDetails['start_time']; ?>" class="span10" readonly/>
+<!--										<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+									</div>
+								</div>
+								<!-- // Group END --> 
+                                                                
+                                                                
+								<!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Contest Type</label>
+									<div class="controls">
+                                                                        <select class="span8" name="contest_type" required="true">                                                                    
+                                                                        <option value="">Select</option>    
+                                                                        <?php if(isset($this->contest)): foreach ($this->contest as $contestDetails):
+                                                                            if(isset($this->contestDetails['con_type_id'])):
+                                                                                if($this->contestDetails['con_type_id'] == $contestDetails['con_type_id']):
+                                                                                    $sel = "selected";
+                                                                                endif;
+                                                                            endif;
+                                                                        ?>
+                                                                        <option <?php if(isset($sel)): echo $sel; unset($sel); endif; ?> value="<?php echo $contestDetails['con_type_id']; ?>"><?php echo $contestDetails['display_name']; ?></option>  
+                                                                        <?php endforeach; endif; ?> 
+                                                                        </select>
+									</div>
+								</div>
+								<!-- // Group END -->			
+                                                                
+                                                                <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Play Type</label>
+									<div class="controls">
+                                                                        <select class="span8" name="play_type">                                                                                                                                                
+                                                                        <option value="">Select</option>                                                                           
+                                                                        <?php if(isset($this->contestDetails['play_type'])):
+                                                                        if($this->contestDetails['play_type'] == 1):
+                                                                        ?>  
+                                                                        <option selected="" value="1">Anyone</option>  
+                                                                        <option value="0">Friend</option>  
+                                                                         <?php else: ?>
+                                                                        <option value="1">Anyone</option>  
+                                                                        <option selected="" value="0">Friend</option>  
+                                                                         <?php endif; else: ?>
+                                                                        <option value="1">Anyone</option>  
+                                                                        <option value="0">Friend</option>  
+                                                                        <?php endif; ?>                                                                        
+                                                                        </select>
+									</div>
+								</div>
+								<!-- // Group END -->	
+                                                                
+                                                                 <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Prizes</label>
+									<div class="controls">
+                                                                        <select class="span8" name="prize_type">                                                                    
+                                                                        <option value="">Select</option>         
+                                                                        <?php if(isset($this->contestDetails['prizes'])){
+                                                                        if($this->contestDetails['prizes'] == 0){
+                                                                        ?>  
+                                                                        <option selected value="0">No Prize</option>  
+                                                                        <option value="1">Winner Takes All</option>  
+                                                                        <option value="2">Top 2 Win</option> 
+																		<option value="6">Custom Prizes</option>
+                                                                        <?php }elseif($this->contestDetails['prizes'] == 1){ ?>
+                                                                        <option value="0">No Prize</option>  
+                                                                        <option selected value="1">Winner Takes All</option>  
+                                                                        <option value="2">Top 2 Win</option>  
+																		<option value="6">Custom Prizes</option>
+                                                                        <?php }elseif($this->contestDetails['prizes'] == 6) { ?>
+                                                                        <option value="0">No Prize</option>  
+                                                                        <option value="1">Winner Takes All</option>  
+                                                                        <option value="2">Top 2 Win</option>  
+                                                                        <option selected value="6">Custom Prizes</option>  
+                                                                        <?php } else { ?>
+                                                                        <option value="0">No Prize</option>  
+                                                                        <option value="1">Winner Takes All</option>  
+                                                                        <option value="2">Top 2 Win</option> 
+																		<option value="6">Custom Prizes</option> 	
+                                                                        <?php } } ?>
+                                                                        </select>
+									</div>
+								</div>
+								<!-- // Group END -->	
+                                                                
+                                                              <!-- Group -->
+								<div class="control-group">
+									<label class="control-label">Description</label>
+									<div class="controls">
+                                                                            <textarea required="true" class="span10" name="desctext" onKeyDown="limitText(this.form.desctext,this.form.countdown,650);" 
+                                                                                                  onKeyUp="limitText(this.form.desctext,this.form.countdown,650);"><?php echo $this->contestDetails['description']; ?></textarea><br>
+                                                                                        <font size="1">(Maximum characters: 650)<br>
+                                                                                        You have <input class="span2" readonly type="text" name="countdown" size="3" value="650"> characters left.</font>
+									</div>
+								</div>
+								<!-- // Group END -->                                                             
+                                                                
+							</div>
+							<!-- // Column END -->
+							
+						</div>
+						<!-- // Row END -->
+						
+						<div class="separator line bottom"></div>
+						
+						<!-- Group -->
+<!--						<div class="control-group row-fluid">
+							<label class="control-label">About me</label>
+							<div class="controls">
+								<textarea id="mustHaveId" class="wysihtml5 span12" rows="5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</textarea>
+							</div>
+						</div>-->
+						<!-- // Group END -->
+						
+						<!-- Form actions -->
+						<div class="form-actions" class="margin-none">
+                                                    <button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button>
+                                                        &nbsp;
+                                                        <a href="/admin/contest-details"><button type="button" class="btn btn-icon btn-default glyphicons circle_remove"><i></i>Cancel</button> </a>
+						</div>
+						<!-- // Form actions END -->
+						
+					</div>
+					<!-- // Tab content END -->
+					
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- // Widget END -->	
+</div>	
+</div>
+
+<script>
+    $('#menu_components2').removeClass('collapse').addClass('in collapse');
+    $('#contest_setting_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#match_detail_menu').addClass('active');    
+</script>
+
+<?php if(isset($this->success)){ ?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  
+       
+        $('.opennotificationGreen').click(function()
+        {
+//            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+           setTimeout(function() {   
+          window.location.replace("/admin/contest-details");   
+        }, 3000); 
+    </script>
+    <?php } ?>

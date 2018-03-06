@@ -1,0 +1,66 @@
+<div id="content">
+    <h4>Payment Approval</h4>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Payment Manage</h4>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+
+                <!-- Table -->
+                <table  cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+
+                    <!-- Table heading -->
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>User</th>
+                            <th class="center">Amount</th>
+                            <th class="center">Pay Method</th>
+                            <th class="center">Request Date</th>
+                            <th class="center">Status</th>
+                            <th class="center">Action</th>
+                        </tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <!-- Table body -->
+                    <tbody>      
+                        <?php if(isset($this->withdrawal)): $row = 0; foreach($this->withdrawal as $withdrawalDetails): $row ++;?>
+                        <!-- Table row -->
+                        <tr class="gradeA">
+                            <td><?php echo $row; ?></td>
+                            <td><?php echo $withdrawalDetails['user_name']; ?></td>
+                            <td class="center"><?php echo $withdrawalDetails['requested_amt']; ?></td>
+                            <td class="center"><?php if($withdrawalDetails['pay_method'] == '1'): echo "Paypal"; elseif($withdrawalDetails['pay_method'] == '2'): echo "Check"; endif; ?></td>
+                            <td class="center"><?php echo date("j F Y, h:i:s A", strtotime($withdrawalDetails['request_date'])); ?></td>
+                            <?php if($withdrawalDetails['status']==0): ?>                            
+                            <td id="activewithdrawal_<?php echo $withdrawalDetails['withdrawal_id']; ?>" class="center js-sortable-handle userdeactive">Pending</td>
+                            <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($withdrawalDetails['withdrawal_id'])): echo "withdrawal_" . $withdrawalDetails['withdrawal_id']; endif;?>" class="withdrawalapproval">
+                            <span id="activeclass_<?php echo $withdrawalDetails['withdrawal_id']; ?>"  class="label label-block label-primary">Approval</span></a></td>
+                            <?php endif;?> 
+                        </tr>
+                        <?php endforeach;  endif; ?>
+                        <!-- // Table row END -->                    
+
+                    </tbody>
+                    <!-- // Table body END -->
+
+                </table>
+                <!-- // Table END -->
+
+            </div>
+        </div>
+    </div>	
+</div>
+<script>
+    $('#menu_components1').removeClass('collapse').addClass('in collapse');
+    $('#payment_setting').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#payment_approval_menu').addClass('active');    
+</script>

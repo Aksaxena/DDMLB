@@ -1,0 +1,118 @@
+<div id="content">
+    <h3>Offer Details</h3>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget widget-tabs border-bottom-none">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <ul>
+                    <li class="active"><a class="glyphicons edit" ><i></i>Offer details</a></li>
+                </ul>
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+                <form class="form-horizontal margin-none editofferform" enctype="multipart/form-data"  method="post">
+                    <div class="tab-content pad0">
+
+                        <!-- Tab content -->
+                        <div class="tab-pane active" >
+
+                            <!-- Row -->
+                            <div class="row">
+
+                                <!-- Column -->
+                                <div class="col-md-6" style="float:left;" >
+
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Offer Name</label>
+                                        <div class="controls">
+                                            <input type="text" name="offer_name"  required="true" value="<?php if (isset($this->edits['offer_name'])): echo $this->edits['offer_name'];
+                                                    endif; ?>" class="span6" />
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+
+
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Offer Type</label>
+                                        <div class="controls">
+                                              <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="offer_type"  value="1" <?php if($this->edits['offer_type']==1){ echo 'checked'; } ?> >Contest
+                                                  
+                                                </label>
+                                              </div>
+                                              <div class="radio">
+                                                <label>
+                                                  <input type="radio" name="offer_type"  value="0" <?php if($this->edits['offer_type']==0){ echo 'checked'; } ?>>Refer A Friend
+                                                </label>
+                                              </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- // Group END -->
+                                    
+                                    <!--Group--> 
+                                    <div class="control-group row-fluid">
+                                        <label class="control-label">Offer Description</label>
+                                        <div class="controls">
+                                            <textarea name="description" required="true" class="span12" rows="5"><?= $this->edits['description']; ?></textarea>
+                                        </div>
+                                    </div>
+                                     <!--Group END--> 
+                                </div>   
+                                <div class="col-md-6" style="margin-left: 70%;">
+<!--                                <div class="col-md-6">-->
+                                    <div class="thumbnail" style=" width: 300px;">
+<!--                                        <div class="thumbnail" style=" width: 300px; float:right;">-->
+                                            <img  class="img-responsive " src="<?php echo $this->baseUrl() . $this->appSetting->assestPath . 'images/'.$this->edits['image_url']; ?>" alt="Image not Available">
+                                            
+                                        </div>
+                                    
+                                        <div class="setingbg">
+                                           <input id="imagefile" name="imagefile" type="file"  />
+                                           <div id="errormsg"></div>
+<!--                                           <div id="errormsg" style="float: right"></div>-->
+                                         </div>
+                                    
+<!--                                        <span id="errormsg"></span>-->
+                               
+                                </div>
+                                    
+                            </div>
+                                <!-- // Column END -->
+                         </div>
+                            <!-- // Row END -->
+
+                            <div class="separator line bottom"></div>
+
+                             
+
+                            <!-- Form actions -->
+                            <div class="form-actions" class="margin-none">
+                                <a href="<?php $this->baseUrl('/admin/offers'); ?>"> <button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button></a>
+                                <a href="/admin/offers"><button type="button" class="btn btn-icon btn-default glyphicons circle_remove"><i></i>Cancel</button> </a>
+                            </div>
+                            <!-- // Form actions END -->
+
+                        </div>
+                        <!-- // Tab content END -->
+                        </form>
+                    </div>
+                
+            </div>
+        </div>
+        <!-- // Widget END -->
+
+    </div>
+<script>
+$('#menu_components7').removeClass('collapse').addClass('in collapse');
+$('#offers_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+$('#offers').addClass('active');
+</script>

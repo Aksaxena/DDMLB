@@ -1,0 +1,82 @@
+<div id="content">
+	<h4>Player Details</h4>
+<div class="innerLR">
+
+	<!-- Widget -->
+	<div class="widget">
+		
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading">Player Manage</h4>
+		</div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+                    
+                        
+                        <div class="row-fluid">
+                            <!-- Group -->
+                                <div class="control-group">
+                                    <label class="control-label span1">Sports :-</label>
+                                    <div class="controls">
+                                        <select  class="span4">
+                                            <option class="sport" value="">SELECT SPORTS</option>
+                                            <option class="sport" value="1">NFL</option>
+                                            <option class="sport" value="2">MLB</option>
+                                            <option class="sport" value="3">NBA</option>
+                                            <option class="sport" value="4">NHL</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            <!-- // Group END -->
+                        </div>
+                    
+                        <div class="row-fluid">
+                            <!-- Group -->
+                                <div class="control-group" id="team_menu">
+            
+                                </div>
+                            <!-- // Group END -->
+                        </div>
+                    <div id="plydetails" style="display: none;">
+                        search:<input id="filter" type="text" />
+			<!-- Table -->
+			<table id="plr_table" data-filter="#filter" data-page-size="5" class="footable">
+			
+				<!-- Table heading -->
+				<thead>
+					<tr>
+						<th class="center">No</th>
+						<th class="center">Name</th>
+						<th class="center">Position</th>
+						<th class="center">Age</th>
+                                                <th class="center">Team Name</th>
+						<th class="center">edit</th>
+					</tr>
+				</thead>
+				<!-- // Table heading END -->
+				
+				<!-- Table body -->
+                                <tbody></tbody>
+				<!-- // Table body END -->
+				
+                    <tfoot class="footable-pagination">
+                        <tr>
+                            <td colspan="8"><ul id="pagination" class="footable-nav" /></td>
+                        </tr>
+                    </tfoot>
+			</table>
+                    </div>
+			<!-- // Table END -->
+			
+		</div>
+	</div>	
+</div>
+</div>
+<script>
+    $('#menu_components4').removeClass('collapse').addClass('in collapse');
+    $('#player_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons group active');
+    $('#player_detail_menu').addClass('active');    
+    
+    
+</script>

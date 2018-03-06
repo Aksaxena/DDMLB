@@ -1,0 +1,169 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+    <head>
+        <?php
+        # Title
+        echo $this->headTitle();
+
+        # Meta data
+        echo $this->headMeta();
+
+        # CSS
+        echo $this->headLink()
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'link/bootstrap.min.css')
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'css/style.css');               
+               // ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'css/bootstrapValidator.min.css');
+
+
+        # Javascript
+        echo $this->headScript()
+                ->appendFile('http://fonts.googleapis.com/css?family=Raleway', 'text/css')                        
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'link/jquery.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'link/bootstrap.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/docs.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/jquery.validate.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/validate.settings.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/function.js', 'text/javascript');
+        ?>
+        <!-- Bootstrap -->
+
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        
+          <script src="<?php echo $this->baseUrl() . $this->appSetting->assestPath . 'js/html5shiv.js'; ?>"></script>
+          <script src="<?php echo $this->baseUrl() . $this->appSetting->assestPath . 'js/respond.min.js'; ?>"></script>
+        <![endif]-->
+       
+    </head>
+    <body>
+
+
+        <nav class="navbar navbar-inverse navbar-fixed-top mainnavbar" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Home</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+
+                        <li><a href="#">Lobby</a></li>
+                        <li><a href="#">My Lineups</a></li>
+                        <li><a href="<?php echo $this->baseUrl('/contest'); ?>">My Contests</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Promotions <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">March Millions</a></li>
+                                <li><a href="#">Spring Golf Classic</a></li>
+                                <li><a href="#">$300,000 Showcase</a></li>
+                                <li><a href="#">$300,000 Showcase</a></li>
+                                <li><a href="#">Steps Tourneys</a></li>
+                            </ul>
+                        </li>
+                                      
+                        
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <p class="navbar-text">New to <?php echo $this->appSetting->title; ?>? </p>
+                        </li>
+                        <li><a href="<?php echo $this->baseUrl('/signup'); ?>">signup</a></li>
+                        <li><a href="<?php echo $this->baseUrl('/login'); ?>">or Sign-in</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo $this->baseUrl('/how-to-play'); ?>">How To Play</a></li>
+                                <li><a href="<?php echo $this->baseUrl('/help/mlb'); ?>">Contest Rules</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?php echo $this->baseUrl('/store'); ?>">FPP Store</a></li>
+                                <li><a href="<?php echo $this->baseUrl('/contact-us'); ?>">Contact Us</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid maincontainer">
+            <br/>
+            <div class="row">
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" >
+                        <img class="logo" src="<?php echo $this->baseUrl() . $this->appSetting->assestPath . 'images/logo-large@2x1.png'; ?>" alt="<?php echo $this->appSetting->title; ?>">
+                    </a>
+                </div>
+                <div class="col-md-6"></div>
+<!--                <div class="col-xs-6 col-md-3">
+                    <iframe width="230px" height="368px" scrolling=no frameborder="0" src="http://www.soupnetworks.com/widget/feed-nfl"></iframe>
+                </div>-->
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 markq"></div>
+            </div>
+
+
+        </div>  
+
+        <div class="container topfixclear">
+            <div class="panelcontainer">
+
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img data-src="holder.js/300x200" alt="...">
+                            <div class="caption">
+
+                                <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img data-src="holder.js/300x200" alt="...">
+                            <div class="caption">
+                                <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img data-src="holder.js/300x200" alt="...">
+                            <div class="caption">
+
+                                <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div> 
+
+        <div class="container topfixclear" >
+
+            <div class="panelcontainer">
+
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="page-header">
+                            <h1><small>Sign Up</small></h1>
+                        </div>

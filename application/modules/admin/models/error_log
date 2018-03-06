@@ -1,0 +1,1 @@
+[11-Jul-2017 08:45:01 UTC] PHP Fatal error:  Class 'Zend_Db_Table_Abstract' not found in /home/draftdaily/public_html/application/modules/admin/models/UserTransactions.php on line 3

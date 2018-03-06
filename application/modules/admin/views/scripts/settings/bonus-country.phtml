@@ -1,0 +1,155 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">You have successfully updated.</span>
+</div>
+<div id="content">
+    <h4>Allow bonus to Country</h4>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+<!--                <h4 class="heading">Country Manage</h4>-->
+
+                     
+            </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+               
+                
+                <form method="post">
+                    
+                <!-- Table -->
+                <table cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+                       
+                    <!-- Table heading -->
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="checkbutton"> ALL</th>
+                            <th>Country Code</th>
+                            <th>Country Name</th>
+                            <th class="center">Status</th>
+                           
+                        </tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <!-- Table body -->
+                    <tbody>
+
+                        <?php if(isset($this->countries)): $row = 0; foreach($this->countries as $countriesDetails): $row ++;?>
+                        <!-- Table row -->
+                        <tr class="gradeA">
+                            
+                            <td><input type="checkbox" name="list[]" class="checkbox1" value="<?php echo $countriesDetails['country_id']; ?>"></td>
+                            <td><?php echo $countriesDetails['country_code']; ?></td>
+                            <td><?php echo $countriesDetails['country_name']; ?></td>
+                            <td  class="center"><?php if(($countriesDetails['bonus'])==0){
+                                        echo "denied";
+                            } else{echo "allowed";}
+                                 ?>
+                            </td>  
+                        </tr>                        
+                        <!-- // Table row END -->
+                        <?php endforeach;  endif; ?>
+                    </tbody>
+                    <!-- // Table body END -->
+
+                </table>
+                
+                <!-- // Table END -->
+                <select name="action" class="form-control">
+                    <option value=1>Allow Bonus</option>
+                    <option value=0>Deny Bonus</option>
+                </select>
+
+                <button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button>
+                </form>
+            </div>
+           
+        </div>
+    </div>	
+</div>
+<script>
+    $('#menu_components5').removeClass('collapse').addClass('in collapse');
+    $('#site_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#country_menu').addClass('active');    
+</script>
+<script type="text/javascript">
+    
+//         var checkflag = "false";
+//         var i;
+//         function check(field) {
+//             console.log(field);
+//             if (checkflag == "false") {
+//                 for (i = 0; i < field.length; i++) {
+//                     field[i].checked = true;
+//                 }
+//                 checkflag = "true";
+//               
+//             } else {
+//                 for (i = 0; i < field.length; i++) {
+//                     field[i].checked = false;
+//                 }
+//                 checkflag = "false";
+//               
+//             }
+//         }
+//         
+
+         
+ $(document).ready(function() {
+    $('#checkbutton').click(function(event) {  //on click
+        
+            $('.checkbox1').each(function() { //loop through each checkbox
+                
+          $(this).prop('checked',(!$(this).prop('checked')));     
+//        this.checked = true;  //select all checkboxes with class "checkbox1"              
+            });
+        
+    });
+   
+});        
+         
+         
+//       $(document).ready(function(){
+//           
+//           validator.oncheck(qwe) 
+//           
+//           
+//           
+//          $("#checkbutton").on('click',function(e){
+//              
+//              console.log(e);
+//              
+//          }); 
+//           
+//           
+//       }); 
+//        
+//       
+ </script>
+ 
+ <?php if(isset($this->success)){ ?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>
+      $('.opennotificationGreen').click(function()
+        {
+//            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+           
+    
+    </script>
+    <?php } ?>

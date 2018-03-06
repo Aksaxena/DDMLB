@@ -1,0 +1,202 @@
+
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">Ticket Details has been generated successfully.</span>
+</div>
+<div id="content">
+	<h4>Ticket Details</h4>
+<div class="innerLR">
+
+    
+    <!-- Widget -->
+<!--        <div class="widget">
+
+             Widget heading 
+            <div class="widget-head">
+                <h4 class="heading">Upload New Ticket</h4>
+            </div>
+             // Widget heading END 
+
+            <div class="widget-body">
+                <form class="form-horizontal margin-none ticketdetails"  method="post">
+				<div class="tab-content pad0">
+				
+					 Tab content 
+					<div class="tab-pane active" >
+					
+						 Row 
+						<div class="row-fluid">
+						
+							 Column 
+							<div class="span6">
+                                                            
+                                                                 Group 
+								<div class="control-group">
+									<label class="control-label">Ticket Code</label>
+									<div class="controls">
+										<input required="true" type="text" name="code" class="span10" />
+									</div>
+								</div>
+								 // Group END 
+                                                                 Group 
+								<div class="control-group">
+									<label class="control-label">Bonus Amount</label>
+									<div class="controls">
+										<input required="true" type="text" name="bunus_amt" id="bunus_amt"  class="span5" />
+									</div>
+								</div>
+								 // Group END 
+                                                                
+								
+								 Group 
+								<div class="control-group">
+									<label class="control-label">Status</label>
+									<div class="controls">
+                                                                            <select class="span4" name="status">
+                                                                                <option selected value="1">Active </option>                                                                                
+                                                                                <option   value="0">Deactive</option>                                                                                
+                                                                            </select>										
+										
+									</div>
+								</div>
+								 // Group END 
+                                                                 Group 
+								<div class="control-group">
+									<label class="control-label">Limitation</label>
+									<div class="controls">
+                                                                            <select class="span4" name="limitation">
+                                                                                <option selected  value="0">Limited</option>  
+                                                                                <option  value="1">Unlimited</option>                                                                                
+                                                                            </select>										
+									</div>
+								</div>
+								 // Group END 
+
+                                                        </div>
+                                                        <div class="span6">
+                                                             Group 
+								<div class="control-group">
+									<label class="control-label">Ticket valid From</label>
+									<div class="controls">
+										<input type="text" id="datepicker"  name="valid_from" value="" />
+									</div>
+								</div>
+								 // Group END 
+                                                                 Group 
+								<div class="control-group">
+									<label class="control-label">Ticket Valid Upto</label>
+									<div class="controls">
+										
+                                                                            <input type="text" id="datepicker1"  name="valid_upto" value="" />
+                                                                        </div>
+								</div>
+								 // Group END 
+                                                               
+                                                        </div>
+						</div>
+						 // Row END 
+						
+						<div class="separator line bottom"></div>
+						
+                                                 Form actions 
+						<div class="form-actions" class="margin-none">
+							<button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Generate Ticket</button>
+                                                        
+						</div>
+						 // Form actions END 
+						
+					</div>
+					 // Tab content END 
+					
+				</div>
+			</form>
+
+            </div>
+        </div>-->
+    
+	  <!-- Widget -->
+        <div class="widget">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <h4 class="heading">Tickets Manage</h4>
+              </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">
+
+                <!-- Table -->
+                <div role="grid" class="offerTables_wrapper form-inline" >
+<!--           <select class="filter" >
+                <option></option>
+                <option value="active">Active</option>
+                <option value="suspended">Suspended</option>
+              </select>-->
+            <table  id="validpage"  cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+                
+                    <!-- Table heading -->
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 40px;" aria-sort="ascending" aria-label="No: activate to sort column descending">No.</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 250px;" aria-label="Name: activate to sort column ascending">Description</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 110px;" aria-label="Name: activate to sort column ascending">Ticket Code</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;" aria-label="Title: activate to sort column ascending">Ticket valid From</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;" aria-label="Title: activate to sort column ascending">Ticket valid Upto</th>
+<!--                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;" aria-label="Description: activate to sort column ascending">Limitation</th>-->
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;" aria-label="Status: activate to sort column ascending">Status</th>
+                            <th class="sorting center" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Actions: activate to sort column ascending">Actions</th>
+                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;" aria-label="Actions: activate to sort column ascending">Edit/Delete</th></tr>
+                    </thead>
+                    <!-- // Table heading END -->
+
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                          <?php  if(isset($this->tickets)): $i=1; foreach($this->tickets as $value): ?>                            
+                            <tr class="gradeX odd">
+                                    <td class=" center sorting_1"><?= $i ?></td>  
+                                    <td class=" "><?php echo  $value['description'] ?></td> 
+                                    <td class=" "><?php echo  $value['code'] ?></td>                                    
+                                    <td class=" center"><?php echo date("j F , Y", strtotime($value['valid_from']));  ?></td>
+                                    <td class=" center"><?php echo date("j F , Y", strtotime($value['valid_upto']));  ?></td>
+                                    <?php if($value['status']==1): ?>
+                                    <td id="activemenu_<?php echo $value['ticket_id']; ?>" class="ticket-status center js-sortable-handle ticketactive">Active</td>
+                                    <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($value['ticket_id'])): echo "ticket_" . $value['ticket_id'];endif;?>" class="ticketdeactive">
+                                    <span id="activeclass_<?php echo $value['ticket_id']; ?>" class="label label-block label-inverse">Deactivate</span></a></td>
+                                      <?php  else: ?>
+                                    <td id="activemenu_<?php echo $value['ticket_id']; ?>" class="ticket-status center js-sortable-handle ticketdeactive">Suspended</td>
+                                    <td class="center" style="width: 80px;"><a href="#" id="<?php if (isset($value['ticket_id'])): echo "ticket_" . $value['ticket_id']; endif;?>" class="ticketactive">
+                                    <span id="activeclass_<?php echo $value['ticket_id']; ?>"  class="label label-block label-primary">Activate</span></a></td>
+                                    <?php endif;?>
+                                    <td>
+                                        <a  href="edit-ticket/<?php echo $value['ticket_id']; ?>" class="btn-action glyphicons pencil btn-success"><i></i></a>
+                                        <a  href="#" id="<?php  echo "ticketdelete_" . $value['ticket_id'];  ?>" class="btn-action glyphicons remove_2 btn-danger ticket-delete"><i></i></a>
+                                    </td>
+                            
+                            </tr>                            
+                           <?php $i++;endforeach;endif;?>
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+        </div>
+      </div>	
+ </div>
+<?php if(isset($this->success)){ ?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  
+       
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+          
+    </script>
+    <?php } ?>
+<script>
+    $('#menu_store').removeClass('collapse').addClass('in collapse');
+    $('#store_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#tickets').addClass('active');  
+    
+
+</script>

@@ -1,0 +1,117 @@
+<style>
+    .button_style {
+        float: right;
+        margin: 2% 2%;
+    }
+    #selectContestType {
+        margin: 2% 3% 2%;
+    }
+    .dataTables_filter > label{
+       margin-right: 0%;
+    }
+</style>
+<div id="content">
+	<!--<h4>Contest Details</h4>-->
+<div class="innerLR">
+
+	<!-- Widget -->
+	<div class="widget">
+		
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading">Contest Manage</h4>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a class="btn btn-icon btn-primary glyphicons circle_ok button_style" href="/admin/new-contest" type="button">
+                                <i></i> Add New Contest
+                                 </a>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <form id="selectContestType" method="POST" action = "">
+                            <input checcked type="radio" name="type" value="-1" <?php if(isset($_POST['type']) && $_POST['type'] == -1)  echo ' checked="checked"';?> onchange="typeSubmit();">All &nbsp;&nbsp;
+                            <input type="radio" name="type" value="0" <?php if(isset($_POST['type']) && $_POST['type'] == 0)  echo ' checked="checked"';?> onchange="typeSubmit();">Upcoming &nbsp;&nbsp;
+                            <input type="radio" name="type" value="1" <?php if(isset($_POST['type']) && $_POST['type'] == 1)  echo ' checked="checked"';?> onchange="typeSubmit();">Completed &nbsp;&nbsp;
+                            <input type="radio" name="type" value="3" <?php if(isset($_POST['type']) && $_POST['type'] == 3)  echo ' checked="checked"';?> onchange="typeSubmit();">Cancel &nbsp;&nbsp;
+                            <input type="radio" name="type" value="2" <?php if(isset($_POST['type']) && $_POST['type'] == 2)  echo ' checked="checked"';?> onchange="typeSubmit();">Live &nbsp;&nbsp;
+                        </form>
+                    </div>
+                </div>
+		<!-- // Widget heading END -->
+		
+		<div class="widget-body">
+                    
+			<!-- Table -->
+			<table  cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+		
+                        
+				<!-- Table heading -->
+				<thead>
+					<tr>
+                                            <th>Sr. No.</th>
+                                            <th>Name</th>
+                                            <th>Sport</th>
+                                            <th>Type</th>
+                                            <th>Fee</th>						
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Prize Pool</th>
+                                            <th>FPP</th>
+                                            <th>Status</th>
+                                            <th>Delete/Edit</th>
+                                                
+					</tr>
+				</thead>
+				<!-- // Table heading END -->
+				
+				<!-- Table body -->
+                                <tbody>
+				
+					
+					<?php if(isset($this->contest)):  $index=1; foreach ($this->contest as $contest): 
+                                           // echo"<pre>";print_r($contest);echo"</pre>";die;?>
+					<!-- Table row -->
+					<tr class="gradeA">
+                                                <td><?php echo $index; ?></td>
+						<td><?php echo $contest['contest_name']; ?></td>
+                                                <td><?php if($contest['sports_id']==1){echo "NFL";}else if($contest['sports_id']==2){echo "MLB";}else if($contest['sports_id']==3){echo "NBA";}else if($contest['sports_id']==4){echo "NHL";} ?></td>
+                                                <td><?php if($contest['con_type_id']==1){echo "Gauranteed";}else if($contest['con_type_id']==2){echo "Qualifiers";}else if($contest['con_type_id']==3){echo "Head-To-Head";}else if($contest['con_type_id']==4){echo "50/50";}else if($contest['con_type_id']==5){echo "Leagues";}else if($contest['con_type_id']==6){echo "Multipliers";}else if($contest['con_type_id']==7){echo "steps";}else if($contest['con_type_id']==8){echo "Beginers";} ?></td>
+                                               
+                                                <td><?php echo "$ ".$contest['entry_fee']; ?></td>
+                                                <td><?php echo date("j F y, h:i:s A", strtotime($contest['start_time'])); // echo $contest['start_time']; ?></td>
+                                                <td><?php  echo date("j F y, h:i:s A", strtotime($contest['end_time'])); ?></td>
+                                                <td><?php echo "$ ".$contest['prize_pool']; ?></td>
+                                                <!--<td><?php // echo $contest['match_id']; ?></td>-->
+                                                <td><?php echo $contest['fpp']; ?></td>
+                                                <td><?php if($contest['con_status']==0){echo "Upcoming";}elseif($contest['con_status']==1){echo "Complete";}elseif($contest['con_status']==2){echo "Live";}elseif($contest['con_status']==3){echo "cancel";} ?></td>
+                                                <td>
+                                                    <a id="contestdelete_<?php echo $contest['contest_id']; ?>" href="#" class="btn-action glyphicons remove_2 btn-danger-contest"><i></i></a>
+                                                    &nbsp;
+                                                    <a href="/admin/edit-contest/<?php echo $contest['contest_id']; ?>" class="btn-action glyphicons pencil btn-success"><i></i></a>
+                                                </td>
+                                            
+					</tr>
+					<!-- // Table row END -->
+					<?php $index++; endforeach; endif; ?>
+                                            
+				</tbody>
+				<!-- // Table body END -->
+                                
+			</table>
+                    
+			<!-- // Table END -->
+                        </div>
+		</div>
+	</div>	
+</div>			
+<script>
+    $('#menu_components2').removeClass('collapse').addClass('in collapse');
+    $('#contest_setting_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons cogwheels active');
+    $('#contest_detail_menu').addClass('active');  
+    
+    function typeSubmit()
+    {
+        document.getElementById('selectContestType').submit();
+    }
+</script>

@@ -1,0 +1,141 @@
+<?php echo $this->doctype(); ?>
+<html lang="en-US">  
+    <head>
+        <?php
+        # Title
+        echo $this->headTitle();
+
+        # Meta data
+        echo $this->headMeta();
+
+        # CSS
+        echo $this->headLink()
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'css/admin/common/bootstrap/css/bootstrap.css')
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'css/admin/common/bootstrap/css/responsive.css')
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'css/admin/common/bootstrap/css/datetimepicker.css')
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'css/admin/common/theme/css/glyphicons.css')
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'css/admin/common/theme/css/style-light.css?1369753442')
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'css/admin/style.css')
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'css/admin/datetimepicker.css')
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'css/admin/smoothness/jquery-ui-1.9.2.custom.min.css')
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/common/theme/scripts/plugins/tables/DataTables/media/css/DT_bootstrap.css')
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'foot/css/datatables.css');
+                
+                //test end
+                
+       
+        echo $this->headScript()
+                ->appendFile('https://code.jquery.com/jquery-1.11.0.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/js/jquery-ui-1.9.2.custom.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/common/bootstrap/js/bootstrap.min.js', 'text/javascript')                
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/common/bootstrap/extend/bootbox.js', 'text/javascript')                
+//                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/common/theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.min.js', 'text/javascript') 
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/common/bootstrap/extend/bootbox.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/tinymcr/js/tinymce.min.js', 'text/javascript') 
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/chart/jquery.flot.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/chart/jshashtable-2.1.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/chart/jquery.numberformatter-1.2.3.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/chart/jquery.flot.symbol.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/chart/jquery.flot.axislabels.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/js/data-generator.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/js/jquery-slimScroll/jquery.slimscroll.min.js', 'text/javascript')
+//                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/js/demo/common.js?1369753442', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/js/bootstrap-datetimepicker.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/jquery.validate.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/validate.settings.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/common/theme/scripts/demo/common.js?1369753442', 'text/javascript') 
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'js/admin/adminfunctions.js', 'text/javascript')
+                ->appendFile('https://code.highcharts.com/highcharts.js', 'text/javascript')
+                ->appendFile('https://cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'foot/js/datatables.js', 'text/javascript');
+        
+                //test end
+                
+        ?>
+        <style>
+            .datatable thead th {
+                    background-color: #8EC657;
+                    border-color: #8EC657;
+                    color: #FFFFFF;
+                    font-size: 14px;
+                }
+        </style>   
+        
+    </head>        
+        <?php  if (isset($this->session->storage->role)) : if($this->session->storage->role == '2'): ?>
+        <body class="">
+          <div class="container-fluid fluid menu-left">
+                <div class="navbar main hidden-print">
+                    <div class="wrapper">
+                        <button type="button" class="btn btn-navbar">
+                            <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                        </button>			
+                        <ul class="topnav pull-left tn1 hidden-phone">
+                        </ul>
+                        <ul class="topnav pull-right">
+                            <li class="hidden-phone dropdown dd-1 dd-flags" id="lang_nav">
+                                <ul class="dropdown-menu pull-left">
+                                </ul>
+                            </li>
+                            <li class="dropdown dd-1 visible-desktop">
+                                <ul class="dropdown-menu pull-right">							
+                                    <li class="dropdown submenu">
+                                        <a href="#" class="dropdown-toggle glyphicons bell" data-toggle="dropdown"><i></i>Level 2</a>
+                                        <ul class="dropdown-menu submenu-show submenu-hide pull-left">
+                                            <li class="dropdown submenu">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Level 2.1</a>
+                                                <ul class="dropdown-menu submenu-show submenu-hide pull-left">
+                                                    <li><a href="#">Level 2.1.1</a></li>
+                                                    <li><a href="#">Level 2.1.2</a></li>
+                                                    <li><a href="#">Level 2.1.3</a></li>
+                                                    <li><a href="#">Level 2.1.4</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown submenu">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Level 2.2</a>
+                                                <ul class="dropdown-menu submenu-show submenu-hide pull-left">
+                                                    <li><a href="#">Level 2.2.1</a></li>
+                                                    <li><a href="#">Level 2.2.2</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="" class="glyphicons settings"><i></i>Some option</a></li>
+                                    <li><a href="" class="glyphicons bell"><i></i>Some other option</a></li>
+                                    <li><a href="" class="glyphicons bell"><i></i>Other option</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="account dropdown dd-1">
+                                <a data-toggle="dropdown" href="#" class="glyphicons logout lock"><span class="hidden-phone"></span><i></i></a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li class="profile">
+                                        <span>
+                                            <span class="heading">Profile <a href="#" class="pull-right"></a></span>
+                                            <span class="img"></span>
+                                            <span class="details">
+                                        <?php echo $this->session->storage->user_name;
+                                        ?><br/><br/><?php
+                                        echo $this->session->storage->email;?>
+									</span>
+                                            <span class="clearfix"></span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            <a class="btn btn-default btn-mini pull-right" href="<?php echo $this->baseUrl('/admin/logout'); ?>">Sign Out</a>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>			
+                    <!--<span class="toggle-navbar"></span>-->
+                </div>
+              <?php endif; endif; ?>
+
+           <?php //echo $this->baseUrl(); die;?>

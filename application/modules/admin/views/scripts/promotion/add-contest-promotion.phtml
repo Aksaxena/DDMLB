@@ -1,0 +1,112 @@
+<div class="opennotificationGreen" style="z-index: 99;">
+<span class="notification_msgGreen">Your promotion details has been added successfully.</span>
+</div>
+<div id="content">
+    <h3>New Contest Promotion</h3>
+    <div class="innerLR">
+
+        <!-- Widget -->
+        <div class="widget widget-tabs border-bottom-none">
+
+            <!-- Widget heading -->
+            <div class="widget-head">
+                <ul>
+                    <li class="active"><a class="glyphicons add" href="#" data-toggle="tab"><i></i>Add Contest Promotion</a></li>
+                </ul>
+            </div>
+            <div>
+                 <a class="btn btn-icon btn-primary glyphicons circle_ok" href="/admin/contest-promotion" type="button" style="margin-left:900px">
+                            <i></i>Promotion Details</a>
+                             
+                </div>
+            <!-- // Widget heading END -->
+
+            <div class="widget-body">				
+                <form class="form-horizontal margin-none addcontestpromotion"  method="post">
+                    <div class="tab-content pad0">
+
+                        <!-- Tab content -->
+                        <div class="tab-pane active" id="account-details">
+
+                            <!-- Row -->
+                            <div class="row-fluid">
+
+                                <!-- Column -->
+                                <div class="span10">
+
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Display Name</label>
+                                        <div class="controls">
+                                            <input type="text" name="promotion_display_name" id="promotion_display_name" value="" class="span6" />
+                                            <span style="color: #ff3333" class="adddiserr"></span>
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->									<form id="uploadimage" method="post" enctype="multipart/form-data">										<div id="file_section" class="control-group">											<div class="controls">											   <input id="img_file" name="img_file" type="file"><br>											   <span>Note: To insert image file in to content section need to generate path by upload file and copy</span></br>											   <span id="errorimagefilemsg"></span></br>											   <button type="button" id="upload_img" class="btn btn-icon btn-primary glyphicons"><i></i>Upload Image</button>											</div>											</div>										</form>
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Promotion Content</label>
+                                        <div class="controls">
+                                            <textarea name="promotion_content" id="promotion_content"/></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->
+
+
+                                    <!-- Group -->
+                                    <div class="control-group">
+                                        <label class="control-label">Status</label>
+                                        <div class="controls">
+                                            <select class="span4" name="status">
+                                                <option  value="1">Active </option>                                                                                
+                                                <option  value="0">Deactive</option>                                                                                
+                                            </select>										
+                                                <!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+                                        </div>
+                                    </div>
+                                    <!-- // Group END -->                                                                
+									<div class="separator line bottom"></div>									<!-- Form actions -->									<div class="form-actions" class="margin-none">										<button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button>										<a href="<?php $this->baseUrl(); ?>/admin/contest-promotion">	<button type="button" class="btn btn-icon btn-default glyphicons circle_remove"><i></i>Cancel</button> </a>									</div>
+                                </div>
+                            </div>
+                            <!-- // Row END -->
+
+                            
+                            <!-- // Form actions END -->
+
+                        </div>
+                        <!-- // Tab content END -->
+
+                    </div>
+                </form>								
+            </div>
+        </div>
+        <!-- // Widget END -->
+
+    </div>	
+</div>
+<?php if(isset($this->success)) { ?>
+<!-- This script Displays the  notification when the user details are submitted on submit  -->
+<script>  				
+        $('.opennotificationGreen').click(function()
+        {
+            alert('ss');
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+    
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+            }, 3000); 
+             
+        
+    </script>
+    <?php }?>
+<script>		$('#upload_img').click(function(){		var ext = $("#img_file").val().split('.').pop().toLowerCase();		$('#errorimagefilemsg').html('');		if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {			$('#errorimagefilemsg').html("invalid extension! gif, png, jpg, jpeg' are allowed");			$('#img_file').val('');			$('#errorimagefilemsg').css('color','red');			return false;		}		var file_data = $('#img_file').prop('files')[0];   		var form_data = new FormData(this);		form_data.append('file', file_data);		form_data.append('method', 'file_upload');		$.ajax({			url: "/admin/add-contest-promotion", 			type: "POST",     			data: form_data, 			contentType: false,     			cache: false,          			processData:false,     			success: function(data) {				data = JSON.parse(data);				console.log(data);				$('#errorimagefilemsg').css('color','green');					$('#errorimagefilemsg').html('file uploaded successfully copy path : "'+data.path+'"');									},		});	});	
+    $('#menu_components3').removeClass('collapse').addClass('in collapse');
+    $('#promotion_setting_menu').removeClass('hasSubmenu glyphicons cogwheels').addClass('hasSubmenu glyphicons charts active');
+    $('#add_contest_promotion_menu').addClass('active');    
+</script>
